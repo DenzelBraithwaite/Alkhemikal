@@ -1,0 +1,2 @@
+class ExploreView
+end

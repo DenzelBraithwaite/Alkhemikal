@@ -1,0 +1,3 @@
+class MazeView
+
+end
