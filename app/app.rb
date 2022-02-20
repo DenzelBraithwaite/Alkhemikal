@@ -22,7 +22,7 @@ billywig_controller = BillywigController.new()
 # maze_controller = MazeController.new()
 
 # Router
-router = Router.new(basic_controller, main_controller, explore_controller billywig_controller) #, explore_controller, potions_controller, maze_controller)
+router = Router.new(basic_controller, explore_controller, main_controller, billywig_controller) #, explore_controller, potions_controller, maze_controller)
 
 # Start the app
 router.run

@@ -1,5 +1,6 @@
 class ExploreRepo
-    attr_reader :all_ingredients, :good_ingredients, :bad_ingredients, :good_ingredient_text, :bad_ingredient_text
+    attr_reader :all_ingredients, :good_ingredients, :bad_ingredients,
+    :good_ingredient_text, :bad_ingredient_text, :unlocked_ingredients
 
     def initialize
         @all_ingredients = [
@@ -195,5 +196,6 @@ class ExploreRepo
             "Wow, that's a good fine! Too bad it's not useful for potions.",
             "Throw that away now!"
         ]
+        @unlocked_ingredients = []
     end
 end

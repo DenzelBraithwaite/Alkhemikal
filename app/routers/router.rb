@@ -58,7 +58,7 @@ class Router
     # when 4
       # @main_controller.fast_loading
       # @maze_controller.run
-    when 5 then stop
+    when 9 then stop
     else
     @view.invalid_option
     @main_controller.clear
@@ -72,7 +72,7 @@ class Router
   def main_menu_options
     puts @view.title_art.light_blue.blink
     @main_controller.line
-    puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ?"
+    puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ?"
     @main_controller.line(1)
     puts "1 - 𝔼𝕩𝕡𝕝𝕠𝕣𝕖".light_yellow
     @main_controller.line(0.25)
@@ -82,9 +82,9 @@ class Router
     @main_controller.line(0.25)
     # puts "4 - Maze Runner".light_yellow
     # @main_controller.line(0.25)
-    puts "5 - ℚ𝕦𝕚𝕥".light_red
+    puts "9 - ℚ𝕦𝕚𝕥".light_red
     2.times { @main_controller.line(0.1) }
-    print "#{@witch_name}> ".yellow
+    print "#{@witch_name}> ".light_cyan
   end
 
   def synchronize_witch_name(witch_name)
