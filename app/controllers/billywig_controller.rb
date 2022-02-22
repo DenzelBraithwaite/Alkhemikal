@@ -61,20 +61,21 @@ class BillywigController < BasicController
     #====================================================================#
 
     def pick_player_card
-        [
-        1, 1, 1, 1,
-        2, 2, 2, 2,
-        3, 3, 3, 3,
-        4, 4, 4, 4,
-        5, 5, 5, 5,
-        6, 6, 6, 6,
-        7, 7, 7, 7,
-        8, 8, 8, 8,
-        9, 9, 9, 9,
-        10, 10, 10, 10, 10,
-        10, 10, 10, 10, 10,
-        11, 11,
-        21].sample
+        21
+        # [
+        # 1, 1, 1, 1,
+        # 2, 2, 2, 2,
+        # 3, 3, 3, 3,
+        # 4, 4, 4, 4,
+        # 5, 5, 5, 5,
+        # 6, 6, 6, 6,
+        # 7, 7, 7, 7,
+        # 8, 8, 8, 8,
+        # 9, 9, 9, 9,
+        # 10, 10, 10, 10, 10,
+        # 10, 10, 10, 10, 10,
+        # 11, 11,
+        # 21].sample
     end
 
     #====================================================================#
@@ -97,20 +98,19 @@ class BillywigController < BasicController
         if @player_score > 21
             "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Hot ghoul, looks like ya lost NYAAKAkakaaa! You have #{@player_score.to_s.light_green} points, that's #{too_many.to_s.light_red} too many!"
         elsif @player_score == 21
-            puts @view.title_art.magenta.blink
             puts ""
-            puts ""
-            puts "Gʀᴜɴᴛɪʟᴅᴀ> Billywig! I can't believe you got a perfect score... Give 2 puffs!".light_magenta.blink
+            puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} I can't believe you got a perfect score!!!
+            #{@view.billywig_art.light_blue}"
             puts ""
             ""
         elsif @player_score > bank_score
             "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Meh! I guess you win... with a score of #{@player_score.to_s.light_green}."
         elsif @player_score < bank_score
             next_card_color
-            puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} You would've gotten #{@next_card_string} next!"
+            puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} You would've gotten #{next_card_color} next!"
             "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Sweet mortis bats! I thought you played this before? I win!! With #{bank_score.to_s.light_red} points!"
         elsif @player_score == bank_score
-            puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} You would've gotten #{@next_card_string} next!"
+            puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} You would've gotten #{next_card_color} next!"
             "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} As even as a porlock's toe nails. I guess nobody wins this round."
         end
     end
