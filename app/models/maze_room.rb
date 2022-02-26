@@ -2,20 +2,98 @@ class MazeRoom
     attr_reader :row_id, :column_id
 
     def initialize(attributes = {})
-        @name
-        @row_id = attributes[row_id]
-        @column_id = attributes[column_id]
-        @up = attributes[up]
-        @down = attributes[down]
-        @left = attributes[left]
-        @right = attributes[right]
+        @name = attributes[:name]
+        @role = attributes[:role]
+        @row_id = attributes[:row_id]
+        @column_id = attributes[:column_id]
+        load_role
     end
+
+    def load_role
+      # Checks role, sets up,down,left,right depending on result. Use case statement
+      case @role
+        when :top_left_corner
+          @up = false
+          @down = true
+          @left = false
+          @right = true
+        when :top_right_corner
+          @up = false
+          @down = true
+          @left = true
+          @right = false
+        when :bottom_left_corner
+          @up = true
+          @down = false
+          @left = false
+          @right = true
+        when :bottom_right_corner
+          @up = true
+          @down = false
+          @left = true
+          @right = false
+        when :only_up
+          @up = true
+          @down = false
+          @left = false
+          @right = false
+        when :only_down
+          @up = false
+          @down = true
+          @left = false
+          @right = false
+        when :only_left
+          @up = false
+          @down = false
+          @left = true
+          @right = false
+        when :only_right
+          @up = false
+          @down = false
+          @left = false
+          @right = true
+        when :no_up
+          @up = false
+          @down = true
+          @left = true
+          @right = true
+        when :no_down
+          @up = true
+          @down = false
+          @left = true
+          @right = true
+        when :no_left
+          @up = true
+          @down = true
+          @left = false
+          @right = true
+        when :no_right
+          @up = true
+          @down = true
+          @left = true
+          @right = false
+        when :only_vertical
+          @up = true
+          @down = true
+          @left = false
+          @right = false
+        when :only_horizontal
+          @up = false
+          @down = false
+          @left = true
+          @right = true
+        when :any_direction
+          @up = true
+          @down = true
+          @left = true
+          @right = true
+      end
 
     # def move_up?
     #     @up
     # end
 
     # def move_up
-    #     @column_id += 1 
+    #     @column_id += 1
     # end
 end
