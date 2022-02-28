@@ -18,13 +18,13 @@ class ExploreView
         puts ""
         puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ?"
         puts ""
-        puts "1 - Search".light_yellow
+        puts " 1 - Search".light_yellow
         puts ""
-        puts "2 - Ingredients".light_yellow
+        puts " 2 - Ingredients".light_yellow
         puts ""
-        puts "3 - Inventory".light_yellow
+        puts " 3 - Inventory".light_yellow
         puts ""
-        puts "9 - ℚ𝕦𝕚𝕥".light_red
+        puts " 9 - ℚ𝕦𝕚𝕥".light_red
         puts ""
         puts ""
     end

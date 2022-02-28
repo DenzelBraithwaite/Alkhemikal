@@ -4,7 +4,7 @@ require_relative '../views/main_view'
 class Router
   attr_reader :witch_name
 
-  def initialize(basic_controller, explore_controller, main_controller, billywig_controller) # potions_controller, explore_controller, maze_controller)
+  def initialize(basic_controller, explore_controller, main_controller, billywig_controller, maze_controller) # potions_controller)
     @running = true
     @view = MainView.new
     @basic_controller = basic_controller
@@ -12,13 +12,14 @@ class Router
     @explore_controller = explore_controller
     # @potions_controller = potions_controller
     @billywig_controller = billywig_controller
-    # @maze_controller = maze_controller
+    @maze_controller = maze_controller
   end
 
   def run
+    @main_controller.clear
     # Display demo version number, sleeps then clears screen.
-    # puts @view.demo_version
-    # sleep(2.5)
+    # puts @view.demo_version 
+    # sleep(1.75)
     # @main_controller.clear
 
     # Display opening art sequence, sleeps then prompts to continue and clears.
@@ -55,9 +56,9 @@ class Router
     when 3
       @main_controller.fast_loading
       @billywig_controller.run
-    # when 4
+    when 4
       # @main_controller.fast_loading
-      # @maze_controller.run
+      @maze_controller.run
     when 9 then stop
     else
     @view.invalid_option
@@ -80,8 +81,8 @@ class Router
     @main_controller.line(0.25)
     puts "3 - 𝔹𝕚𝕝𝕝𝕪𝕎𝕚𝕘".light_yellow
     @main_controller.line(0.25)
-    # puts "4 - Maze Runner".light_yellow
-    # @main_controller.line(0.25)
+    puts "4 - Maze Runner".light_yellow
+    @main_controller.line(0.25)
     puts "9 - ℚ𝕦𝕚𝕥".light_red
     2.times { @main_controller.line(0.1) }
     print "#{@witch_name}> ".light_cyan
@@ -92,6 +93,6 @@ class Router
     @billywig_controller.witch_name = witch_name
     @explore_controller.witch_name = witch_name
     # @potions_controller.witch_name = witch_name
-    # @maze_controller.witch_name = witch_name
+    @maze_controller.witch_name = witch_name
   end
 end

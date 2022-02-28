@@ -57,7 +57,7 @@ class MainView
      \'._/_)_(\__.\'   (__,(__,_]
        @---()_.\'---@  '
 
-    @demo_version = "Demo Version 2.0"
+    @demo_version = "Demo Version 2.1 - last update: #{'labyrinth'.yellow}"
   end
 
   def get_user_name
