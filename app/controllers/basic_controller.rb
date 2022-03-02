@@ -1,10 +1,10 @@
 require 'colorize'
 
 class BasicController
-  attr_accessor :witch_name
+  attr_accessor :player
 
-  def initialize
-    @witch_name = "Witch"
+  def initialize(player)
+    @player = player
   end
 
    # Simple loading screen, finishes with 100% in green.
@@ -92,3 +92,19 @@ class BasicController
     slow_dialogue(text, 0.015, false)
   end
 end
+
+  # Will need to play with this, goal to make one save method for all (maybe hash save will be diff method)
+  # def save(save_path, to_be_saved)
+  #   CSV.open(save_path, "wb") do |csv|
+  #     to_be_saved.each do |thing|
+  #       csv << thing
+  #     end
+  #   end
+  # end
+
+  # # Will need to play with this, goal to make one load method for all (maybe hash load will be diff method)
+  # def load(load_path, to_be_loaded)
+  #   CSV.foreach(load_path) do |row|
+  #     to_be_loaded << row
+  #   end
+  # end

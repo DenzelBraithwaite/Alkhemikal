@@ -25,7 +25,7 @@ class BillywigController < BasicController
         bank_score = pick_bank_score
         while @running && @player_score < 21
             slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Tarot card? #{'y'.light_blue} or #{'yes'.light_blue} to conjure a new card", 0.005, false)
-            print "#{@witch_name}> ".light_cyan
+            print "#{@player.name}> ".light_blue
             player_turn = gets.chomp.downcase
 
             if player_turn == "y" || player_turn == "yes"
@@ -38,7 +38,7 @@ class BillywigController < BasicController
 
         puts end_game_message(@player_score, bank_score)
         slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} How's about we go for another round?", 0.010, false)
-        puts "#{@witch_name}> ".light_cyan
+        puts "#{@player.name}> ".light_blue
         playing_again = gets.chomp.downcase
         line
         if playing_again == "yes" || playing_again == "y"

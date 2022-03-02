@@ -1,16 +1,17 @@
 require_relative 'basic_controller'
-require_relative '../views/maze_view'
-require_relative '../repo/maze_repo'
+require_relative '../views/labyrinth_view'
+require_relative '../repo/labyrinth_repo'
 
-class MazeController < BasicController
+class LabyrinthController < BasicController
     def initialize(repo)
-        @view = MazeView.new
+        @view = LabyrinthView.new
         @repo = repo
     end
 
     def run
         @running = true
-        @current_room = @current_room || @repo.rooms.first
+        @last_movement = @last_movement || "none"
+        @current_room = @current_room || @repo.rooms[9] # @repo.rooms.sample
         puts @view.title_art.yellow.blink
         line
         # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Welcome... to the Wiccan Labyrinth!", 0.010, false)
@@ -19,15 +20,17 @@ class MazeController < BasicController
         # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Your goal is to wander the labyrinth, in search of rare ingredients.", 0.010, false)
         # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Only problem is of course, you're not alone in there.", 0.010, false)
         # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Be careful and don't forget, when you think you've had enough, call my name three times.", 0.010, false)
-        slow_dialogue("#{"Tip:".light_white} Type 'quit' at any time to return to the main menu. When you play again you'll start from the same room.".light_black, 0.010, true)
+        slow_dialogue("#{"Tip:".light_white} Press '9' at any time to return to the main menu. When you play again you'll start from the same room.".light_black, 0.010, true)
 
         while @running
             clear
             room = define_walls + define_floors
-            @view.maze_menu_options
+            @view.labyrinth_menu_options
             puts "Current room: #{room}".light_black
             line
-            print "#{@witch_name}> ".yellow
+            puts @view.last_move(@last_movement).light_yellow
+            line
+            print "#{@player.name}> ".yellow
             action = gets.chomp.downcase
             clear
             puts @view.title_art.yellow
@@ -41,7 +44,8 @@ class MazeController < BasicController
         when "down" then move_down?
         when "left" then move_left?
         when "right" then move_right?
-        when "quit" then @running = false
+        when "9" then @running = false
+        when "room" then puts "row:#{@current_room.row_id.to_s.cyan}\ncol:#{(@current_room.column_id.to_s).blue}"; sleep(1)
         else
             puts "Invalid option"
         end
@@ -52,6 +56,7 @@ class MazeController < BasicController
         if @current_room.up
             move_up
             puts @view.move_to_next_room
+            @last_movement = "up"
         else
             @view.display_no_room
         end
@@ -68,6 +73,7 @@ class MazeController < BasicController
         if @current_room.down
             move_down
             puts @view.move_to_next_room
+            @last_movement = "down"
         else
             @view.display_no_room
         end
@@ -83,6 +89,7 @@ class MazeController < BasicController
         if @current_room.left
             move_left
             puts @view.move_to_next_room
+            @last_movement = "left"
         else
             @view.display_no_room
         end
@@ -98,6 +105,7 @@ class MazeController < BasicController
         if @current_room.right
             move_right
             puts @view.move_to_next_room
+            @last_movement = "right"
         else
             @view.display_no_room
         end
@@ -116,50 +124,91 @@ class MazeController < BasicController
     
     def define_walls
         case @current_room.column_id
-        when 1 || 11
+        when 1 
             "You're surrounded by a forest of trees, "
-        when 2 || 12
+        when 11
+            "You're surrounded by a forest of trees, "
+        when 2
             "Giant mushrooms tower around you, "
-        when 3 || 13
+        when 12
+            "Giant mushrooms tower around you, "
+        when 3
             "It's cold, walls of ice are all around you, "
-        when 4 || 14
+        when 13
+            "It's cold, walls of ice are all around you, "
+        when 4
             "It's dry, the walls around you are rough and rocky, "
-        when 5 || 15
+        when 14
+            "It's dry, the walls around you are rough and rocky, "
+        when 5
             "It's humid, there are many long and thick vines surrounding you, "
-        when 6 || 16
+        when 15
+            "It's humid, there are many long and thick vines surrounding you, "
+        when 6
             "Tall bamboo in every direction you look, "
-        when 7 || 17
+        when 16
+            "Tall bamboo in every direction you look, "
+        when 7
             "You can't see a thing, the fog is too thick, "
-        when 8 || 18
+        when 17
+            "You can't see a thing, the fog is too thick, "
+        when 8
             "You're surrounded by yourself, all around you are mirrors, "
-        when 9 || 19
+        when 18
+            "You're surrounded by yourself, all around you are mirrors, "
+        when 9
             "You're burning up, everything is on fire, "
-        when 10 || 20
+        when 19
+            "You're burning up, everything is on fire, "
+        when 10
+            "The walls around you are made of brick it seems, "
+        when 20
             "The walls around you are made of brick it seems, "
         end
+        
     end
 
     def define_floors
         case @current_room.row_id
-        when 1 || 11
+        when 1
             "there's grass beneath your feet."
-        when 2 || 12
+        when 2
             "the ground is a musky swamp covered in mildew."
-        when 3 || 13
+        when 3
             "the ground is frozen and slippery."
-        when 4 || 14
+        when 4
             "the grass beneath your feet is up to your waist."
-        when 5 || 15
+        when 5
             "there's a cobblestone path guiding you."
-        when 6 || 16
+        when 6
             "you hear crunching and crinkling with each step, enjoying the foliage."
-        when 7 || 17
+        when 7
             "the ground is riddled with shallow puddles."
-        when 8 || 18
+        when 8
             "the floor is transparent and fragile... must be glass."
-        when 9 || 19
+        when 9
             "your feet burn with each step on this scorching hot metal."
-        when 10 || 20
+        when 10
+            "the ground is made of cement, sturdy and reliable."
+        when 11
+            "there's grass beneath your feet."
+        when 12
+            "the ground is a musky swamp covered in mildew."
+        when 13
+            "the ground is frozen and slippery."
+        when 14
+            "the grass beneath your feet is up to your waist."
+        when 15
+            "there's a cobblestone path guiding you."
+        when 16
+            "you hear crunching and crinkling with each step, enjoying the foliage."
+        when 17
+            "the ground is riddled with shallow puddles."
+        when 18
+            "the floor is transparent and fragile... must be glass."
+        when 19
+            "your feet burn with each step on this scorching hot metal."
+        when 20
             "the ground is made of cement, sturdy and reliable."
         end
     end

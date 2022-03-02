@@ -1,47 +1,52 @@
-class WitchModel
-	attr_accessor :name, :ladle, :cauldron, :ingredients, :potions, :hat, :hats, :robe, :robes
+class Witch
+	attr_accessor :name, :ladle, :cauldron, :ingredients, :recipes, :hat, :unlocked_hats, :robe, :unlocked_robes
 	
-	# I can call input on name ()gets.chomp.downcase!
-	def initialize(name)
-		@name = name
+	def initialize
 		@ladle = "wooden spoon"
 		@cauldron = "simple cauldron"
-		@ingredients = ["water"]
-		@potions = []
-		@hat = "no hat"
-		@hats
-		@robe = "simple black robe"
-		@robes = ["simple black robe"]
+		@ingredients = ["water", "small bones"] # REMOVE SMALL BONES
+		@recipes = {}
+		@unlocked_hats = ["none"]
+		@unlocked_robes = ["simple black robe"]
+		@hat = @unlocked_hats.first
+		@robe = @unlocked_robes.first
 	end
 
-	# Method to change name
-	def change_name(new_name)
-		@name = new_name
-	end
+	# Instead of making dedicated repos, I will store player equipment here
+    # Hats that can be found when exploring
+    @all_hats = [
+      "pointy hat",
+      "magic hood",
+      "long grey wig",
+      "witch's hat",
+      "sorting hat",
+    ]
 
-	# Method that adds ingredient to the ingredients inventory, unless already owned
-	def add_ingredient(ingredient)
-		@ingredients << ingredient unless @ingredients.include?(ingredient)
-	end
+    # Robes that can be found when exploring
+    @all_robes = [
+      "wizard's robe",
+      "Beautifying robe",
+      "dark cloak",
+      "witch's robe",
+      "Quidditch uniform",
+    ]
 
-	# Method that adds a potion to the potions inventory, unless already created.
-	def add_potion(potion)
-		@potions << potion unless @potions.include?(potion)
-	end
-
-	# Method that adds a hat to the hat inventory, unless already owned
+	# Adds a hat to the hat inventory, unless already owned
 	def add_hat(hat)
-		@hat << potion unless @hat.include?(hat)
+		@unlocked_hats << hat unless @unlocked_hats.include?(hat)
 	end
 
+	# Changes hat
 	def change_hat(hat)
 		@hat = hat
 	end
-
+	
+	# Adds a robe to the robes inventory, unless already owned
 	def add_robe(robe)
-		@robe << robe unless @robe.include?(robe)
+		@unlocked_robes << robe unless @unlocked_robes.include?(robe)
 	end
 
+	# Changes robe
 	def change_robe(robe)
 		@robe = robe
 	end

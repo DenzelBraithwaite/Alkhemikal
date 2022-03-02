@@ -1,8 +1,11 @@
-class ExploreRepo
-    attr_reader :all_ingredients, :good_ingredients, :bad_ingredients,
-    :good_ingredient_text, :bad_ingredient_text, :unlocked_ingredients
+require_relative '../models/ingredient'
+
+class IngredientRepo
+    attr_reader :good_ingredients, :bad_ingredients
+    attr_accessor :all_ingredients
 
     def initialize
+        # Array of all items that can be found while exploring.
         @all_ingredients = [
             "alcohol",
             "ashwinder eggs",
@@ -174,28 +177,5 @@ class ExploreRepo
             but this moon will be different.\n I've discovered that the key ingredient isn't an ingredient at all, it's a potion!! 
             In fact all the ingredients are potions.\n This is my hypothesis, if you combine the Brew of visions w-"
         ]
-        # Array of things to say when a good ingredient is found
-        @good_ingredient_text = [
-            "Another stellar ingredient to add to my collection",
-            "Keep that, we might need it later",
-            "NYAAAKAKAAA that's what I'm talking about!",
-            "Wow, that's a good find! I'm sure we can use this",
-            "Oooh, not bad. We'll take this back",
-            "Hmmm, I think I know what we can use this for... Let's grab it",
-            "We definitely need this",
-            "Finders keepers!"
-        ]
-        # Array of things to say when a good ingredient is found
-        @bad_ingredient_text = [
-            "Quit wasting time and find me something useful.",
-            "I can't imagine what anyone would do with this?",
-            "Oh hell no, we don't need that!",
-            "Umm.... I think it's safe to say we don't need this",
-            "Eww, no. Put it back",
-            "I have too many of these already, no thanks",
-            "Wow, that's a good fine! Too bad it's not useful for potions.",
-            "Throw that away now!"
-        ]
-        @unlocked_ingredients = []
     end
 end

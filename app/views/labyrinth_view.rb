@@ -1,6 +1,6 @@
 require 'colorize'
 
-class MazeView < MainView
+class LabyrinthView < MainView
     def initialize
         @title_art = "
         ░██╗░░░░░░░██╗██╗░█████╗░░█████╗░░█████╗░███╗░░██╗
@@ -26,7 +26,11 @@ class MazeView < MainView
         "You move into the next room...".light_black.blink
     end
 
-    def maze_menu_options
+    def last_move(direction)
+        "Last move: #{direction}."
+    end
+
+    def labyrinth_menu_options
         puts @title_art.yellow
         puts ""
         puts "Pick a #{'direction'.yellow}."

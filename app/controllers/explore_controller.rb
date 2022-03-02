@@ -1,17 +1,17 @@
-require_relative '../repo/explore_repo'
+require_relative '../repo/ingredient_repo'
 require_relative '../views/explore_view'
 
 class ExploreController < BasicController
-    def initialize(explore_repo)
-        @explore_repo = explore_repo
-        @running = true
+    def initialize(ingredient_repo)
+        @ingredient_repo = ingredient_repo
         @view = ExploreView.new
     end
 
     def run
+        @running = true
         while @running
             @view.explore_menu_options
-            print "#{@witch_name}> ".yellow
+            print "#{@player.name}> ".light_green
             action = gets.chomp.to_i
             clear
             route_action(action)
@@ -21,14 +21,13 @@ class ExploreController < BasicController
     
     private
     
+    
     def route_action(action)
         case action
         when 1
             search_route_action
-            puts "TODO: Explore for ingredients"
-        when 2
-            fast_loading
-        puts "TODO: View unlocked ingredients"
+        when 2 
+            check_ingredients
         when 3
             fast_loading
             puts "TODO: Check inventory, change clothes maybe"
@@ -38,7 +37,12 @@ class ExploreController < BasicController
             clear
         end
     end
-  
+    
+    def check_ingredients
+        @view.quick_view_ingredients(@player.ingredients)
+        continue_prompt
+      end
+
     def stop
         @running = false
     end
@@ -52,7 +56,7 @@ class ExploreController < BasicController
             found_ingredient
             clear
             @view.search_again_text
-            print "#{@witch_name}> ".yellow # Not grabbing name?
+            print "#{@player.name}> ".yellow # Not grabbing name?
             action = gets.chomp.to_i
             searching = false if action == 9
         end
@@ -60,23 +64,23 @@ class ExploreController < BasicController
     
     def found_ingredient
         # Find random ingredient
-        if @explore_repo.all_ingredients.empty?
+        if @ingredient_repo.all_ingredients.empty?
         slow_dialogue("Well that seems to be the last of them, ", delay = 0.015, false)
         slow_dialogue("guess we'd better start makin' some potions.", delay = 0.015, true)
         else
-        ingredient_found = @explore_repo.all_ingredients.sample
-        @explore_repo.all_ingredients.delete(ingredient_found)
+        ingredient_found = @ingredient_repo.all_ingredients.sample
+        @ingredient_repo.all_ingredients.delete(ingredient_found)
     
         # When item is found, display dialogue about the item
         puts "You found #{ingredient_found}!"
         sleep(1.5)
     
         # Checks to see if it's a good or bad item.
-        if @explore_repo.good_ingredients.include?(ingredient_found)
-            puts "Gʀᴜɴᴛɪʟᴅᴀ> #{@explore_repo.good_ingredient_text.sample}"
-            @explore_repo.unlocked_ingredients << ingredient_found unless @explore_repo.unlocked_ingredients.include?(ingredient_found)
+        if @ingredient_repo.good_ingredients.include?(ingredient_found)
+            puts "Gʀᴜɴᴛɪʟᴅᴀ> #{@view.good_ingredient_text.sample}"
+            @player.ingredients << ingredient_found unless @player.ingredients.include?(ingredient_found)
         else
-            puts "Gʀᴜɴᴛɪʟᴅᴀ> #{@explore_repo.bad_ingredient_text.sample}"
+            puts "Gʀᴜɴᴛɪʟᴅᴀ> #{@view.bad_ingredient_text.sample}"
         end
         line(1)
         continue_prompt
@@ -99,4 +103,7 @@ class ExploreController < BasicController
     end
 end
 
- 
+ # Method that adds ingredient to the ingredients inventory, unless already owned
+ def add_ingredient(ingredient)
+    @ingredients << ingredient unless @ingredients.include?(ingredient)
+end

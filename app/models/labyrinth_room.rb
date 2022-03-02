@@ -1,4 +1,4 @@
-class MazeRoom
+class LabyrinthRoom
   attr_reader :row_id, :column_id, :up, :down, :left, :right, :name
 
   def initialize(attributes = {})
