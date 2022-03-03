@@ -20,19 +20,20 @@ class LabyrinthController < BasicController
         # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Your goal is to wander the labyrinth, in search of rare ingredients.", 0.010, false)
         # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Only problem is of course, you're not alone in there.", 0.010, false)
         # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Be careful and don't forget, when you think you've had enough, call my name three times.", 0.010, false)
-        slow_dialogue("#{"Tip:".light_white} Press '9' at any time to return to the main menu. When you play again you'll start from the same room.".light_black, 0.010, true)
-
+        
         while @running
             clear
             room = define_walls + define_floors
+            @view.press_9_to_quit
             @view.labyrinth_menu_options
-            puts "Current room: #{room}".light_black
+            puts "#{'Cᴜʀʀᴇɴᴛ ʀᴏᴏᴍ:'.yellow} #{room}"
             line
-            puts @view.last_move(@last_movement).light_yellow
+            puts @view.last_move(@last_movement)
             line
             print "#{@player.name}#{'> '.yellow}"
             action = gets.chomp.downcase
             clear
+            @view.press_9_to_quit
             puts @view.title_art.yellow
             route_action(action)
         end

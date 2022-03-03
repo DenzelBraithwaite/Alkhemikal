@@ -47,3 +47,4 @@ router = Router.new(basic_controller, main_controller, explore_controller, potio
 
 # Start the app
 router.run
+

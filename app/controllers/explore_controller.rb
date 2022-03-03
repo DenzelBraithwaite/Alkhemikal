@@ -87,13 +87,13 @@ class ExploreController < BasicController
     def searching_loop
         searching_time = rand(1..60)
         # Put message saying searching while walking
-        slow_dialogue("Now Searching", delay = 0.015, false)
+        slow_dialogue("Nᴏᴡ Sᴇᴀʀᴄʜɪɴɢ".light_green.blink, delay = 0.015, false)
 
         # Add random delay between each item found.
         searching_time.times do
-        print ".".light_yellow
+        print ".".light_black
         sleep(0.050)
-        print ".".yellow
+        print ".".light_green
         sleep(0.050)
         end
         sleep(1.25)

@@ -1,3 +1,5 @@
+require 'colorize'
+
 class Witch
 	attr_accessor :name, :ladle, :cauldron, :ingredients, :recipes, :hat, :unlocked_hats, :robe, :unlocked_robes
 	
@@ -58,12 +60,18 @@ class Witch
 
 	# Method that upgrades ladle after all ingredients have been found.
 	def upgrade_ladle
+		puts "You put your #{@ladle.magenta} down."
 		@ladle = "Witch's broom"
+		sleep(1.5)
+		puts "You pick up your new ladle, a #{@ladle.magenta}!"
 	end
 
 	# Method that upgrades cauldron after all basic potions have been created.
 	def upgrade_cauldron
+		puts "You put your #{@cauldron.magenta} away in the basement."
 		@cauldron = "Large witch's cauldron"
+		sleep(1.5)
+		puts "You grab your new #{@cauldron.magenta} and place it over the fire."
 	end
 
 

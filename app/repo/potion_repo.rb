@@ -24,8 +24,17 @@ class PotionRepo
       "Liquid Light",
       "Vial of Knowledge",
       "Slimy Syrum",
-      "Vial of the Volatile"
+      "Vial of the Volatile",
     ] 
+    # Special potions requiring different equipment
+    @special_potions = [
+      "potion potion",
+      "vile vial of amortentia"
+    ]
+    
+    # Hash for Final potion ingredients
+    @final_potion = {:"Vile Vial of Amortentia" => ["Bowl of Smoke and Embers", "Brew of Visions", "Time Potion"]}
+    
     # Hash of all creatable potions + their recipes
     @all_potion_recipes = {
       :"Witch's Brew" => ["cat hair", "bat spleen"],
@@ -76,9 +85,4 @@ class PotionRepo
   end
 end
 
-
-# Final potion, reveals why Elisa is stinky. requiers witch's cauldron
-# Checks to see if she has the cauldron, then if ingredients are right it makes it.
-# Hash for Final potion ingredients
-@final_potion = {:"Vile Vial of Amortentia" => ["Bowl of Smoke and Embers", "Brew of Visions", "Time Potion"]}
 	

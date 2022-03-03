@@ -22,6 +22,7 @@ class PotionController < BasicController
         while @running
             clear
             @view.menu_options
+            @view.current_equipment(@player.ladle, @player.cauldron)
             print "#{@player.name}#{'> '.light_magenta}"
             action = gets.chomp.to_i
             clear
@@ -32,7 +33,13 @@ class PotionController < BasicController
     
     def route_action(action)
         case action
-        when 1 then create_potion
+        when 1
+          create_potion
+          clear
+          potion_making_again_text
+          print "#{@player.name}#{'> '.light_magenta}"
+          action = gets.chomp.to_i
+          still_cooking if action == 1
         when 2 then check_ingredients
         when 3 then check_recipes
         when 4 then play_tutorial
@@ -61,11 +68,22 @@ class PotionController < BasicController
       clear
       puts @view.title_art.light_magenta
       slow_dialogue(@view.potion_tutorial_2, 0.01, false)
-      slow_dialogue(":Brew of Beginnings => [water, small bones]", 0.025, true).light_black
+      slow_dialogue(":Bʀᴇᴡ ᴏғ Bᴇɢɪɴɴɪɴɢs => [ᴡᴀᴛᴇʀ, sᴍᴀʟʟ ʙᴏɴᴇs]", 0.025, true).light_black
       clear
     end
 
-
+  # Loops back into making potions or returns to menu
+  def still_cooking
+    cooking_again = true
+    while cooking_again
+      potions_loop
+      clear
+      potion_making_again_text
+      print "#{@player.name}#{'> '.light_magenta}"
+      action = gets.chomp.to_i
+      cooking_again = false unless action == 1
+    end
+  end
   
 
 	# Method that adds a potion to the potions inventory, unless already created.
@@ -73,9 +91,24 @@ class PotionController < BasicController
 		@potions << potion unless @potions.include?(potion)
 	end
 
+  # Check if player has created all potions, upgrade equipment if true.
+  def upgrade_equipment?
+    if @player.recipes.length == @potion_repo.all_potions.length
+      puts "congrats, you're now worthy of being called a true witch."
+      puts "As such, I will give you my first cauldron that my mentor gave to me."
+      puts "As she and I once parted with it, so will you in time."
+      puts "When you find a worthy pupil who's not a useless dingbat."
+      @player.upgrade_cauldron
+      continue_prompt
+      @player.upgrade_ladle
+      continue_prompt
+    end
+  end
+
   ########################################################################################################
   def potions_loop
     creating_potions = true
+    upgrade_equipment?
     while creating_potions == true
       # Time it takes to make potion
       first_ingredient = ""
@@ -140,7 +173,7 @@ class PotionController < BasicController
       unless recipe == ["", ""] #SKIP THE REST AND GO BACK TO MAIN LOOP
   
         # Put message saying making potions .... 
-        slow_dialogue("Making potions", delay = 0.015, false)
+        slow_dialogue("Mᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴ".light_black, delay = 0.015, false)
   
         # Add random delay between each potion made.
         potion_making_time.times do
@@ -189,7 +222,7 @@ class PotionController < BasicController
           sleep(2)
         end 
   
-        slow_dialogue("Cleaning equipment and starting over...", 0.015, false)    
+        slow_dialogue("Cʟᴇᴀɴɪɴɢ ᴇᴏqᴜɪᴘᴍᴇɴᴛ ᴀɴᴅ sᴛᴀʀᴛɪɴɢ ᴏᴠᴇʀ...".light_black, 0.015, false)    
         # Breaks loop
         creating_potions = false
       end # Unless has to end here
@@ -198,30 +231,24 @@ class PotionController < BasicController
         break 
       end
     end # 424 end
-  
-      # Ask player if they still want to search? If no then back to explore menu, if yes then continue in while loop.
-      # potion_making_again_text
-      # make_another = gets.chomp.downcase
-  
-      # # Loops back into making potions or returns to menu
-      # potions_menu if make_another == "no"
-      puts "type 'back' to return to potions menu...".blink
-  
   end # Potions loop end 422
   ####################################################################################################
   
   # Text displayed to prompt search again
   def potion_making_again_text
-    clear
-    puts potions_art.light_magenta.blink
-    puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Would you like to continue making potions?"
-    line(1)
-    puts "- yes".light_yellow
-    line(0.5)
-    puts "- no".light_red
+    puts @view.title_art.light_magenta.blink
+    puts ""
+    puts ""
+    puts " Wᴏᴜʟᴅ ʏᴏᴜ ʟɪᴋᴇ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ ᴍᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴs #{'?'.light_magenta}"
+    puts ""
     sleep(1)
-    2.times { line }
-    print "#{@player.name}#{'> '.light_magenta}"
+    puts " 𝟙 #{'-'.light_magenta} 𝕪𝕖𝕤"
+    puts ""
+    sleep(0.5)
+    puts " 𝟚 #{'-'.light_magenta} #{'𝕟𝕠'.light_red}"
+    sleep(1)
+    puts ""
+    puts ""
   end
   
   
@@ -235,8 +262,8 @@ class PotionController < BasicController
     clear
     puts ingredients_art.green
     line
-    @player.ingredients.each do |ingredient|
-      puts "- #{ingredient}"
+    @player.ingredients.each_with_index do |ingredient, index|
+      puts "#{index + 1} #{'-'.green} #{ingredient}"
       sleep(0.15)
     end
     line
@@ -251,8 +278,8 @@ class PotionController < BasicController
     clear
     puts ingredients_art.magenta
     line
-    @player.ingredients.each do |ingredient|
-      puts "- #{ingredient}"
+    @player.ingredients.each_with_index do |ingredient, index|
+      puts "#{index + 1} #{'-'.light_magenta} #{ingredient}"
       sleep(0.15)
     end
     line
@@ -265,10 +292,10 @@ class PotionController < BasicController
     slow_dialogue("Checking recipes...", 0.02, false)
     sleep(0.5)
     clear
-    puts @view.recipes_art.magenta
+    puts @view.recipes_art.light_magenta
     line
-    @player.recipes.each do |potion|
-      puts "- #{potion}"
+    @player.recipes.each_with_index do |potion, index|
+      puts "#{index + 1} #{'-'.light_magenta} #{potion}"
       sleep(0.15)
     end
     line
@@ -276,8 +303,4 @@ class PotionController < BasicController
     line
     continue_prompt
   end
-
-
-
-
 end

@@ -125,21 +125,31 @@ class PotionMakingView < MainView
     puts " 𝟡 #{'-'.light_magenta} #{'𝔹𝕒𝕔𝕜'.light_red}"
     puts ""
     sleep(0.05)
+  end
+
+  def current_equipment(ladle, cauldron)
+    puts " Cᴜʀʀᴇɴᴛ ᴇqᴜɪᴘᴍᴇɴᴛ:".light_black
+    sleep(0.05)
+    puts " ʟᴀᴅʟᴇ: #{ladle.magenta}"
+    sleep(0.05)
+    puts " ᴄᴀᴜʟᴅʀᴏɴ: #{cauldron.magenta}"
+    sleep(0.05)
+    puts ""
     puts ""
   end
 
   def invalid_option
     puts ""
-    puts "Please select a valid option".light_red
+    puts "Pʟᴇᴀsᴇ sᴇʟᴇᴄᴛ ᴀ ᴠᴀʟɪᴅ ᴏᴘᴛɪᴏɴ".light_red
     sleep(0.8)
   end
 
   def quick_view_ingredients(ingredients)
-    puts "Ingredients:".light_yellow
+    puts "Iɴɢʀᴇᴅɪᴇɴᴛs:".light_cyan
     puts ""
     sleep(0.5)
-    ingredients.each do |ingredient|
-      puts "- #{ingredient}"
+    ingredients.each_with_index do |ingredient, index|
+      puts "#{index + 1} #{'-'.light_magenta} #{ingredient}"
       sleep(0.05)
     end
     puts ""

@@ -19,15 +19,23 @@ class LabyrinthView < MainView
     end
 
     def display_no_room
-        puts "You can't go that way".light_red
+        puts "Yᴏᴜ ᴄᴀɴ'ᴛ ɢᴏ ᴛʜᴀᴛ ᴡᴀʏ".light_red
     end
 
     def move_to_next_room
-        "You move into the next room...".light_black.blink
+        "Yᴏᴜ ᴍᴏᴠᴇ ɪɴᴛᴏ ᴛʜᴇ ɴᴇxᴛ ʀᴏᴏᴍ...".light_black.blink
     end
 
     def last_move(direction)
-        "Last move: #{direction}."
+        "#{'Lᴀsᴛ ᴍᴏᴠᴇ:'.light_black} #{direction.yellow}."
+    end
+
+    def press_9_to_quit
+        nine = " 9 ".light_red
+        print "Tɪᴘ: ".yellow
+        print "Pʀᴇss".light_black
+        print nine
+        puts "ᴀᴛ ᴀɴʏ ᴛɪᴍᴇ ᴛᴏ ʀᴇᴛᴜʀɴ ᴛᴏ ᴛʜᴇ ᴍᴀɪɴ ᴍᴇɴᴜ. Wʜᴇɴ ʏᴏᴜ ᴘʟᴀʏ ᴀɢᴀɪɴ ʏᴏᴜ'ʟʟ sᴛᴀʀᴛ ғʀᴏᴍ ᴛʜᴇ sᴀᴍᴇ ʀᴏᴏᴍ.".light_black
     end
 
     def labyrinth_menu_options

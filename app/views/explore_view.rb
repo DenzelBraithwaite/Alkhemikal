@@ -69,11 +69,11 @@ class ExploreView
   # Text displayed to prompt search again
   def search_again_text
       puts @title_art.light_green.blink
-      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Wᴏᴜʟᴅ ʏᴏᴜ ʟɪᴋᴇ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ sᴇᴀʀᴄʜɪɴɢ? #{'?'.light_green}"
+      puts "Wᴏᴜʟᴅ ʏᴏᴜ ʟɪᴋᴇ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ sᴇᴀʀᴄʜɪɴɢ #{'?'.light_green}"
       puts ""
-      puts "𝟙 - 𝕪𝕖𝕤".light_yellow
+      puts "𝟙 #{'-'.light_green} 𝕪𝕖𝕤"
       puts ""
-      puts " 𝟡 #{'-'.light_green} #{'𝔹𝕒𝕔𝕜'.light_red}"
+      puts "𝟡 #{'-'.light_green} #{'𝔹𝕒𝕔𝕜'.light_red}"
       puts ""
       puts ""
   end

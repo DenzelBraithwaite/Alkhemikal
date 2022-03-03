@@ -73,8 +73,11 @@ class InventoryView < MainView
 
     def current_clothing(hat, robe)
         puts " Cᴜʀʀᴇɴᴛ ᴄʟᴏᴛʜɪɴɢ:".light_black
+        sleep(0.05)
         puts " Hᴀᴛ: #{hat.magenta}"
+        sleep(0.05)
         puts " Rᴏʙᴇ: #{robe.magenta}"
+        sleep(0.05)
         puts ""
         puts ""
     end
