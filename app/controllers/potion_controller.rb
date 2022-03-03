@@ -22,7 +22,7 @@ class PotionController < BasicController
         while @running
             clear
             @view.menu_options
-            print "#{@player.name}> ".magenta
+            print "#{@player.name}#{'> '.light_magenta}"
             action = gets.chomp.to_i
             clear
             puts @view.title_art.light_magenta
@@ -38,7 +38,8 @@ class PotionController < BasicController
         when 4 then play_tutorial
         when 9 then @running = false
         else
-            puts "Invalid option"
+            @view.invalid_option
+            clear
         end
     end
 
@@ -220,7 +221,7 @@ class PotionController < BasicController
     puts "- no".light_red
     sleep(1)
     2.times { line }
-   print "#{@player.name}> ".yellow
+    print "#{@player.name}#{'> '.light_magenta}"
   end
   
   

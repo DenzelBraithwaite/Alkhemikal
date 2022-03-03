@@ -11,7 +11,7 @@ class ExploreController < BasicController
         @running = true
         while @running
             @view.explore_menu_options
-            print "#{@player.name}> ".light_green
+            print "#{@player.name}#{'> '.light_green}"
             action = gets.chomp.to_i
             clear
             route_action(action)
@@ -28,9 +28,6 @@ class ExploreController < BasicController
             search_route_action
         when 2 
             check_ingredients
-        when 3
-            fast_loading
-            puts "TODO: Check inventory, change clothes maybe"
         when 9 then stop
         else
             @view.invalid_option
@@ -56,7 +53,7 @@ class ExploreController < BasicController
             found_ingredient
             clear
             @view.search_again_text
-            print "#{@player.name}> ".yellow # Not grabbing name?
+            print "#{@player.name}#{'> '.light_green}"
             action = gets.chomp.to_i
             searching = false if action == 9
         end

@@ -15,20 +15,25 @@ class Witch
 	# Instead of making dedicated repos, I will store player equipment here
     # Hats that can be found when exploring
     @all_hats = [
-      "pointy hat",
-      "magic hood",
-      "long grey wig",
-      "witch's hat",
-      "sorting hat",
+		"pointy hat",
+		"magic hood",
+		"long grey wig",
+		"witch's hat",
+		"sorting hat",
+		"short purple wig",
+		"sacred crown"
     ]
 
     # Robes that can be found when exploring
     @all_robes = [
-      "wizard's robe",
-      "Beautifying robe",
-      "dark cloak",
-      "witch's robe",
-      "Quidditch uniform",
+		"peasant robe",
+		"wizard's robe",
+		"Beautifying robe",
+		"dark cloak",
+		"witch's robe",
+		"Quidditch uniform",
+		"Wings of freedom cloak",
+		"magic cape"
     ]
 
 	# Adds a hat to the hat inventory, unless already owned

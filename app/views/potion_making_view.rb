@@ -112,30 +112,40 @@ class PotionMakingView < MainView
     puts ""
     puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.light_magenta}"
     puts ""
+    sleep(0.05)
     puts " 𝟙 #{'-'.light_magenta} ℂ𝕣𝕖𝕒𝕥𝕖"
     puts ""
+    sleep(0.05)
     puts " 𝟚 #{'-'.light_magenta} 𝕀𝕟𝕘𝕣𝕖𝕕𝕚𝕖𝕟𝕥𝕤"
     puts ""
+    sleep(0.05)
     puts " 𝟛 #{'-'.light_magenta} ℝ𝕖𝕔𝕚𝕡𝕖"
     puts ""
+    sleep(0.05)
     puts " 𝟡 #{'-'.light_magenta} #{'𝔹𝕒𝕔𝕜'.light_red}"
     puts ""
+    sleep(0.05)
     puts ""
   end
 
-    def quick_view_ingredients(ingredients)
-      puts "Ingredients:".light_yellow
-      puts ""
-      sleep(0.5)
-      ingredients.each do |ingredient|
-        puts "- #{ingredient}"
-        sleep(0.05)
-      end
-      puts ""
-      puts "end".light_red
-      puts ""
-    end
+  def invalid_option
+    puts ""
+    puts "Please select a valid option".light_red
+    sleep(0.8)
+  end
 
+  def quick_view_ingredients(ingredients)
+    puts "Ingredients:".light_yellow
+    puts ""
+    sleep(0.5)
+    ingredients.each do |ingredient|
+      puts "- #{ingredient}"
+      sleep(0.05)
+    end
+    puts ""
+    puts "end".light_red
+    puts ""
+  end
 end
 
 

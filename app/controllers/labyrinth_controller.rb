@@ -30,7 +30,7 @@ class LabyrinthController < BasicController
             line
             puts @view.last_move(@last_movement).light_yellow
             line
-            print "#{@player.name}> ".yellow
+            print "#{@player.name}#{'> '.yellow}"
             action = gets.chomp.downcase
             clear
             puts @view.title_art.yellow

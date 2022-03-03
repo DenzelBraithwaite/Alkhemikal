@@ -35,13 +35,18 @@ class LabyrinthView < MainView
         puts ""
         puts "Pick a #{'direction'.yellow}."
         puts ""
+        sleep(0.02)
         puts " #{'-'.yellow} Up"
         puts ""
+        sleep(0.02)
         puts " #{'-'.yellow} Down"
         puts ""
+        sleep(0.02)
         puts " #{'-'.yellow} Left"
         puts ""
+        sleep(0.02)
         puts " #{'-'.yellow} Right"
         puts ""
+        sleep(0.02)
     end
 end

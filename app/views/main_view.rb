@@ -1,7 +1,7 @@
 require 'colorize'
 
 class MainView
-  attr_reader :intro_message, :potions_tutorial, :potions_tutorial_2, :title_art, :demo_version,:witch_art
+  attr_reader :intro_message, :potions_tutorial, :potions_tutorial_2, :title_art, :demo_version,:witch_art, :game_over
 
   def initialize
     @intro_message = "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} You are about to learn the subtle science and exact art of potion-making.
@@ -56,6 +56,25 @@ class MainView
        \    (. ) ,   /  /__I_____\
      \'._/_)_(\__.\'   (__,(__,_]
        @---()_.\'---@  '
+      
+    @game_over = "
+    |/|
+    | |
+    |/|
+    | |
+    |/|
+   (___)
+   (___)
+   (___)
+   (___)
+   (___)
+   // \\\\
+  //   \\\\
+ ||     ||
+ ||     ||
+ ||     ||
+  \\\\___//
+   -----"
 
     @demo_version = "Current: Demo Version 2.2 - last update: #{'menus color design'.light_cyan}\n
                     Previous: Demo Version 2.1 - last update: #{'labyrinth'.yellow}"
@@ -69,7 +88,7 @@ class MainView
   end
 
   def invalid_option
-    puts @title_art.light_blue.blink
+    puts @title_art.light_cyan.blink
     puts ""
     puts "Please select a valid option".light_red
     sleep(0.8)
