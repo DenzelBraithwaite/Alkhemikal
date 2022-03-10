@@ -4,14 +4,15 @@ require_relative '../repo/labyrinth_repo'
 
 class LabyrinthController < BasicController
     def initialize(repo)
-        @view = LabyrinthView.new
-        @repo = repo
+      super
+      @view = LabyrinthView.new
+      @repo = repo
     end
 
     def run
         @running = true
         @last_movement = @last_movement || "none"
-        @current_room = @current_room || @repo.rooms[9] # @repo.rooms.sample
+        @current_room = @current_room || @repo.rooms[rand(1..200)]
         puts @view.title_art.yellow.blink
         line
         # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Welcome... to the Wiccan Labyrinth!", 0.010, false)
@@ -20,7 +21,7 @@ class LabyrinthController < BasicController
         # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Your goal is to wander the labyrinth, in search of rare ingredients.", 0.010, false)
         # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Only problem is of course, you're not alone in there.", 0.010, false)
         # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Be careful and don't forget, when you think you've had enough, call my name three times.", 0.010, false)
-        
+
         while @running
             clear
             room = define_walls + define_floors
@@ -38,7 +39,7 @@ class LabyrinthController < BasicController
             route_action(action)
         end
     end
-    
+
     def route_action(action)
         case action
         when "up" then move_up?
@@ -63,12 +64,12 @@ class LabyrinthController < BasicController
         end
         sleep(0.75)
     end
-    
-    
+
+
     def move_up
         @current_room = @repo.find_room(@current_room.row_id - 1, @current_room.column_id)
     end
-    
+
     # Checks if down is valid, if false then change current room to the room down below.
     def move_down?
         if @current_room.down
@@ -80,11 +81,11 @@ class LabyrinthController < BasicController
         end
         sleep(0.75)
     end
-    
+
     def move_down
         @current_room = @repo.find_room(@current_room.row_id + 1, @current_room.column_id)
     end
-    
+
     # Checks if left is valid, if false then change current room to the room on the left.
     def move_left?
         if @current_room.left
@@ -96,11 +97,11 @@ class LabyrinthController < BasicController
         end
         sleep(0.75)
     end
-    
+
     def move_left
         @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id - 1)
     end
-    
+
     # Checks if right is valid, if true then change current room to the room on the right.
     def move_right?
         if @current_room.right
@@ -112,20 +113,20 @@ class LabyrinthController < BasicController
         end
         sleep(0.75)
     end
-    
+
     def move_right
         @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id + 1)
     end
-    
+
     # Determine if room matches a specific room, to acquire something
     # def special_room
     #     "you are special!" if @current_room.row_id == @repo.rooms.first.row_id &&
     #     @current_room.column_id == @repo.rooms.first.column_id
     # end
-    
+
     def define_walls
         case @current_room.column_id
-        when 1 
+        when 1
             "You're surrounded by a forest of trees, "
         when 11
             "You're surrounded by a forest of trees, "
@@ -166,7 +167,7 @@ class LabyrinthController < BasicController
         when 20
             "The walls around you are made of brick it seems, "
         end
-        
+
     end
 
     def define_floors

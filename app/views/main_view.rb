@@ -56,7 +56,7 @@ class MainView
        \    (. ) ,   /  /__I_____\
      \'._/_)_(\__.\'   (__,(__,_]
        @---()_.\'---@  '
-      
+
     @game_over = "
     |/|
     | |
@@ -76,7 +76,8 @@ class MainView
   \\\\___//
    -----"
 
-    @demo_version = "Current: Demo Version 2.2 - last update: #{'menus color design'.light_cyan}\n
+    @demo_version = "Current: Demo Version 2.3 - last update: #{'Billywig re-vamped'.light_cyan}\n
+                    Previos: Demo Version 2.2 - last update: #{'menus color design'.yellow}\n
                     Previous: Demo Version 2.1 - last update: #{'labyrinth'.yellow}"
   end
 
