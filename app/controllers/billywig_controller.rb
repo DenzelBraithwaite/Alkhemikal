@@ -47,7 +47,7 @@ class BillywigController < BasicController
     while @playing_again
       clear
       @player_score = 0
-      @bank_score = pick_bank_score
+      @bank_score = rand(6..9)
       puts @view.title_art.light_blue.blink
       line
 
@@ -87,13 +87,13 @@ class BillywigController < BasicController
       2, 2, 2, 2,
       3, 3, 3, 3,
       4, 4, 4, 4,
-      5, 5, 5, 5,
-      6, 6, 6, 6,
-      7, 7, 7, 7,
-      8, 8, 8, 8,
-      9, 9, 9, 9,
-      10, 10, 10,
-      11, 11, 11
+      5, 5, 5, 5, 5,
+      6, 6, 6, 6, 6,
+      7, 7, 7, 7, 7,
+      8, 8, 8, 8, 8,
+      9, 9, 9, 9, 9,
+      10, 10, 10, 10,
+      11, 11, 11, 11
     ].sample
   end
 
@@ -103,7 +103,7 @@ class BillywigController < BasicController
       @bank_score += card
     else
       puts ""
-      puts "Gruntilda skips her turn...".light_black
+      puts "Gruntilda gives you the card instead...".light_black
     end
   end
 
