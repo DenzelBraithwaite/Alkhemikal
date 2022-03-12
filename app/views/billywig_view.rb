@@ -48,6 +48,12 @@ class BillywigView
     puts ""
   end
 
+  # Displays what card you drew
+  def you_drew(next_card)
+    puts ""
+    puts "You drew #{next_card.to_s.light_blue}"
+  end
+
   # Text displayed birefly when an invalid option is entered.
   def invalid_option
     puts @title_art.light_blue.blink

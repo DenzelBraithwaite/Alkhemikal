@@ -19,9 +19,9 @@ class Router
   def run
     @main_controller.clear
     # Display demo version number, sleeps then clears screen.
-    # puts @view.demo_version
-    # sleep(1.75)
-    # @main_controller.clear
+    puts @view.demo_version
+    sleep(1.75)
+    @main_controller.clear
 
     # Display opening art sequence, sleeps then prompts to continue and clears.
     # @main_controller.first_loading_screen

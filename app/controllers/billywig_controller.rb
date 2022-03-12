@@ -4,6 +4,8 @@ require_relative 'basic_controller'
 class BillywigController < BasicController
   def initialize
     @view = BillywigView.new
+    @kaz_tokes = 0
+    @elisa_tokes = 0
   end
 
   def run
@@ -58,16 +60,20 @@ class BillywigController < BasicController
         print "#{@player.name}#{'> '.light_blue}"
         player_turn = gets.chomp.downcase
         if player_turn == "y" || player_turn == "yes"
-          @player_score += pick_player_card
+          @next_card = pick_player_card
+          @player_score += @next_card
           ensure_no_bank_bust
+          @view.you_drew(@next_card)
         else
           @playing_again = false
+          @next_card = pick_player_card
         end
       end
 
       # Prompts player to play again
       puts end_game_message(@player_score, @bank_score)
       slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} How's about we go for another round?", 0.010, false)
+      puts "y/yes or n/no".light_black
       puts "#{@player.name}#{'> '.light_blue}"
       play_again = gets.chomp.downcase
       if play_again == "yes" || play_again == "y"
@@ -131,6 +137,7 @@ class BillywigController < BasicController
         puts ""
         puts "Gruntilda's score: #{@bank_score.to_s.light_red}"
         puts "Your score: #{@player_score.to_s.light_green}"
+
   end
 
   #====================================================================#
@@ -163,7 +170,7 @@ class BillywigController < BasicController
   end
 
   def next_card_color
-      @next_card_integer = pick_player_card
+      @next_card_integer = @next_card
       @next_card_string = @next_card_integer.to_s
       if @next_card_integer + @player_score > 21
           @next_card_string = @next_card_string.light_red
