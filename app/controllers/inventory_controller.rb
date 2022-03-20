@@ -1,7 +1,8 @@
 require_relative '../views/inventory_view'
 class InventoryController < BasicController
     def initialize
-        @view = InventoryView.new
+      super(player)
+      @view = InventoryView.new
     end
 
     def run
@@ -23,7 +24,7 @@ class InventoryController < BasicController
         case action
         when 1
             change_hat
-        when 2 
+        when 2
             change_robe
         when 3
             change_name

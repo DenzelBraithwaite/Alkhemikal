@@ -18,7 +18,7 @@ require_relative 'models/witch'
 # Related to player
 player = Witch.new
 
-# Parent controller with some useful generic methods 
+# Parent controller with some useful generic methods
 basic_controller = BasicController.new(player)
 
 # Controller for main menu
@@ -47,4 +47,3 @@ router = Router.new(basic_controller, main_controller, explore_controller, potio
 
 # Start the app
 router.run
-

@@ -4,6 +4,7 @@ require_relative 'basic_controller'
 
 class MainController < BasicController
   def initialize
+    super(player)
     # @repo = repo
     @view = MainView.new
   end

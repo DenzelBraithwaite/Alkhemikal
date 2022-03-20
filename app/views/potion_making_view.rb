@@ -29,7 +29,7 @@ class PotionMakingView < MainView
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Never, EVER, create the vial of Amortentia... Ever!"
 
     @potion_tutorial_1 = "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} It's time to learn and in time; master, the subtle science of potion-making.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} This will not be easy and you will fail many times, but a true witch knows failure preceeds greatness. 
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} This will not be easy and you will fail many times, but a true witch knows failure preceeds greatness.
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} I don't expect you will really understand the beauty of the softly simmering cauldron with its shimmering fumes,
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Get lost in a world of forgotten arts, once passed down through a bloodline of incredible magical beings!
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} I will do my best to teach you the basics, but after that, you're on your own.
@@ -90,7 +90,14 @@ class PotionMakingView < MainView
       ]
   end
 
-	
+  def upgrade(player_name)
+    "\n
+    #{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Congrats #{player_name}#{",".magenta} you#{"\'".magenta}re now worthy of being called a true witch#{"!!!".magenta.blink}\n
+    As such#{",".magenta} I will give you my first cauldron that my mentor gave to me#{".".magenta}\n
+    As she and I once parted with it#{",".magenta} so will you in time#{".".magenta}\n
+    When you find a worthy pupil#{".".magenta}#{".".magenta}#{".".magenta} who#{"\'".magenta}s not a useless dingbat#{".".magenta}"
+  end
+
   #   @art_potions = "
   #   ██████╗░░█████╗░████████╗██╗░█████╗░███╗░░██╗░██████╗██╗
   #   ██╔══██╗██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║██╔════╝██║
@@ -105,7 +112,21 @@ class PotionMakingView < MainView
   #   ██║░░██╗██╔══██╗██╔══██║██╔══╝░░░░░██║░░░██║██║╚████║██║░░╚██╗
   #   ╚█████╔╝██║░░██║██║░░██║██║░░░░░░░░██║░░░██║██║░╚███║╚██████╔╝
   #   ░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░░░░░░░╚═╝░░░╚═╝╚═╝░░╚══╝░╚═════╝░"
-    
+
+  def first_ingredient
+    puts "First ingredient?".light_cyan
+  end
+
+  def second_ingredient
+    puts "Second ingredient?".light_cyan
+  end
+
+  def duplicate_ingredients
+    puts "Gruntilda> No you DINGBAT!! You can't use the same ingredient twice! That's like only using 1 ingredient"
+    sleep(1)
+    puts "Gruntilda glares at you as you put it back..".light_black
+    sleep(1)
+  end
 
 	def menu_options
     puts @title_art.light_magenta.blink
@@ -157,10 +178,3 @@ class PotionMakingView < MainView
     puts ""
   end
 end
-
-
-
-
-
-
-

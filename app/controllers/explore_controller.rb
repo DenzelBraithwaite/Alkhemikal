@@ -3,8 +3,9 @@ require_relative '../views/explore_view'
 
 class ExploreController < BasicController
     def initialize(ingredient_repo)
-        @ingredient_repo = ingredient_repo
-        @view = ExploreView.new
+      super(player)
+      @ingredient_repo = ingredient_repo
+      @view = ExploreView.new
     end
 
     def run
@@ -18,15 +19,15 @@ class ExploreController < BasicController
             clear
         end
     end
-    
+
     private
-    
-    
+
+
     def route_action(action)
         case action
         when 1
             search_route_action
-        when 2 
+        when 2
             check_ingredients
         when 9 then stop
         else
@@ -34,7 +35,7 @@ class ExploreController < BasicController
             clear
         end
     end
-    
+
     def check_ingredients
         @view.quick_view_ingredients(@player.ingredients)
         continue_prompt
@@ -58,7 +59,7 @@ class ExploreController < BasicController
             searching = false if action == 9
         end
     end
-    
+
     def found_ingredient
         # Find random ingredient
         if @ingredient_repo.all_ingredients.empty?
@@ -67,11 +68,11 @@ class ExploreController < BasicController
         else
         ingredient_found = @ingredient_repo.all_ingredients.sample
         @ingredient_repo.all_ingredients.delete(ingredient_found)
-    
+
         # When item is found, display dialogue about the item
         puts "You found #{ingredient_found}!"
         sleep(1.5)
-    
+
         # Checks to see if it's a good or bad item.
         if @ingredient_repo.good_ingredients.include?(ingredient_found)
             puts "Gʀᴜɴᴛɪʟᴅᴀ> #{@view.good_ingredient_text.sample}"

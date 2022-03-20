@@ -4,7 +4,7 @@ require_relative '../repo/labyrinth_repo'
 
 class LabyrinthController < BasicController
     def initialize(repo)
-      super
+      super(player)
       @view = LabyrinthView.new
       @repo = repo
     end

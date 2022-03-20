@@ -3,6 +3,7 @@ require_relative 'basic_controller'
 
 class BillywigController < BasicController
   def initialize
+    super(player)
     @view = BillywigView.new
     @kaz_tokes = 0
     @elisa_tokes = 0
