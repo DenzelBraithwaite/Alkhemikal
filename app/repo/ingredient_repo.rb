@@ -82,8 +82,8 @@ class IngredientRepo
             "rose petals",
             "damaged recipe: Witch's Brew => ['cat hair', 'b-']",
             "damaged recipe: Warlock's Brew => ['frog brain', 't---u- -- d--']",
-            "\nKaz's journal:\n Year - 1743\n Moon: Garnet,\nIt reads: I've almost figured it out... the vial or Amortentia. I've tried and failed so many times, 
-            but this moon will be different.\n I've discovered that the key ingredient isn't an ingredient at all, it's a potion!! 
+            "\nKaz's journal:\n Year - 1743\n Moon: Garnet,\nIt reads: I've almost figured it out... the vial or Amortentia. I've tried and failed so many times,
+            but this moon will be different.\n I've discovered that the key ingredient isn't an ingredient at all, it's a potion!!
             In fact all the ingredients are potions.\n This is my hypothesis, if you combine the Brew of visions w-"
         ]
         # Array of good ingredients found while exploring
@@ -172,9 +172,9 @@ class IngredientRepo
             "fractured vape",
             "special grass",
             "damaged recipe: Witch's Brew => ['cat hair', 'b-']",
-            "damaged recipe: Warlock's Brew => ['frog brain', 't---u- -- d--']", 
-            "\nKaz's journal:\n Year - 1743\n Moon: Garnet,\nIt reads: I've almost figured it out... the vial or Amortentia. I've tried and failed so many times, 
-            but this moon will be different.\n I've discovered that the key ingredient isn't an ingredient at all, it's a potion!! 
+            "damaged recipe: Warlock's Brew => ['frog brain', 't---u- -- d--']",
+            "\nKaz's journal:\n Year - 1743\n Moon: Garnet,\nIt reads: I've almost figured it out... the vial or Amortentia. I've tried and failed so many times,
+            but this moon will be different.\n I've discovered that the key ingredient isn't an ingredient at all, it's a potion!!
             In fact all the ingredients are potions.\n This is my hypothesis, if you combine the Brew of visions w-"
         ]
     end

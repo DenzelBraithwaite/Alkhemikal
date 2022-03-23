@@ -122,10 +122,10 @@ class PotionMakingView < MainView
   end
 
   def duplicate_ingredients
-    puts "Gruntilda> No you DINGBAT!! You can't use the same ingredient twice! That's like only using 1 ingredient"
-    sleep(1)
-    puts "Gruntilda glares at you as you put it back..".light_black
-    sleep(1)
+    puts ""
+    puts "Pʟᴇᴀsᴇ sᴇʟᴇᴄᴛ ᴀ ᴠᴀʟɪᴅ ᴏᴘᴛɪᴏɴ".light_red
+    puts "(You used the same ingredient twice.)".light_black
+    sleep(2)
   end
 
 	def menu_options
@@ -171,7 +171,7 @@ class PotionMakingView < MainView
     sleep(0.5)
     ingredients.each_with_index do |ingredient, index|
       puts "#{index + 1} #{'-'.light_magenta} #{ingredient}"
-      sleep(0.05)
+      sleep(0.025)
     end
     puts ""
     puts "end".light_red

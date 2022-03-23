@@ -92,9 +92,9 @@ class ExploreController < BasicController
 
         # Add random delay between each item found.
         searching_time.times do
-        print ".".light_black
-        sleep(0.050)
         print ".".light_green
+        sleep(0.050)
+        print ".".light_black
         sleep(0.050)
         end
         sleep(1.25)

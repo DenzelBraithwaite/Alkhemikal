@@ -84,14 +84,15 @@ class PotionController < BasicController
   end
 
   def potions_loop
-      add_ingredients_to_pot
-      create_recipe
+    add_ingredients_to_pot
+    create_recipe
   end
-  ####################################################################################################
+
   # Loops back into making potions or returns to menu
   def still_cooking
     cooking_again = true
     while cooking_again
+      clear
       potions_loop
       clear
       potion_making_again_text
@@ -101,25 +102,24 @@ class PotionController < BasicController
     end
   end
 
-
-	# Method that adds a potion to the potions inventory, unless already created.
-	def add_potion(potion)
-		@potions << potion unless @potions.include?(potion)
-	end
+  # Method that adds a potion to the potions inventory, unless already created.
+  def add_potion(potion)
+    @potions << potion unless @potions.include?(potion)
+  end
 
   # Check if player has created all potions, upgrade equipment if true.
   def upgrade_equipment
-    unless @already_upgraded
-      if @player.recipes.length == @potion_repo.all_potions.length
-        # slow_dialogue(@view.upgrade(@player.name), 0.025, true)
-        @player.upgrade_cauldron
-        # sleep(3.5)
-        @player.upgrade_ladle
-        # sleep(3.5)
-        continue_prompt
-        @already_upgraded = true
-      end
-    end
+    return if @already_upgraded
+    return if @player.recipes.length != @potion_repo.all_potions.length
+
+    # slow_dialogue(@view.upgrade(@player.name), 0.025, true)
+    @player.upgrade_cauldron
+    # sleep(3.5)
+    @player.upgrade_ladle
+    # sleep(3.5)
+    continue_prompt
+    @already_upgraded = true
+    clear
   end
 
   def potion_making_reset
@@ -146,35 +146,40 @@ class PotionController < BasicController
     continue_prompt
   end
 
-    def add_ingredients_to_pot
-      # list all owned ingredients.
-      @view.quick_view_ingredients(@player.ingredients)
+  def add_ingredients_to_pot
+    clear
+    # display title art and list all owned ingredients.
+    puts @view.title_art.light_magenta
+    @view.quick_view_ingredients(@player.ingredients)
 
-       # Add first ingredient
-       @view.first_ingredient
-       @first_ingredient_index = gets.chomp.to_i
-       clear
-       select_first_ingredient
-       puts "#{@first_ingredient} added to the pot...".light_black
-       line(0.75)
+    # Add first ingredient
+    @view.first_ingredient
+    @first_ingredient_index = gets.chomp.to_i
+    select_first_ingredient
 
-       # Add second ingredient
-       @view.second_ingredient
-       @second_ingredient_index = gets.chomp.to_i
-       select_second_ingredient
-       puts "#{@second_ingredient} added to the pot...".light_black
-       line(0.75)
-    end
+    # display title art and list all owned ingredients.
+    # @view.quick_view_ingredients(@player.ingredients)
+
+    # Add second ingredient
+    @view.second_ingredient
+    @second_ingredient_index = gets.chomp.to_i
+    select_second_ingredient
+  end
 
   def select_first_ingredient
     # Reprompt if index is 0 or greater than number of ingredients owned
     if @first_ingredient_index > @player.ingredients.length || @first_ingredient_index == 0
       # Add first ingredient again until it is valid.
+      clear
       @view.invalid_option
       first_ingredient_prompt
     else
       # sets first ingredient to selected index
       @first_ingredient = @player.ingredients[@first_ingredient_index - 1]
+      # list first ingredient added.
+      puts ""
+      puts "#{@first_ingredient} added to the pot...".light_black
+      line(0.75)
     end
   end
 
@@ -185,32 +190,40 @@ class PotionController < BasicController
     @view.quick_view_ingredients(@player.ingredients)
     @view.first_ingredient
     @first_ingredient_index = gets.chomp.to_i
-    clear
     select_first_ingredient
   end
 
   def select_second_ingredient
     # Reprompt if index is 0 or greater than number of ingredients owned
     if @second_ingredient_index > @player.ingredients.length || @second_ingredient_index == 0
+      clear
+      @view.invalid_option
+      clear
       second_ingredient_prompt
     # Reprompt if index issame as first ingredient index
     elsif @first_ingredient_index == @second_ingredient_index
+      clear
       @view.duplicate_ingredients
+      clear
       # Add second ingredient again until it is not same as first ingredient.
       second_ingredient_prompt
     else
+      clear
+      puts @view.title_art.light_magenta
       # sets second ingredient to selected index
       @second_ingredient = @player.ingredients[@second_ingredient_index - 1]
+      puts ""
+      puts "#{@second_ingredient.light_cyan} #{"added to the pot with".light_black} #{@first_ingredient.light_cyan}#{"...".light_black}"
+      line(0.75)
     end
   end
 
   # Clears the screen, prompts user to add the second ingredient
   def second_ingredient_prompt
-    clear
     puts @view.title_art.light_magenta
     @view.quick_view_ingredients(@player.ingredients)
     puts "#{@first_ingredient} added to the pot...".light_black
-    line(0.75)
+    puts ""
     @view.second_ingredient
     @second_ingredient_index = gets.chomp.to_i
     clear
@@ -220,13 +233,12 @@ class PotionController < BasicController
   def create_recipe
     recipe = [@first_ingredient, @second_ingredient]
     # Put message saying making potions ....
-    slow_dialogue("Mᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴ".light_black, delay = 0.015, false)
-
+    slow_dialogue("Mᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴ".light_magenta.blink, delay = 0.015, false)
     # Add random delay between each potion made.
     @potion_making_time.times do
       print ".".light_magenta
       sleep(0.050)
-      print ".".magenta
+      print ".".light_black
       sleep(0.050)
     end
     sleep(1.25)
@@ -236,13 +248,14 @@ class PotionController < BasicController
     @potion_repo.all_potion_recipes.each do |potion, ingredients|
       if ingredients.include?(recipe[0]) && ingredients.include?(recipe[1])
         # Display text after creating the potion
-        puts "You've created the #{potion}!" # Add ingredient descriptions after
+        puts "You've created the #{potion.to_s.light_cyan}!" # Add ingredient descriptions after
         sleep(1.5)
 
         # Check if potion exists in player recipes, don't add it if it does.
         if @player.recipes.key?(potion)
           puts "You've already created this"
           no_matches = false
+          line(0, 3)
           continue_prompt
         else
           puts @view.good_potion_text.sample
@@ -250,6 +263,7 @@ class PotionController < BasicController
           @player.recipes[potion] = ingredients
           recipe.each { |ingredient| @player.ingredients.delete(ingredient) }
           no_matches = false
+          line(0, 3)
           continue_prompt
         end
       end
