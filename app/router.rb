@@ -30,7 +30,9 @@ class Router
     # puts @view.intro_message
 
     # Gets users name and stores it, used below to save the name prompt for all menus
-    @player.name = @view.get_user_name.capitalize
+    # @player.name = @view.get_user_name.capitalize
+    @player.name = "Test mode"
+    @player.name = @basic_controller.capitalize_sentence(@player.name)
     synchronize_witch_name
     @main_controller.continue_prompt
     @main_controller.clear

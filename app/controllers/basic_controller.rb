@@ -7,6 +7,21 @@ class BasicController
     @player = player
   end
 
+  # Custom method to capitalize a word
+  def capitalize(word)
+    length = word.length
+    beginning = word[0].upcase
+    ending = word[1..length].downcase
+    return beginning + ending
+  end
+
+  # Custom method to capitalize multiple words
+  def capitalize_sentence(string)
+    string_as_array = string.split(" ")
+    string_as_array.map! { |word| capitalize(word) }
+    return string_as_array.join(" ")
+  end
+
    # Simple loading screen, finishes with 100% in green.
    def loading
     print "Loading"

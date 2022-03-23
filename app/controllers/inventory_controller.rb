@@ -62,7 +62,7 @@ class InventoryController < BasicController
     # Allows player to change their name
     def change_name
         new_name = @view.change_name(@player.name)
-        @player.name = new_name
+        @player.name = capitalize_sentence(new_name)
         @view.changing_player_name(@player.name)
     end
 end
