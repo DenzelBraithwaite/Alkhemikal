@@ -74,7 +74,7 @@ class IngredientRepo
             "tongue of dog",
             "tarot cards",
             "toadstools",
-            "water",
+            # "water", not sure if I want player to find water, since they start with it.
             "wizard's beard hairs",
             "gorgon tears",
             "cyclops sweat",

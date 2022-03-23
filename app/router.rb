@@ -34,7 +34,7 @@ class Router
     @player.name = "Test mode"
     @player.name = @basic_controller.capitalize_sentence(@player.name)
     synchronize_witch_name
-    @main_controller.continue_prompt
+    # @main_controller.continue_prompt
     @main_controller.clear
 
     while @running

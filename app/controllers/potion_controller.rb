@@ -32,12 +32,15 @@ class PotionController < BasicController
     case action
     when 1
       if enough_ingredients?
-        create_potion
+        create_which_potion
         clear
         potion_making_again_text
         print "#{@player.name}#{'> '.light_magenta}"
         action = gets.chomp.to_i
         still_cooking if action == 1
+      elsif @player.recipes.length == @potion_repo.all_potions.length
+        upgrade_equipment
+        create_which_potion
       else
         not_enough_ingredients
       end
@@ -51,10 +54,38 @@ class PotionController < BasicController
     end
   end
 
-  def create_potion
-    potion_making_reset
+  def create_which_potion
+    if @already_upgraded
+      puts "Do you want to make a simple potion or a complex potion?"
+      puts ""
+      puts "1 for simple"
+      puts "2 for complex"
+      print "> "
+      action = gets.chomp.to_i
+      case action
+      when 1
+        puts "you chose simple"
+        enough_ingredients? ? create_simple_potion : not_enough_ingredients
+      when 2
+        puts "you chose complex"
+        sleep(1)
+        puts "but that wasn't created yet"
+      else
+        puts "Invalid, let's try again!"
+        create_which_potion
+      end
+    else
+      create_simple_potion
+    end
+  end
+
+  def create_simple_potion
+    simple_potion_making_reset
     upgrade_equipment
-    potions_loop
+    simple_potions_loop
+  end
+
+  def create_complex_potion
   end
 
   def check_ingredients
@@ -83,7 +114,7 @@ class PotionController < BasicController
     @intro_message_completed = true if @intro_message_completed == false
   end
 
-  def potions_loop
+  def simple_potions_loop
     add_ingredients_to_pot
     create_recipe
   end
@@ -93,7 +124,7 @@ class PotionController < BasicController
     cooking_again = true
     while cooking_again
       clear
-      potions_loop
+      simple_potions_loop
       clear
       potion_making_again_text
       print "#{@player.name}#{'> '.light_magenta}"
@@ -122,7 +153,7 @@ class PotionController < BasicController
     clear
   end
 
-  def potion_making_reset
+  def simple_potion_making_reset
     # First ingredient added to pot
     @first_ingredient = ""
 
@@ -130,7 +161,7 @@ class PotionController < BasicController
     @second_ingredient = ""
 
     # Time it takes to make potion
-    @potion_making_time = rand(10..50)
+    @potion_making_time = rand(10..55)
   end
 
   def enough_ingredients?
@@ -213,7 +244,7 @@ class PotionController < BasicController
       # sets second ingredient to selected index
       @second_ingredient = @player.ingredients[@second_ingredient_index - 1]
       puts ""
-      puts "#{@second_ingredient.light_cyan} #{"added to the pot with".light_black} #{@first_ingredient.light_cyan}#{"...".light_black}"
+      puts "#{@second_ingredient.light_cyan} #{"added to the pot with".light_black} #{@first_ingredient.light_cyan}"
       line(0.75)
     end
   end
