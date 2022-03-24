@@ -20,10 +20,10 @@ class PotionController < BasicController
       clear
       @view.menu_options
       @view.current_equipment(@player.ladle, @player.cauldron)
-      print "#{@player.name}#{'> '.light_magenta}"
+      print "#{@player.name}#{'> '.light_magenta.blink}"
       action = gets.chomp.to_i
       clear
-      puts @view.title_art.light_magenta
+      puts @view.title_art.light_magenta.blink
       route_action(action)
     end
   end
@@ -35,7 +35,7 @@ class PotionController < BasicController
         create_which_potion
         clear
         potion_making_again_text
-        print "#{@player.name}#{'> '.light_magenta}"
+        print "#{@player.name}#{'> '.light_magenta.blink}"
         action = gets.chomp.to_i
         still_cooking if action == 1
       elsif @player.recipes.length == @potion_repo.all_potions.length
@@ -45,7 +45,7 @@ class PotionController < BasicController
         not_enough_ingredients
       end
     when 2 then check_ingredients
-    when 3 then check_recipes
+    when 3 then view_recipes
     when 4 then play_tutorial
     when 9 then @running = false
     else
@@ -89,18 +89,17 @@ class PotionController < BasicController
   end
 
   def check_ingredients
+    clear
+    puts @view.ingredients_art.light_magenta.blink
+    puts ""
     @view.quick_view_ingredients(@player.ingredients)
     continue_prompt
-  end
-
-  def check_recipes
-    view_recipes
   end
 
   def play_tutorial
     slow_dialogue(@view.potion_tutorial_1, 0.01, true)
     clear
-    puts @view.title_art.light_magenta
+    puts @view.title_art.light_magenta.blink
     slow_dialogue(@view.potion_tutorial_2, 0.01, false)
     slow_dialogue(":Bʀᴇᴡ ᴏғ Bᴇɢɪɴɴɪɴɢs => [ᴡᴀᴛᴇʀ, sᴍᴀʟʟ ʙᴏɴᴇs]", 0.025, true).light_black
     clear
@@ -127,7 +126,7 @@ class PotionController < BasicController
       simple_potions_loop
       clear
       potion_making_again_text
-      print "#{@player.name}#{'> '.light_magenta}"
+      print "#{@player.name}#{'> '.light_magenta.blink}"
       action = gets.chomp.to_i
       cooking_again = false unless action == 1
     end
@@ -171,6 +170,8 @@ class PotionController < BasicController
 
   def not_enough_ingredients
     clear
+    puts @view.title_art.light_magenta.blink
+    puts ""
     @view.quick_view_ingredients(player.ingredients)
     5.times {line}
     puts "You need at least 2 ingredients to make potions".light_red
@@ -180,7 +181,7 @@ class PotionController < BasicController
   def add_ingredients_to_pot
     clear
     # display title art and list all owned ingredients.
-    puts @view.title_art.light_magenta
+    puts @view.title_art.light_magenta.blink
     @view.quick_view_ingredients(@player.ingredients)
 
     # Add first ingredient
@@ -217,7 +218,7 @@ class PotionController < BasicController
   # Clears the screen, prompts user to add the first ingredient
   def first_ingredient_prompt
     clear
-    puts @view.title_art.light_magenta
+    puts @view.title_art.light_magenta.blink
     @view.quick_view_ingredients(@player.ingredients)
     @view.first_ingredient
     @first_ingredient_index = gets.chomp.to_i
@@ -240,7 +241,7 @@ class PotionController < BasicController
       second_ingredient_prompt
     else
       clear
-      puts @view.title_art.light_magenta
+      puts @view.title_art.light_magenta.blink
       # sets second ingredient to selected index
       @second_ingredient = @player.ingredients[@second_ingredient_index - 1]
       puts ""
@@ -251,7 +252,7 @@ class PotionController < BasicController
 
   # Clears the screen, prompts user to add the second ingredient
   def second_ingredient_prompt
-    puts @view.title_art.light_magenta
+    puts @view.title_art.light_magenta.blink
     @view.quick_view_ingredients(@player.ingredients)
     puts "#{@first_ingredient} added to the pot...".light_black
     puts ""
@@ -264,10 +265,10 @@ class PotionController < BasicController
   def create_recipe
     recipe = [@first_ingredient, @second_ingredient]
     # Put message saying making potions ....
-    slow_dialogue("Mᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴ".light_magenta.blink, delay = 0.015, false)
+    slow_dialogue("Mᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴ".light_magenta.blink.blink, delay = 0.015, false)
     # Add random delay between each potion made.
     @potion_making_time.times do
-      print ".".light_magenta
+      print ".".light_magenta.blink
       sleep(0.050)
       print ".".light_black
       sleep(0.050)
@@ -313,66 +314,30 @@ class PotionController < BasicController
   ########################################################################################################
   # Text displayed to prompt search again
   def potion_making_again_text
-    puts @view.title_art.light_magenta.blink
+    puts @view.title_art.light_magenta.blink.blink
     puts ""
     puts ""
-    puts " Wᴏᴜʟᴅ ʏᴏᴜ ʟɪᴋᴇ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ ᴍᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴs #{'?'.light_magenta}"
+    puts " Wᴏᴜʟᴅ ʏᴏᴜ ʟɪᴋᴇ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ ᴍᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴs #{'?'.light_magenta.blink}"
     puts ""
     sleep(1)
-    puts " 𝟙 #{'-'.light_magenta} 𝕪𝕖𝕤"
+    puts " 𝟙 #{'-'.light_magenta.blink} 𝕪𝕖𝕤"
     puts ""
     sleep(0.5)
-    puts " 𝟚 #{'-'.light_magenta} #{'𝕟𝕠'.light_red}"
+    puts " 𝟚 #{'-'.light_magenta.blink} #{'𝕟𝕠'.light_red}"
     sleep(1)
     puts ""
     puts ""
-  end
-
-
-  #====================================================================#
-  #----------------------Unlocked ingredients--------------------------#
-  #====================================================================#
-
-  def view_unlocked_ingredients_green
-    slow_dialogue("Checking ingredients...", 0.02, false)
-    sleep(0.5)
-    clear
-    puts ingredients_art.green
-    line
-    @player.ingredients.each_with_index do |ingredient, index|
-      puts "#{index + 1} #{'-'.green} #{ingredient}"
-      sleep(0.15)
-    end
-    line
-    puts "end".light_red
-    line
-    continue_prompt
-  end
-
-  def view_unlocked_ingredients_magenta
-    slow_dialogue("Checking ingredients...", 0.02, false)
-    sleep(0.5)
-    clear
-    puts ingredients_art.magenta
-    line
-    @player.ingredients.each_with_index do |ingredient, index|
-      puts "#{index + 1} #{'-'.light_magenta} #{ingredient}"
-      sleep(0.15)
-    end
-    line
-    puts "end".light_red
-    line
-    continue_prompt
   end
 
   def view_recipes
-    slow_dialogue("Checking recipes...", 0.02, false)
-    sleep(0.5)
     clear
-    puts @view.recipes_art.light_magenta
+    puts @view.recipes_art.light_magenta.blink
+    puts ""
+    slow_dialogue("Checking recipes...".light_black, 0.02, false)
+    sleep(0.25)
     line
     @player.recipes.each_with_index do |potion, index|
-      puts "#{index + 1} #{'-'.light_magenta} #{potion}"
+      puts "#{index + 1} #{'-'.light_magenta.blink} #{potion}"
       sleep(0.15)
     end
     line

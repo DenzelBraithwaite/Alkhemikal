@@ -36,29 +36,31 @@ class ExploreController < BasicController
         end
     end
 
-    def check_ingredients
-        @view.quick_view_ingredients(@player.ingredients)
-        continue_prompt
-      end
-
-    def stop
-        @running = false
-    end
-
     def search_route_action
-        searching = true
-        while searching
-            clear
-            @view.title_art
-            searching_loop
-            found_ingredient
-            clear
-            @view.search_again_text
-            print "#{@player.name}#{'> '.light_green}"
-            action = gets.chomp.to_i
-            searching = false if action == 9
-        end
+      searching = true
+      while searching
+        clear
+        @view.title_art
+        searching_loop
+        found_ingredient
+        clear
+        @view.search_again_text
+        print "#{@player.name}#{'> '.light_green}"
+        action = gets.chomp.to_i
+        searching = false if action == 9
+      end
     end
+
+        def check_ingredients
+          puts @view.title_art.light_green.blink
+          puts ""
+          @view.quick_view_ingredients(@player.ingredients)
+          continue_prompt
+        end
+
+        def stop
+            @running = false
+        end
 
     def found_ingredient
         # Find random ingredient
@@ -87,6 +89,8 @@ class ExploreController < BasicController
 
     def searching_loop
         searching_time = rand(1..60)
+        puts @view.title_art.light_green.blink
+        puts ""
         # Put message saying searching while walking
         slow_dialogue("Nᴏᴡ Sᴇᴀʀᴄʜɪɴɢ".light_green.blink, delay = 0.015, false)
 

@@ -65,10 +65,11 @@ class ExploreView
       sleep(0.05)
       puts ""
     end
-  
+
   # Text displayed to prompt search again
   def search_again_text
       puts @title_art.light_green.blink
+      puts ""
       puts "Wᴏᴜʟᴅ ʏᴏᴜ ʟɪᴋᴇ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ sᴇᴀʀᴄʜɪɴɢ #{'?'.light_green}"
       puts ""
       puts "𝟙 #{'-'.light_green} 𝕪𝕖𝕤"
