@@ -106,6 +106,11 @@ class BasicController
     print "Gruntilda> ".yellow
     slow_dialogue(text, 0.015, false)
   end
+
+  def return_key_for_index(index, hash)
+    value = hash.values[index]
+    hash.key(value)
+  end
 end
 
   # Will need to play with this, goal to make one save method for all (maybe hash save will be diff method)

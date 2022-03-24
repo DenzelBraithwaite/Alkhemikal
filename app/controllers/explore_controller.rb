@@ -66,7 +66,9 @@ class ExploreController < BasicController
         # Find random ingredient
         if @ingredient_repo.all_ingredients.empty?
         slow_dialogue("Well that seems to be the last of them, ", delay = 0.015, false)
-        slow_dialogue("guess we'd better start makin' some potions.", delay = 0.015, true)
+        slow_dialogue("guess we'd better start makin' some potions.", delay = 0.015, false)
+        sleep(0.5)
+        damaged_final_recipe
         else
         ingredient_found = @ingredient_repo.all_ingredients.sample
         @ingredient_repo.all_ingredients.delete(ingredient_found)
@@ -103,9 +105,16 @@ class ExploreController < BasicController
         end
         sleep(1.25)
     end
-end
 
- # Method that adds ingredient to the ingredients inventory, unless already owned
- def add_ingredient(ingredient)
-    @ingredients << ingredient unless @ingredients.include?(ingredient)
+    # Method that adds ingredient to the ingredients inventory, unless already owned
+    def add_ingredient(ingredient)
+       @ingredients << ingredient unless @ingredients.include?(ingredient)
+    end
+
+    def damaged_final_recipe
+      slow_dialogue("You recall the damaged recipe you found earlier and pretended to discard,".light_black, 0.020, false)
+      slow_dialogue("you retrieve it from your pocket and read it when Grunty isn't looking...".light_black, 0.030, false)
+      @view.read_damaged_recipe
+      continue_prompt
+    end
 end

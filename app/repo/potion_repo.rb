@@ -25,23 +25,23 @@ class PotionRepo
       "Vial of Knowledge",
       "Slimy Syrum",
       "Vial of the Volatile",
-    ] 
+    ]
     # Special potions requiring different equipment
     @special_potions = [
       "potion potion",
       "vile vial of amortentia"
     ]
-    
+
     # Hash for Final potion ingredients
     @final_potion = {:"Vile Vial of Amortentia" => ["Bowl of Smoke and Embers", "Brew of Visions", "Time Potion"]}
-    
+
     # Hash of all creatable potions + their recipes
     @all_potion_recipes = {
       :"Witch's Brew" => ["cat hair", "bat spleen"],
       :"Warlock's Brew" => ["frog brain", "tongue of dog"],
       :"Time Potion" => ["star grass", "toadstools"],
       :"Potion Potion" => [
-        # Any 2 potions combined
+        # Any 3 potions combined except brew of visions
         "Witch's Brew",
         "Warlock's Brew",
         "Time Potion",
@@ -56,7 +56,6 @@ class PotionRepo
         "Tonic of Transcendence",
         "Draught of Secrets",
         "Philter of Desires",
-        "Brew of Visions",
         "Spicy Syrum",
         "Brew of Beginnings",
         "Liquid Light",
@@ -84,5 +83,3 @@ class PotionRepo
     }
   end
 end
-
-	

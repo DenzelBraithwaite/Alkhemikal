@@ -113,6 +113,10 @@ class PotionMakingView < MainView
     puts "Second ingredient?".light_cyan
   end
 
+  def third_ingredient
+    puts "Final ingredient?".light_cyan
+  end
+
   def duplicate_ingredients
     puts ""
     puts "Pʟᴇᴀsᴇ sᴇʟᴇᴄᴛ ᴀ ᴠᴀʟɪᴅ ᴏᴘᴛɪᴏɴ".light_red
@@ -163,6 +167,19 @@ class PotionMakingView < MainView
     sleep(0.5)
     ingredients.each_with_index do |ingredient, index|
       puts "#{index + 1} #{'-'.light_magenta} #{ingredient}"
+      sleep(0.025)
+    end
+    puts ""
+    puts "end".light_red
+    puts ""
+  end
+
+  def quick_view_potions_as_ingredients(potions)
+    puts "potions:".light_cyan
+    puts ""
+    sleep(0.5)
+    potions.each_with_index do |potion, index|
+      puts "#{index + 1} #{'-'.light_magenta} #{potion}"
       sleep(0.025)
     end
     puts ""
