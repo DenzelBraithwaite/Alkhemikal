@@ -1,7 +1,7 @@
 require 'colorize'
 
 class Witch
-  attr_accessor :name, :ladle, :cauldron, :ingredients, :recipes, :hat, :unlocked_hats, :robe, :unlocked_robes
+  attr_accessor :name, :ladle, :cauldron, :ingredients, :recipes, :hat, :unlocked_hats, :robe, :unlocked_robes, :special_recipes
 
   def initialize
     @ladle = "wooden spoon"
@@ -71,6 +71,7 @@ class Witch
       :"Slimy Syrum" => ["pickled slugs", "leech juice"],
       :"Vial of the Volatile" => ["dragon claw", "aconite"]
     }
+    @special_recipes = {}
     @unlocked_hats = ["none"]
     @unlocked_robes = ["simple black robe"]
     @hat = @unlocked_hats.first

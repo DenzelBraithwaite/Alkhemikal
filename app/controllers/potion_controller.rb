@@ -182,10 +182,13 @@ class PotionController < BasicController
     slow_dialogue("Checking recipes...".light_black, 0.02, false)
     sleep(0.25)
     line
+    next_index = 1
     @player.recipes.each_with_index do |potion, index|
       puts "#{index + 1} #{'-'.light_magenta} #{potion}"
       sleep(0.15)
+      next_index += 1
     end
+    puts "#{next_index} #{'-'.light_magenta} #{@player.special_recipes.first}"
     line
     puts "end".light_red
     line
@@ -224,15 +227,15 @@ class PotionController < BasicController
     # Add first ingredient
     @view.first_ingredient
     @first_simple_ingredient_index = gets.chomp.to_i
-    select_first_simple_ingredient
+    add_first_simple_ingredient
 
     # Add second ingredient
     @view.second_ingredient
     @second_simple_ingredient_index = gets.chomp.to_i
-    select_second_simple_ingredient
+    add_second_simple_ingredient
   end
 
-  def select_first_simple_ingredient
+  def add_first_simple_ingredient
     # Reprompt if index is 0 or greater than number of ingredients owned
     if @first_simple_ingredient_index > @player.ingredients.length || @first_simple_ingredient_index <= 0
       # Add first ingredient again until it is valid.
@@ -240,7 +243,7 @@ class PotionController < BasicController
       @view.invalid_option
       first_simple_ingredient_prompt
     else
-      # sets first ingredient to selected index
+      # sets first ingredient to added index
       @first_simple_ingredient = @player.ingredients[@first_simple_ingredient_index - 1]
       # list first ingredient added.
       puts ""
@@ -256,10 +259,10 @@ class PotionController < BasicController
     @view.quick_view_ingredients(@player.ingredients)
     @view.first_ingredient
     @first_simple_ingredient_index = gets.chomp.to_i
-    select_first_simple_ingredient
+    add_first_simple_ingredient
   end
 
-  def select_second_simple_ingredient
+  def add_second_simple_ingredient
     # Reprompt if index is 0 or greater than number of ingredients owned
     if @second_simple_ingredient_index > @player.ingredients.length || @second_simple_ingredient_index <= 0
       clear
@@ -276,7 +279,7 @@ class PotionController < BasicController
     else
       clear
       puts @view.title_art.light_magenta.blink
-      # sets second ingredient to selected index
+      # sets second ingredient to added index
       @second_simple_ingredient = @player.ingredients[@second_simple_ingredient_index - 1]
       puts ""
       puts "#{@second_simple_ingredient.light_cyan} #{"added to the pot with".light_black} #{@first_simple_ingredient.light_cyan}"
@@ -293,11 +296,10 @@ class PotionController < BasicController
     @view.second_ingredient
     @second_simple_ingredient_index = gets.chomp.to_i
     clear
-    select_second_simple_ingredient
+    add_second_simple_ingredient
   end
 
   def create_simple_recipe
-    @simple_recipe = [@first_simple_ingredient, @second_simple_ingredient]
     # Put message saying making potions ....
     slow_dialogue("Mᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴ".light_magenta.blink.blink, delay = 0.015, false)
     # Add random delay between each potion made.
@@ -317,7 +319,7 @@ class PotionController < BasicController
     # Loops through all potions to see if you matched a recipe
     no_matches = true
     @potion_repo.all_potion_recipes.each do |potion, ingredients|
-      if ingredients.include?(@simple_recipe[0]) && ingredients.include?(@simple_recipe[1])
+      if ingredients.include?(@first_simple_ingredient) && ingredients.include?(@second_simple_ingredient)
         # Display text after creating the potion
         puts "You've created the #{potion.to_s.light_cyan}!" # Add ingredient descriptions after
         sleep(1.5)
@@ -329,7 +331,8 @@ class PotionController < BasicController
           puts @view.good_potion_text.sample
           puts "Congrats, a new potion!"
           @player.recipes[potion] = ingredients
-          recipe.each { |ingredient| @player.ingredients.delete(ingredient) }
+          @player.ingredients.delete(@first_simple_ingredient)
+          @player.ingredients.delete(@second_simple_ingredient)
         end
         no_matches = false
         line(0, 3)
@@ -377,17 +380,17 @@ class PotionController < BasicController
     # Add first potion / ingredient
     @view.first_ingredient
     @first_complex_ingredient_index = gets.chomp.to_i
-    select_first_complex_ingredient
+    add_first_complex_ingredient
 
     # Add second potion / ingredient
     @view.second_ingredient
     @second_complex_ingredient_index = gets.chomp.to_i
-    select_second_complex_ingredient
+    add_second_complex_ingredient
 
     # Add third potion / ingredient
     @view.third_ingredient
     @third_complex_ingredient_index = gets.chomp.to_i
-    select_third_complex_ingredient
+    add_third_complex_ingredient
   end
 
   # Clears the screen, prompts user to add the first potion / ingredient
@@ -397,23 +400,25 @@ class PotionController < BasicController
     @view.quick_view_potions_as_ingredients(@player.recipes.keys)
     @view.first_ingredient
     @first_complex_ingredient_index = gets.chomp.to_i
-    select_first_complex_ingredient
+    add_first_complex_ingredient
   end
 
-  def select_first_complex_ingredient
+  def add_first_complex_ingredient
+    clear
     # Reprompt if index is 0 or greater than number of potions owned
     if @first_complex_ingredient_index > @player.recipes.length || @first_complex_ingredient_index <= 0
       # Add first potion / ingredient again until it is valid.
-      clear
       @view.invalid_option
       first_complex_ingredient_prompt
     else
-      # sets first potion / ingredient to selected index
-      @first_complex_ingredient = return_key_for_index(@first_complex_ingredient_index - 1, @player.recipes)
+      # sets first potion / ingredient to added index
+      @first_complex_ingredient = return_key_for_index(@first_complex_ingredient_index - 1, @player.recipes).to_s
       # list first potion / ingredient added.
+      puts @view.title_art.light_magenta.blink
       puts ""
-      puts @first_complex_ingredient
-      puts "#{@first_complex_ingredient.to_s} added to the pot...".light_black
+      puts "Cauldron: #{@first_complex_ingredient}".light_black
+      puts ""
+      @view.quick_view_potions_as_ingredients(@player.recipes.keys)
       line(0.75)
     end
   end
@@ -421,63 +426,126 @@ class PotionController < BasicController
   # Clears the screen, prompts user to add the second potion / ingredient
   def second_complex_ingredient_prompt
     puts @view.title_art.light_magenta.blink
-    @view.quick_view_potions_as_ingredients(@player.recipes.keys)
-    puts "#{@first_complex_ingredient.to_s} added to the pot...".light_black
     puts ""
+    puts "Cauldron: #{@first_complex_ingredient} - #{@second_complex_ingredient}".light_black
+    puts ""
+    @view.quick_view_potions_as_ingredients(@player.recipes.keys)
     @view.second_ingredient
     @second_complex_ingredient_index = gets.chomp.to_i
     clear
-    select_second_complex_ingredient
+    add_second_complex_ingredient
   end
 
-  def select_second_complex_ingredient
+  def add_second_complex_ingredient
+    clear
     # Reprompt if index is 0 or greater than number of potions owned
     if @second_complex_ingredient_index > @player.recipes.length || @second_complex_ingredient_index <= 0
-      clear
       @view.invalid_option
       clear
+      @second_complex_ingredient = "?"
       second_complex_ingredient_prompt
     # Reprompt if index is same as first potion / ingredient index
     elsif @first_complex_ingredient_index == @second_complex_ingredient_index
-      clear
       @view.duplicate_ingredients
       clear
       # Add second potion / ingredient again until it is not same as first potion / ingredient.
       second_complex_ingredient_prompt
     else
-      clear
+      # sets second ingredient to added index
+      @second_complex_ingredient = return_key_for_index(@second_complex_ingredient_index - 1, @player.recipes).to_s
       puts @view.title_art.light_magenta.blink
-      # sets second ingredient to selected index
-      @second_complex_ingredient = return_key_for_index(@second_complex_ingredient_index - 1, @player.recipes)
       puts ""
-      puts "#{@first_complex_ingredient.to_s} added to the pot...".light_black
-      puts "#{@second_complex_ingredient.to_s.light_cyan} #{"added to the pot with".light_black} #{@first_complex_ingredient.to_s.light_cyan}"
+      puts "Cauldron: #{@first_complex_ingredient} - #{@second_complex_ingredient}".light_black
+      puts ""
+      @view.quick_view_potions_as_ingredients(@player.recipes.keys)
       line(0.75)
     end
+  end
 
-    def select_third_complex_ingredient
-      # Reprompt if index is 0 or greater than number of potions owned
-      if @third_complex_ingredient_index > @player.recipes.length || @third_complex_ingredient_index <= 0
-        clear
-        @view.invalid_option
-        clear
-        third_complex_ingredient_prompt
-      # Reprompt if index is same as first potion / ingredient index
-      elsif @first_complex_ingredient_index == @third_complex_ingredient_index
-        clear
-        @view.duplicate_ingredients
-        clear
-        # Add third potion / ingredient again until it is not same as first potion / ingredient.
-        third_complex_ingredient_prompt
-      else
-        clear
-        puts @view.title_art.light_magenta.blink
-        # sets third ingredient to selected index
-        @third_complex_ingredient = return_key_for_index(@third_complex_ingredient_index - 1, @player.recipes)
-        puts ""
-        puts "#{@first_complex_ingredient.to_s} added to the pot...".light_black
-        puts "#{@third_complex_ingredient.to_s.light_cyan} #{"added to the pot with".light_black} #{@first_complex_ingredient.to_s.light_cyan}"
-        line(0.75)
+  # Clears the screen, prompts user to add the third potion / ingredient
+  def third_complex_ingredient_prompt
+    puts @view.title_art.light_magenta.blink
+    puts ""
+    puts "Cauldron: #{@first_complex_ingredient} - #{@second_complex_ingredient} - #{@third_complex_ingredient}".light_black
+    puts ""
+    @view.quick_view_potions_as_ingredients(@player.recipes.keys)
+    @view.third_ingredient
+    @third_complex_ingredient_index = gets.chomp.to_i
+    clear
+    add_third_complex_ingredient
+  end
+
+  def add_third_complex_ingredient
+    clear
+    # Reprompt if index is 0 or greater than number of potions owned
+    if @third_complex_ingredient_index > @player.recipes.length || @third_complex_ingredient_index <= 0
+      @view.invalid_option
+      clear
+      @third_complex_ingredient = "?"
+      third_complex_ingredient_prompt
+    # Reprompt if index is same as first potion / ingredient index
+    elsif @first_complex_ingredient_index == @third_complex_ingredient_index ||
+          @second_complex_ingredient_index == @third_complex_ingredient_index
+      @view.duplicate_ingredients
+      clear
+      # Add third potion / ingredient again until it is not same as first potion / ingredient.
+      @second_complex_ingredient = "?"
+      third_complex_ingredient_prompt
+    else
+      puts @view.title_art.light_magenta.blink
+      # sets third ingredient to added index
+      @third_complex_ingredient = return_key_for_index(@third_complex_ingredient_index - 1, @player.recipes).to_s
+      puts ""
+      puts @first_complex_ingredient.light_cyan + ","
+      puts @second_complex_ingredient.light_cyan + ","
+      puts " and #{@third_complex_ingredient.light_cyan} #{"brewing in cauldron.".light_black}"
+      line(0.75)
+    end
+  end
+
+  def create_complex_recipe
+    # Put message saying making potions ....
+    slow_dialogue("Mᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴ".light_magenta.blink.blink, delay = 0.015, false)
+    # Add random delay between each potion made.
+    @potion_making_time.times do
+      print ".".light_magenta.blink
+      sleep(0.050)
+      print ".".light_black
+      sleep(0.050)
+    end
+    sleep(1.25)
+    does_recipe_exist
+    slow_dialogue("Cʟᴇᴀɴɪɴɢ ᴇᴏqᴜɪᴘᴍᴇɴᴛ ᴀɴᴅ sᴛᴀʀᴛɪɴɢ ᴏᴠᴇʀ...".light_black, 0.015, false)
+    # Breaks loop
+  end
+
+  def does_recipe_exist
+    # Loops through all potions to see if you matched a recipe
+    no_matches = true
+    @potion_repo.all_potion_recipes.each do |potion, ingredients|
+      if ingredients.include?(@first_complex_ingredient) && ingredients.include?(@second_complex_ingredient) && ingredients.include?(@third_complex_ingredient)
+        # Display text after creating the potion
+        puts "You've created the #{potion.to_s.light_cyan}!" # Add ingredient descriptions after
+        sleep(1.5)
+
+        # Check if potion exists in player recipes, don't add it if it does.
+        if @player.recipes.key?(potion)
+          puts "You've already created this"
+        else
+          puts @view.good_potion_text.sample
+          puts "Congrats, a new potion!"
+          @player.special_recipes[potion] = ingredients
+        end
+        no_matches = false
+        line(0, 3)
+        continue_prompt
       end
+    end
+
+    if no_matches == true
+      puts ""
+      puts @view.bad_potion_text.sample
+      sleep(2)
+    end
   end
 end

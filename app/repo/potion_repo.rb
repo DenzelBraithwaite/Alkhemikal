@@ -60,7 +60,8 @@ class PotionRepo
         "Brew of Beginnings",
         "Liquid Light",
         "Vial of Knowledge",
-        "Slimy Syrum"
+        "Slimy Syrum",
+        "Vial of the Volatile"
       ],
       :"Potion of Altered Perception" => ["assorted eyeballs", "cyclops sweat"],
       :"Potion of the arcane" => ["fairy wing", "arcana rocks"],
