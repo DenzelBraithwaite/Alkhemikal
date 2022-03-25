@@ -7,3 +7,4 @@ class PotionModel
     end
 
 end
+# Do I even need this ?

@@ -188,7 +188,10 @@ class PotionController < BasicController
       sleep(0.15)
       next_index += 1
     end
-    puts "#{next_index} #{'-'.light_magenta} #{@player.special_recipes.first}"
+    puts "------"
+    puts "special potions:"
+    # List special potions
+    puts "#{next_index} #{'-'.light_magenta} #{@player.special_recipes.keys}"
     line
     puts "end".light_red
     line
@@ -496,16 +499,14 @@ class PotionController < BasicController
       # sets third ingredient to added index
       @third_complex_ingredient = return_key_for_index(@third_complex_ingredient_index - 1, @player.recipes).to_s
       puts ""
-      puts @first_complex_ingredient.light_cyan + ","
-      puts @second_complex_ingredient.light_cyan + ","
-      puts " and #{@third_complex_ingredient.light_cyan} #{"brewing in cauldron.".light_black}"
+      puts "#{@first_complex_ingredient.light_black} #{"-".light_magenta} #{@second_complex_ingredient.light_black} #{"-".light_magenta} #{@third_complex_ingredient.light_black}"
       line(0.75)
     end
   end
 
   def create_complex_recipe
     # Put message saying making potions ....
-    slow_dialogue("Mᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴ".light_magenta.blink.blink, delay = 0.015, false)
+    slow_dialogue("Bʀᴇᴡɪɴɢ ᴘᴏᴛɪᴏɴ".light_magenta.blink.blink, delay = 0.015, false)
     # Add random delay between each potion made.
     @potion_making_time.times do
       print ".".light_magenta.blink
@@ -514,27 +515,37 @@ class PotionController < BasicController
       sleep(0.050)
     end
     sleep(1.25)
-    does_recipe_exist
+    does_complex_recipe_exist
     slow_dialogue("Cʟᴇᴀɴɪɴɢ ᴇᴏqᴜɪᴘᴍᴇɴᴛ ᴀɴᴅ sᴛᴀʀᴛɪɴɢ ᴏᴠᴇʀ...".light_black, 0.015, false)
     # Breaks loop
   end
 
-  def does_recipe_exist
+  def does_complex_recipe_exist
     # Loops through all potions to see if you matched a recipe
     no_matches = true
     @potion_repo.all_potion_recipes.each do |potion, ingredients|
       if ingredients.include?(@first_complex_ingredient) && ingredients.include?(@second_complex_ingredient) && ingredients.include?(@third_complex_ingredient)
-        # Display text after creating the potion
-        puts "You've created the #{potion.to_s.light_cyan}!" # Add ingredient descriptions after
-        sleep(1.5)
+        # Check if potion is the final potion.
+        if potion == "Vile Vial of Amortentia".to_sym
+          puts "You've created the #{potion.to_s.light_red}!" # Add ingredient descriptions after
+          puts "The fumes consume you as you lose sight of who you are, the scent wraps around your body and seeps deep within."
+          puts "You are now tinky for life"
+          final_potion_created = true
+          sleep(5)
+        else
+          # Display text after creating the potion
+          puts "You've created the #{potion.to_s.light_cyan}!" # Add ingredient descriptions after
+          sleep(1.5)
+        end
 
-        # Check if potion exists in player recipes, don't add it if it does.
+        # Checks if potion exists in player recipes, don't add it if it does.
         if @player.recipes.key?(potion)
           puts "You've already created this"
         else
-          puts @view.good_potion_text.sample
-          puts "Congrats, a new potion!"
-          @player.special_recipes[potion] = ingredients
+          puts "Grunty> I'm so sorry... but this is irreversable. I warned you..." if final_potion_created
+          puts @view.good_potion_text.sample unless final_potion_created
+          puts "Congrats, a new potion!" unless final_potion_created
+          @player.special_recipes[potion] = ingredients # Currently adds the to 1 array on one line, fix this
         end
         no_matches = false
         line(0, 3)
