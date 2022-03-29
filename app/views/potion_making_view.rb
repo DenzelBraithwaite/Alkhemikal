@@ -26,32 +26,32 @@ class PotionMakingView < MainView
     ██║██║░╚███║╚██████╔╝██║░░██║███████╗██████╔╝██║███████╗██║░╚███║░░░██║░░░██████╔╝
     ╚═╝╚═╝░░╚══╝░╚═════╝░╚═╝░░╚═╝╚══════╝╚═════╝░╚═╝╚══════╝╚═╝░░╚══╝░░░╚═╝░░░╚═════╝░"
 
-    @intro_message = "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} You are about to learn the subtle science and exact art of potion-making.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} As there is little foolish wand-waving here, many of you will hardly believe this is magic.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} I don't expect you will really understand the beauty of the softly simmering cauldron with its shimmering fumes,
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} the delicate power of liquids that creep through the human veins, bewitching the minds, ensnaring the senses...
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} I can teach you how to bottle liquid light, brew glory, and even capture the essence of flames.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Let's hope you aren't as big a dunderhead as the last one.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} He created a - now forbidden... potion that is irreversible. It's called the \"Vile vial of Amortentia\"
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Never, EVER, create the vial of Amortentia... Ever!"
+    @intro_message = "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} You are about to learn the subtle science and exact art of potion-making.
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} As there is little foolish wand-waving here, many of you will hardly believe this is magic.
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} I don't expect you will really understand the beauty of the softly simmering cauldron with its shimmering fumes,
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} the delicate power of liquids that creep through the human veins, bewitching the minds, ensnaring the senses...
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} I can teach you how to bottle liquid light, brew glory, and even capture the essence of flames.
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Let's hope you aren't as big a dunderhead as the last one.
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} He created a - now forbidden... potion that is irreversible. It's called the \"Vile vial of Amortentia\"
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Never, EVER, create the vial of Amortentia... Ever!"
 
-    @potion_tutorial_1 = "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} It's time to learn and in time; master, the subtle science of potion-making.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} This will not be easy and you will fail many times, but a true witch knows failure preceeds greatness.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} I don't expect you will really understand the beauty of the softly simmering cauldron with its shimmering fumes,
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Get lost in a world of forgotten arts, once passed down through a bloodline of incredible magical beings!
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} I will do my best to teach you the basics, but after that, you're on your own.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Are you ready to create your first potion? I hope you brought all the necessary ingredients...
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} You can leave this place at any time if you start to run low, there's a forest out back with plenty of fresh resources.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} If you fancy some new garments, you can always test your luck in the witch's labyrinth beside the forest.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Let me know when you're ready to begin, and once you start... there's no going back."
+    @potion_tutorial_1 = "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} It's time to learn and in time; master, the subtle science of potion-making.
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} This will not be easy and you will fail many times, but a true witch knows failure preceeds greatness.
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} I don't expect you will really understand the beauty of the softly simmering cauldron with its shimmering fumes,
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Get lost in a world of forgotten arts, once passed down through a bloodline of incredible magical beings!
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} I will do my best to teach you the basics, but after that, you're on your own.
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Are you ready to create your first potion? I hope you brought all the necessary ingredients...
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} You can leave this place at any time if you start to run low, there's a forest out back with plenty of fresh resources.
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} If you fancy some new garments, you can always test your luck in the witch's labyrinth beside the forest.
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Let me know when you're ready to begin, and once you start... there's no going back."
 
-    @potion_tutorial_2 = "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Alright, to be honest potion making is actually incredibly intuitive,
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} you simply need to mix 2 ingredients together in a cauldron and see what happens.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Certain potions are a little special, and may require more ingredients or special ingredients,
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} but please don't get consumed by the process, it's an art but by no means is it an obsession!
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Let me see what ingredients you've brought...Akkk! You barely have anything!
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} I guess we'll have to make the brew of beginnings, a wise first choice for any novice potion maker.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Here's the recipe, you get to look at it but it's MINE so you can't keep it! Make your own.."
+    @potion_tutorial_2 = "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Alright, to be honest potion making is actually incredibly intuitive,
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} you simply need to mix 2 ingredients together in a cauldron and see what happens.
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Certain potions are a little special, and may require more ingredients or special ingredients,
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} but please don't get consumed by the process, it's an art but by no means is it an obsession!
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Let me see what ingredients you've brought...Akkk! You barely have anything!
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} I guess we'll have to make the brew of beginnings, a wise first choice for any novice potion maker.
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Here's the recipe, you get to look at it but it's MINE so you can't keep it! Make your own.."
     # Array of things to say when a good potion is created
       @good_potion_text = [
         "A stellar potion indeed.",
@@ -106,15 +106,15 @@ class PotionMakingView < MainView
   end
 
   def first_ingredient
-    puts "First ingredient?".light_cyan
+    puts "First ingredient?".light_magenta
   end
 
   def second_ingredient
-    puts "Second ingredient?".light_cyan
+    puts "Second ingredient?".light_magenta
   end
 
   def third_ingredient
-    puts "Final ingredient?".light_cyan
+    puts "Final ingredient?".light_magenta
   end
 
   def duplicate_ingredients
@@ -124,7 +124,7 @@ class PotionMakingView < MainView
     sleep(2)
   end
 
-	def menu_options
+  def menu_options
     puts @title_art.light_magenta.blink
     puts ""
     puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.light_magenta}"
@@ -142,6 +142,19 @@ class PotionMakingView < MainView
     puts " 𝟡 #{'-'.light_magenta} #{'𝔹𝕒𝕔𝕜'.light_red}"
     puts ""
     sleep(0.05)
+  end
+
+  def simple_or_complex
+    puts @title_art.light_magenta.blink
+    puts ""
+    puts " Dᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴍᴀᴋɪɴɢ ᴀ sɪᴍᴘʟᴇ ᴏʀ ᴄᴏᴍᴘʟᴇx ᴘᴏᴛɪᴏɴ #{'?'.light_magenta}"
+    puts ""
+    sleep(0.05)
+    puts " 𝟙 #{'-'.light_magenta} 𝕊𝕚𝕄𝕡𝕝𝕖"
+    puts ""
+    sleep(0.05)
+    puts " 𝟚 #{'-'.light_magenta} ℂ𝕠𝕄𝕡𝕝𝕖𝕩"
+    puts ""
   end
 
   def current_equipment(ladle, cauldron)
@@ -162,7 +175,7 @@ class PotionMakingView < MainView
   end
 
   def quick_view_ingredients(ingredients)
-    puts "Iɴɢʀᴇᴅɪᴇɴᴛs:".light_cyan
+    puts "Iɴɢʀᴇᴅɪᴇɴᴛs:".magenta
     puts ""
     sleep(0.5)
     ingredients.each_with_index do |ingredient, index|
@@ -175,7 +188,7 @@ class PotionMakingView < MainView
   end
 
   def quick_view_potions_as_ingredients(potions)
-    puts "potions:".light_cyan
+    puts "potions:".light_magenta
     puts ""
     sleep(0.5)
     potions.each_with_index do |potion, index|

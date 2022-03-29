@@ -52,7 +52,7 @@ class ExploreView
   end
 
   def quick_view_ingredients(ingredients)
-    puts "Iɴɢʀᴇᴅɪᴇɴᴛs:".light_yellow
+    puts "Iɴɢʀᴇᴅɪᴇɴᴛs:".light_green
     puts ""
     sleep(0.5)
     ingredients.each do |ingredient|

@@ -4,7 +4,8 @@ class MainView
   attr_reader :intro_message, :potions_tutorial, :potions_tutorial_2, :title_art, :demo_version,:witch_art, :game_over
 
   def initialize
-    @intro_message = "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} You are about to learn the subtle science and exact art of potion-making.
+    @intro_message =
+    "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Hello there, my name is Gl- Gruntilda*. You are about to learn the subtle science and exact art of potion-making.
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} As there is little foolish wand-waving here, many of you will hardly believe this is magic.
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} I don't expect you will really understand the beauty of the softly simmering cauldron with its shimmering fumes,
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} the delicate power of liquids that creep through the human veins, bewitching the minds, ensnaring the senses...
@@ -56,7 +57,7 @@ class MainView
        \    (. ) ,   /  /__I_____\
      \'._/_)_(\__.\'   (__,(__,_]
        @---()_.\'---@  '
-
+    # Only use when exitingthe game after creating the final potion
     @game_over = "
     |/|
     | |
