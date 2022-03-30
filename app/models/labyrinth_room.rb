@@ -5,7 +5,6 @@ class LabyrinthRoom
     @role = attributes[:role]
     @row_id = attributes[:row_id]
     @column_id = attributes[:column_id]
-    # @name = "row id:#{@row_id}, column id:#{@column_id}"
     load_role
   end
 

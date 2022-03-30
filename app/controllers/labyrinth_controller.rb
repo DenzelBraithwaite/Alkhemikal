@@ -6,6 +6,13 @@ class LabyrinthController < ParentController
     super(player)
     @view = LabyrinthView.new
     @repo = repo
+    @new_hat_index = 0
+    @new_robe_index = 0
+    # Rooms with something to be found
+    @room_indexes = [
+      15, 30, 45, 350, 75, 90, 105, 120, 135, 375, 165,
+      180, 195, 210, 225, 240, 398, 270, 285, 300, 315, 330
+    ]
     # Hats that can be found when exploring
     @all_hats = [
       "pointy hat",
@@ -20,7 +27,6 @@ class LabyrinthController < ParentController
       "invisible coif",
       "black bonnet"
     ]
-
     # Robes that can be found when exploring
     @all_robes = [
       "peasant robe",
@@ -40,7 +46,7 @@ class LabyrinthController < ParentController
   def run
     @running = true
     @last_movement = @last_movement || "none"
-    @current_room = @current_room || @repo.rooms.last #@repo.rooms[rand(1..200)]
+    @current_room = @current_room || @repo.rooms.last # @repo.rooms[rand(1..200)]
     puts @view.title_art.yellow.blink
     line
     # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Welcome... to the Wiccan Labyrinth!", 0.010, false)
@@ -52,10 +58,10 @@ class LabyrinthController < ParentController
 
     while @running
       clear
-      room = define_walls + define_floors
+      @room_description = define_walls + define_floors
       @view.press_9_to_quit
       @view.labyrinth_menu_options
-      puts "#{'Cᴜʀʀᴇɴᴛ ʀᴏᴏᴍ:'.yellow} #{room}"
+      puts "#{'Cᴜʀʀᴇɴᴛ ʀᴏᴏᴍ:'.yellow} #{@room_description}"
       line
       puts @view.last_move(@last_movement)
       line
@@ -83,27 +89,46 @@ class LabyrinthController < ParentController
   end
 
   # Determine if room matches a specific room, to acquire something
-  def special_room(clothing, room)
-    return if @player.unlocked_robes.include?(clothing)
-    @player.unlocked_robes << clothing if @current_room == @repo.rooms[room]
+  def add_clothing_to_inventory(clothing, odd = true)
+    if odd
+      new_item_alert("HAT", clothing)
+      @player.unlocked_hats << clothing
+      @new_hat_index += 1
+    else
+      new_item_alert("ROBE", clothing)
+      @player.unlocked_robes << clothing
+      @new_robe_index += 1
+    end
   end
 
   # A list of all rooms with hidden clothing, if entered, it will be added to your inventory.
   def check_if_room_is_special
-    room_numbers = [15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165,
-                    180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 330
-    ]
+    room_index = @repo.find_room_index(@current_room.row_id, @current_room.column_id)
+    return unless @room_indexes.include?(room_index)
 
-    # Iterates through hats and robes, for each it selects the item and puts it in a room based on room_numbers array.
-    @all_hats.each_with_index do |hat, index|
-      special_room(hat, room_numbers[index])
-      @index_for_robe = index
+    @room_indexes.delete(room_index)
+    if room_index.odd?
+      add_clothing_to_inventory(@all_hats[@new_hat_index])
+    else
+      add_clothing_to_inventory(@all_robes[@new_robe_index], false)
     end
+  end
 
-    @all_robes.each do |robe|
-      special_room(robe, room_numbers[@index_for_robe])
-      @index_for_robe += 1
+  # Alerts player when a new clothing is found
+  def new_item_alert(hat_or_robe, item_name)
+    clear
+    2.times do
+      fill_screen("                                                               Nᴇᴡ #{hat_or_robe}!                                                                                                                                                           ".black.on_yellow, 0.5)
+      fill_screen("                                                               Nᴇᴡ #{hat_or_robe}!                                                                                                                                                   ".black.on_light_yellow, 0.5)
     end
+    clear
+    @view.press_9_to_quit
+    @view.labyrinth_menu_options
+    puts "#{'Cᴜʀʀᴇɴᴛ ʀᴏᴏᴍ:'.yellow} #{@room_description}"
+    line
+    puts @view.last_move(@last_movement)
+    line
+    slow_dialogue("You've unlocked: #{item_name.yellow}".blink, 0.04, false)
   end
 
   # Checks if up is valid, if true then change current room to the room up above.

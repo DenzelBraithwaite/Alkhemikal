@@ -126,11 +126,11 @@ class ParentController
     continue_prompt if continue
   end
 
-  def fill_screen(message)
+  def fill_screen(message, interval = 0.1)
     35.times do
       print message
     end
-    sleep(0.1)
+    sleep(interval)
     system('clear')
   end
 
