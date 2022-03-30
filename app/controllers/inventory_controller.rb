@@ -1,5 +1,6 @@
 require_relative '../views/inventory_view'
-class InventoryController < BasicController
+
+class InventoryController < ParentController
     def initialize
       super(player)
       @view = InventoryView.new

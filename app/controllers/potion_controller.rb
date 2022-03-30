@@ -1,9 +1,8 @@
-require_relative 'basic_controller'
 require_relative '../repo/ingredient_repo'
 require_relative '../repo/potion_repo'
 require_relative '../views/potion_making_view'
 
-class PotionController < BasicController
+class PotionController < ParentController
   def initialize(ingredient_repo, potion_repo)
     super(player)
     @view = PotionMakingView.new

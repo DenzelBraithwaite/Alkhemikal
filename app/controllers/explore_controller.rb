@@ -1,7 +1,7 @@
 require_relative '../repo/ingredient_repo'
 require_relative '../views/explore_view'
 
-class ExploreController < BasicController
+class ExploreController < ParentController
   def initialize(ingredient_repo)
     super(player)
     @ingredient_repo = ingredient_repo

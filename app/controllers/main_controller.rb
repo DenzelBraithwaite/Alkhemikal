@@ -1,11 +1,8 @@
-# require_relative '../models/witch_model'
 require_relative '../views/main_view'
-require_relative 'basic_controller'
 
-class MainController < BasicController
+class MainController < ParentController
   def initialize
     super(player)
-    # @repo = repo
     @view = MainView.new
   end
 

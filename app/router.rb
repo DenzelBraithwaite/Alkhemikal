@@ -3,17 +3,17 @@ require_relative 'models/witch'
 require_relative 'views/main_view'
 
 class Router
-  def initialize(basic_controller, main_controller, explore_controller, potion_controller, billywig_controller, maze_controller, inventory_controller)
+  def initialize(parent_controller, main_controller, explore_controller, potion_controller, billywig_controller, maze_controller, inventory_controller)
     @running = true
     @view = MainView.new
-    @basic_controller = basic_controller
+    @parent_controller = parent_controller
     @main_controller = main_controller
     @explore_controller = explore_controller
     @potion_controller = potion_controller
     @billywig_controller = billywig_controller
     @maze_controller = maze_controller
     @inventory_controller = inventory_controller
-    @player = @basic_controller.player
+    @player = @parent_controller.player
   end
 
   def run
@@ -32,7 +32,7 @@ class Router
     # Gets users name and stores it, used below to save the name prompt for all menus
     # @player.name = @view.get_user_name.capitalize
     @player.name = "Test mode"
-    @player.name = @basic_controller.capitalize_sentence(@player.name)
+    @player.name = @parent_controller.capitalize_sentence(@player.name)
     synchronize_witch_name
     # @main_controller.continue_prompt
     @main_controller.clear

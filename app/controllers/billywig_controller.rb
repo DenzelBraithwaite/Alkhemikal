@@ -1,7 +1,6 @@
 require_relative '../views/billywig_view'
-require_relative 'basic_controller'
 
-class BillywigController < BasicController
+class BillywigController < ParentController
   def initialize
     super(player)
     @view = BillywigView.new

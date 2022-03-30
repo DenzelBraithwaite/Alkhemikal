@@ -1,6 +1,4 @@
-require 'colorize'
-
-class BasicController
+class ParentController
   attr_accessor :player
 
   def initialize(player)

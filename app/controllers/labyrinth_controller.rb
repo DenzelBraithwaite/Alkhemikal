@@ -1,8 +1,7 @@
-require_relative 'basic_controller'
 require_relative '../views/labyrinth_view'
 require_relative '../repo/labyrinth_repo'
 
-class LabyrinthController < BasicController
+class LabyrinthController < ParentController
   def initialize(repo)
     super(player)
     @view = LabyrinthView.new

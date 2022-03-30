@@ -1,13 +1,17 @@
 # require 'csv'
 # save_file   = File.join(__dir__, 'save_file.csv')
+require 'colorize'
 require_relative 'router'
 
+
+require_relative 'controllers/parent_controller'
 require_relative 'controllers/main_controller'
 require_relative 'controllers/explore_controller'
 require_relative 'controllers/potion_controller'
 require_relative 'controllers/billywig_controller'
 require_relative 'controllers/labyrinth_controller'
 require_relative 'controllers/inventory_controller'
+
 
 require_relative 'repo/ingredient_repo'
 require_relative 'repo/potion_repo'
@@ -18,8 +22,8 @@ require_relative 'models/witch'
 # Related to player
 player = Witch.new
 
-# Parent controller with some useful generic methods
-basic_controller = BasicController.new(player)
+# Parent controller with some useful generic methods, no need to require since it's children see it.
+parent_controller = ParentController.new(player)
 
 # Controller for main menu
 main_controller = MainController.new
@@ -43,7 +47,7 @@ labyrinth_controller = LabyrinthController.new(labyrinth_repo)
 inventory_controller = InventoryController.new
 
 # Router
-router = Router.new(basic_controller, main_controller, explore_controller, potion_controller, billywig_controller, labyrinth_controller, inventory_controller)
+router = Router.new(parent_controller, main_controller, explore_controller, potion_controller, billywig_controller, labyrinth_controller, inventory_controller)
 
 # Start the app
 router.run
