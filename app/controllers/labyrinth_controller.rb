@@ -55,6 +55,7 @@ class LabyrinthController < ParentController
 
   # Determine if room matches a specific room, to acquire something
   def special_room(clothing, room)
+    return if @player.unlocked_robes.include?(clothing)
     @player.unlocked_robes << clothing if @current_room == room
   end
 
