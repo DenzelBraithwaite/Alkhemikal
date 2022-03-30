@@ -56,33 +56,36 @@ class LabyrinthController < ParentController
   # Determine if room matches a specific room, to acquire something
   def special_room(clothing, room)
     return if @player.unlocked_robes.include?(clothing)
-    @player.unlocked_robes << clothing if @current_room == room
+    @player.unlocked_robes << clothing if @current_room == @repo.rooms[room]
   end
 
   # A list of all rooms with hidden clothing, if entered, it will be added to your inventory.
   def check_if_room_is_special
     # Make sure it can't add the same item twice, currently you can. Also add a message or something when you get the clothing
-    @player.unlocked_robes << "test " if @current_room ==  @repo.rooms[399]
-    @player.unlocked_robes << "test 2" if @current_room == @repo.rooms[1]
-    @player.unlocked_robes << "test 3" if @current_room == @repo.rooms[22]
-    @player.unlocked_robes << "test 4" if @current_room == @repo.rooms[39]
-    @player.unlocked_robes << "test 5" if @current_room == @repo.rooms[49]
-    @player.unlocked_robes << "test 6" if @current_room == @repo.rooms[398]
-    @player.unlocked_robes << "test 7" if @current_room == @repo.rooms[199]
-    @player.unlocked_robes << "test 8" if @current_room == @repo.rooms[172]
-    @player.unlocked_robes << "test 9" if @current_room == @repo.rooms[241]
-    @player.unlocked_robes << "test 10" if @current_room == @repo.rooms[99]
-    @player.unlocked_robes << "test 11" if @current_room == @repo.rooms[66]
-    @player.unlocked_robes << "test 12" if @current_room == @repo.rooms[91]
-    @player.unlocked_robes << "test 13" if @current_room == @repo.rooms[287]
-    @player.unlocked_robes << "test 14" if @current_room == @repo.rooms[343]
-    @player.unlocked_robes << "test 15" if @current_room == @repo.rooms[321]
-    @player.unlocked_robes << "test 16" if @current_room == @repo.rooms[377]
-    @player.unlocked_robes << "test 17" if @current_room == @repo.rooms[317]
-    @player.unlocked_robes << "test 18" if @current_room == @repo.rooms[108]
-    @player.unlocked_robes << "test 19" if @current_room == @repo.rooms[6]
-    @player.unlocked_robes << "test 20" if @current_room == @repo.rooms[152]
-
+    room_numbers = [1, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220,
+                    240, 260, 280, 300, 320, 340, 360, 398, 399
+    ]
+    special_room("test1", room_numbers[0])
+    special_room("test2", room_numbers[1])
+    special_room("test3", room_numbers[2])
+    special_room("test4", room_numbers[3])
+    special_room("test5", room_numbers[4])
+    special_room("test6", room_numbers[5])
+    special_room("test7", room_numbers[6])
+    special_room("test8", room_numbers[7])
+    special_room("test9", room_numbers[8])
+    special_room("test10", room_numbers[9])
+    special_room("test11", room_numbers[10])
+    special_room("test12", room_numbers[11])
+    special_room("test13", room_numbers[12])
+    special_room("test14", room_numbers[13])
+    special_room("test15", room_numbers[14])
+    special_room("test16", room_numbers[15])
+    special_room("test17", room_numbers[16])
+    special_room("test18", room_numbers[17])
+    special_room("test19", room_numbers[18])
+    special_room("test20", room_numbers[19])
+    special_room("test21", room_numbers[20])
   end
 
   # Checks if up is valid, if true then change current room to the room up above.
