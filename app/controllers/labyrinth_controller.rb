@@ -6,6 +6,35 @@ class LabyrinthController < ParentController
     super(player)
     @view = LabyrinthView.new
     @repo = repo
+    # Hats that can be found when exploring
+    @all_hats = [
+      "pointy hat",
+      "magic hood",
+      "long grey wig",
+      "witch's hat",
+      "sorting hat",
+      "short purple wig",
+      "sacred crown",
+      "magician's hay",
+      "plague doctor mask",
+      "invisible coif",
+      "black bonnet"
+    ]
+
+    # Robes that can be found when exploring
+    @all_robes = [
+      "peasant robe",
+      "wizard's robe",
+      "Beautifying robe",
+      "dark cloak",
+      "witch's robe",
+      "Quidditch uniform",
+      "Wings of freedom cloak",
+      "magic cape",
+      "blue kirtle",
+      "litte red riding hood",
+      "ash grey capelet"
+    ]
   end
 
   def run
@@ -61,31 +90,20 @@ class LabyrinthController < ParentController
 
   # A list of all rooms with hidden clothing, if entered, it will be added to your inventory.
   def check_if_room_is_special
-    # Make sure it can't add the same item twice, currently you can. Also add a message or something when you get the clothing
-    room_numbers = [1, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220,
-                    240, 260, 280, 300, 320, 340, 360, 398, 399
+    room_numbers = [15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165,
+                    180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 330
     ]
-    special_room("test1", room_numbers[0])
-    special_room("test2", room_numbers[1])
-    special_room("test3", room_numbers[2])
-    special_room("test4", room_numbers[3])
-    special_room("test5", room_numbers[4])
-    special_room("test6", room_numbers[5])
-    special_room("test7", room_numbers[6])
-    special_room("test8", room_numbers[7])
-    special_room("test9", room_numbers[8])
-    special_room("test10", room_numbers[9])
-    special_room("test11", room_numbers[10])
-    special_room("test12", room_numbers[11])
-    special_room("test13", room_numbers[12])
-    special_room("test14", room_numbers[13])
-    special_room("test15", room_numbers[14])
-    special_room("test16", room_numbers[15])
-    special_room("test17", room_numbers[16])
-    special_room("test18", room_numbers[17])
-    special_room("test19", room_numbers[18])
-    special_room("test20", room_numbers[19])
-    special_room("test21", room_numbers[20])
+
+    # Iterates through hats and robes, for each it selects the item and puts it in a room based on room_numbers array.
+    @all_hats.each_with_index do |hat, index|
+      special_room(hat, room_numbers[index])
+      @index_for_robe = index
+    end
+
+    @all_robes.each do |robe|
+      special_room(robe, room_numbers[@index_for_robe])
+      @index_for_robe += 1
+    end
   end
 
   # Checks if up is valid, if true then change current room to the room up above.

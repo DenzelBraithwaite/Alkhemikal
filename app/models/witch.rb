@@ -78,29 +78,6 @@ class Witch
     @robe = @unlocked_robes.first
   end
 
-  # Hats that can be found when exploring
-  @all_hats = [
-  "pointy hat",
-  "magic hood",
-  "long grey wig",
-  "witch's hat",
-  "sorting hat",
-  "short purple wig",
-  "sacred crown"
-  ]
-
-  # Robes that can be found when exploring
-  @all_robes = [
-  "peasant robe",
-  "wizard's robe",
-  "Beautifying robe",
-  "dark cloak",
-  "witch's robe",
-  "Quidditch uniform",
-  "Wings of freedom cloak",
-  "magic cape"
-  ]
-
   # Adds a hat to the hat inventory, unless already owned
   def add_hat(hat)
     @unlocked_hats << hat unless @unlocked_hats.include?(hat)
