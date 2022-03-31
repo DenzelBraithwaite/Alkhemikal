@@ -10,8 +10,8 @@ class LabyrinthController < ParentController
     @new_robe_index = 0
     # Rooms with something to be found
     @room_indexes = [
-      15, 30, 45, 350, 75, 90, 105, 120, 135, 375, 165,
-      180, 195, 210, 225, 240, 398, 270, 285, 300, 315, 330
+      15, 55, 95, 125, 155, 175, 205, 245, 285, 335, 365, # Odd numbers
+      30, 60, 90, 120, 150, 190, 210, 240, 290, 350, 380 # Even numbers
     ]
     # Hats that can be found when exploring
     @all_hats = [
@@ -46,7 +46,7 @@ class LabyrinthController < ParentController
   def run
     @running = true
     @last_movement = @last_movement || "none"
-    @current_room = @current_room || @repo.rooms.last # @repo.rooms[rand(1..200)]
+    @current_room = @current_room || @repo.rooms[rand(1..200)]
     puts @view.title_art.yellow.blink
     line
     # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Welcome... to the Wiccan Labyrinth!", 0.010, false)
@@ -58,7 +58,7 @@ class LabyrinthController < ParentController
 
     while @running
       clear
-      @room_description = define_walls + define_floors
+      @room_description = "#{define_walls} #{define_floors}"
       @view.press_9_to_quit
       @view.labyrinth_menu_options
       puts "#{'Cᴜʀʀᴇɴᴛ ʀᴏᴏᴍ:'.yellow} #{@room_description}"
@@ -199,90 +199,102 @@ class LabyrinthController < ParentController
   def define_walls
     case @current_room.column_id
     when 1
-        "You're surrounded by a forest of trees, "
+      "You're surrounded by a forest of trees, "
     when 11
-        "You're surrounded by a forest of trees, "
+      "You're surrounded by darkness and glaring eyes, "
     when 2
-        "Giant mushrooms tower around you, "
+      "Giant mushrooms tower around you, "
     when 12
-        "Giant mushrooms tower around you, "
+      "The air is humid, palm trees are in every direction, "
     when 3
-        "It's cold, walls of ice are all around you, "
+      "It's cold, walls of ice are all around you, "
     when 13
-        "It's cold, walls of ice are all around you, "
+      "It's cold, walls of ice are all around you, "
     when 4
-        "It's dry, the walls around you are rough and rocky, "
+      "It's dry, the walls around you are rough and rocky, "
     when 14
-        "It's dry, the walls around you are rough and rocky, "
+      "It's dry, the walls around you are rough and rocky, "
     when 5
-        "It's humid, there are many long and thick vines surrounding you, "
+      "It's humid, there are many long and thick vines surrounding you, "
     when 15
-        "It's humid, there are many long and thick vines surrounding you, "
+      "It's humid, there are many long and thick vines surrounding you, "
     when 6
-        "Tall bamboo in every direction you look, "
+      "Tall bamboo in every direction you look, "
     when 16
-        "Tall bamboo in every direction you look, "
+      "Tall bamboo in every direction you look, "
     when 7
-        "You can't see a thing, the fog is too thick, "
+      "You can't see a thing, the fog is too thick, "
     when 17
-        "You can't see a thing, the fog is too thick, "
+      "You can't see a thing, the fog is too thick, "
     when 8
-        "You're surrounded by yourself, all around you are mirrors, "
+      "You're surrounded by yourself, all around you are mirrors, "
     when 18
-        "You're surrounded by yourself, all around you are mirrors, "
+      "You're surrounded by yourself, all around you are mirrors, "
     when 9
-        "You're burning up, everything is on fire, "
+      "You're burning up, everything is on fire, "
     when 19
-        "You're burning up, everything is on fire, "
+      "You're burning up, everything is on fire, "
     when 10
-        "The walls around you are made of brick it seems, "
+      "The walls around you are made of brick it seems, "
     when 20
-        "The walls around you are made of brick it seems, "
+      "The walls around you are made of brick it seems, "
     end
   end
 
   def define_floors
     case @current_room.row_id
-    when 1
-        "there's grass beneath your feet."
-    when 2
-        "the ground is a musky swamp covered in mildew."
-    when 3
-        "the ground is frozen and slippery."
-    when 4
-        "the grass beneath your feet is up to your waist."
-    when 5
-        "there's a cobblestone path guiding you."
-    when 6
-        "you hear crunching and crinkling with each step, enjoying the foliage."
-    when 7
-        "the ground is riddled with shallow puddles."
-    when 8
-        "the floor is transparent and fragile... must be glass."
-    when 9
-        "your feet burn with each step on this scorching hot metal."
-    when 10
-        "the ground is made of cement, sturdy and reliable."
-    when 11
-        "there's grass beneath your feet."
-    when 12
-        "the ground is a musky swamp covered in mildew."
-    when 13
-        "the ground is frozen and slippery."
-    when 14
-        "the grass beneath your feet is up to your waist."
-    when 15
-        "there's a cobblestone path guiding you."
-    when 16
-        "you hear crunching and crinkling with each step, enjoying the foliage."
-    when 17
-        "the ground is riddled with shallow puddles."
-    when 18
-        "the floor is transparent and fragile... must be glass."
-    when 19
-        "your feet burn with each step on this scorching hot metal."
-    when 20
-        "the ground is made of cement, sturdy and reliable."
+
+    # Dark area
+    when (1..5) && @current_room.column_id.between?(1, 5)
+      return "you are in the dark, "
+
+    # Desert area
+    when (6..10) && @current_room.column_id.between?(1, 5) ||
+      @current_room.row_id.between?(1, 10) && @current_room.column_id.between?(6, 10)
+      if @current_room.row_id.between?(9, 10) && @current_room.column_id.between?(9, 10)
+        return "You are at the center of the maze, "
+      else
+        return "You're in the desert, "
+      end
+
+    # Volcano area
+    when (1..5) && @current_room.column_id.between?(16, 20)
+      return "you're at the volcano, "
+
+    # Outer volcano mountain area
+    when (1..10) && @current_room.column_id.between?(11, 15) ||
+         @current_room.row_id.between?(6, 10) && @current_room.column_id.between?(11, 20)
+      if @current_room.row_id.between?(9, 10) && @current_room.column_id == 11
+        return "You are at the center of the maze, "
+      else
+        return "You are on a dry mountain, "
+      end
+
+    # Jungle area
+    when (16..20) && @current_room.column_id.between?(16, 20)
+      return "You are in a swamp, "
+
+    # Forest area
+    when (11..20) && @current_room.column_id.between?(11, 15) ||
+      @current_room.row_id.between?(11, 15) && @current_room.column_id.between?(11, 20)
+      if @current_room.row_id == 11 && @current_room.column_id == 11
+        return "You are at the center of the maze, "
+      else
+        return "You're in a forest, "
+      end
+
+    # Frozen area
+    when (16..20) && @current_room.column_id.between?(1, 5)
+        return "You are in a frozen wasteland, "
+
+    # Wet area
+    when (11..15) && @current_room.column_id.between?(1, 10) ||
+      @current_room.row_id.between?(11, 20) && @current_room.column_id.between?(6, 10)
+      if @current_room.row_id == 11 && @current_room.column_id.between?(9, 10)
+        return "You are at the center of the maze, "
+      else
+        return "You are the cold wetlands, "
+      end
     end
   end
 end
