@@ -174,8 +174,7 @@ class PotionController < ParentController
     clear
     puts @view.recipes_art.light_magenta.blink
     puts ''
-    slow_dialogue("Checking recipes...".light_black, 0.02, false)
-    sleep(0.25)
+    slow_dialogue("Checking recipes...".light_black, 0.01, false)
     puts ''
     special_index = 1
     @player.recipes.each_with_index do |potion, index|
