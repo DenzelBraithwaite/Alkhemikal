@@ -55,8 +55,8 @@ class ExploreView
     puts "Iɴɢʀᴇᴅɪᴇɴᴛs:".light_green
     puts ""
     sleep(0.5)
-    ingredients.each do |ingredient|
-      puts "- #{ingredient}"
+    ingredients.each_with_index do |ingredient, index|
+      puts "#{index + 1} #{"-".light_green} #{ingredient}"
       sleep(0.05)
     end
     puts ""
@@ -64,23 +64,23 @@ class ExploreView
     puts ""
   end
 
-    def explore_menu_options
-      puts title_art.light_green.blink
-      puts ""
-      puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.light_green}"
-      puts ""
-      sleep(0.05)
-      puts " 𝟙 #{'-'.light_green} 𝕊𝕖𝕒𝕣𝕔𝕙"
-      puts ""
-      sleep(0.05)
-      puts " 𝟚 #{'-'.light_green} 𝕀𝕟𝕘𝕣𝕖𝕕𝕚𝕖𝕟𝕥𝕤"
-      puts ""
-      sleep(0.05)
-      puts " 𝟡 #{'-'.light_green} #{'𝔹𝕒𝕔𝕜'.light_red}"
-      puts ""
-      sleep(0.05)
-      puts ""
-    end
+  def explore_menu_options
+    puts title_art.light_green.blink
+    puts ""
+    puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.light_green}"
+    puts ""
+    sleep(0.05)
+    puts " 𝟙 #{'-'.light_green} 𝕊𝕖𝕒𝕣𝕔𝕙"
+    puts ""
+    sleep(0.05)
+    puts " 𝟚 #{'-'.light_green} 𝕀𝕟𝕘𝕣𝕖𝕕𝕚𝕖𝕟𝕥𝕤"
+    puts ""
+    sleep(0.05)
+    puts " 𝟡 #{'-'.light_green} #{'𝔹𝕒𝕔𝕜'.light_red}"
+    puts ""
+    sleep(0.05)
+    puts ""
+  end
 
   # Text displayed to prompt search again
   def search_again_text

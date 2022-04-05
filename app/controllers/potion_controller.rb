@@ -2,6 +2,7 @@ require_relative '../repo/ingredient_repo'
 require_relative '../repo/potion_repo'
 require_relative '../views/potion_making_view'
 
+# Divide simple and complex potions into 2 diff controllers
 class PotionController < ParentController
   def initialize(ingredient_repo, potion_repo)
     super(player)
@@ -108,7 +109,7 @@ class PotionController < ParentController
   def check_ingredients
     clear
     puts @view.ingredients_art.light_magenta.blink
-    puts ""
+    puts ''
     @view.quick_view_ingredients(@player.ingredients)
     continue_prompt
   end
@@ -142,13 +143,12 @@ class PotionController < ParentController
     @player.ingredients.length >= 2
   end
 
-
   def not_enough_ingredients
     clear
     puts @view.title_art.light_magenta.blink
-    puts ""
+    puts ''
     @view.quick_view_ingredients(player.ingredients)
-    5.times {line}
+    5.times { line }
     puts "You need at least 2 ingredients to make potions".light_red
     continue_prompt
   end
@@ -156,45 +156,47 @@ class PotionController < ParentController
   # Text displayed to prompt search again
   def potion_making_again_text
     puts @view.title_art.light_magenta.blink
-    puts ""
-    puts ""
+    puts ''
+    puts ''
     puts " Wᴏᴜʟᴅ ʏᴏᴜ ʟɪᴋᴇ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ ᴍᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴs #{'?'.light_magenta}"
-    puts ""
+    puts ''
     sleep(1)
     puts " 𝟙 #{'-'.light_magenta} 𝕪𝕖𝕤"
-    puts ""
+    puts ''
     sleep(0.5)
     puts " 𝟚 #{'-'.light_magenta} #{'𝕟𝕠'.light_red}"
     sleep(1)
-    puts ""
-    puts ""
+    puts ''
+    puts ''
   end
 
   def view_recipes
     clear
     puts @view.recipes_art.light_magenta.blink
-    puts ""
+    puts ''
     slow_dialogue("Checking recipes...".light_black, 0.02, false)
     sleep(0.25)
-    line
+    puts ''
     special_index = 1
     @player.recipes.each_with_index do |potion, index|
       puts "#{index + 1} #{'-'.light_magenta} #{potion}"
       sleep(0.15)
       special_index += 1
     end
-    puts ""
-    puts "------".light_magenta
-    puts ""
-    puts "#{"S".magenta}p#{"e".magenta}c#{"i".magenta}a#{"l".magenta} p#{"o".magenta}t#{"i".magenta}o#{"n".magenta}s#{":".magenta}"
-    puts ""
-    # List special potions
-    @player.special_recipes.each do |potion, formula|
-      puts "#{special_index} #{'-'.light_magenta} #{potion}: #{formula}"
-      special_index += 1
+    if @already_upgraded
+      puts ''
+      puts '------'.light_magenta
+      puts ''
+      puts "#{'S'.magenta}p#{'e'.magenta}c#{'i'.magenta}a#{'l'.magenta} p#{'o'.magenta}t#{'i'.magenta}o#{'n'.magenta}s#{':'.magenta}"
+      puts ''
+      # List special potions
+      @player.special_recipes.each do |potion, formula|
+        puts "#{special_index} #{'-'.light_magenta} #{potion}: #{formula}"
+        special_index += 1
+      end
     end
     line
-    puts "end".light_red
+    puts 'end'.light_red
     line
     continue_prompt
   end
@@ -213,10 +215,10 @@ class PotionController < ParentController
   # Resests ingredients and sets brewing time
   def simple_potion_making_reset
     # First ingredient added to pot
-    @first_simple_ingredient = ""
+    @first_simple_ingredient = ''
 
     # Second ingredient added to pot
-    @second_simple_ingredient = ""
+    @second_simple_ingredient = ''
 
     # Time it takes to make potion
     @potion_making_time = rand(10..55)
@@ -250,7 +252,7 @@ class PotionController < ParentController
       # sets first ingredient to added index
       @first_simple_ingredient = @player.ingredients[@first_simple_ingredient_index - 1]
       # list first ingredient added.
-      puts ""
+      puts ''
       puts "#{@first_simple_ingredient} added to the pot...".light_black
       line(0.75)
     end
@@ -267,25 +269,23 @@ class PotionController < ParentController
   end
 
   def add_second_simple_ingredient
+    clear
     # Reprompt if index is 0 or greater than number of ingredients owned
     if @second_simple_ingredient_index > @player.ingredients.length || @second_simple_ingredient_index <= 0
-      clear
       @view.invalid_option
       clear
       second_simple_ingredient_prompt
     # Reprompt if index issame as first ingredient index
     elsif @first_simple_ingredient_index == @second_simple_ingredient_index
-      clear
       @view.duplicate_ingredients
       clear
       # Add second ingredient again until it is not same as first ingredient.
       second_simple_ingredient_prompt
     else
-      clear
       puts @view.title_art.light_magenta.blink
       # sets second ingredient to added index
       @second_simple_ingredient = @player.ingredients[@second_simple_ingredient_index - 1]
-      puts ""
+      puts ''
       puts "#{@second_simple_ingredient.light_magenta} #{"added to the pot with".light_black} #{@first_simple_ingredient.light_magenta}"
       line(0.75)
     end
@@ -296,7 +296,7 @@ class PotionController < ParentController
     puts @view.title_art.light_magenta.blink
     @view.quick_view_ingredients(@player.ingredients)
     puts "#{@first_simple_ingredient} added to the pot...".light_black
-    puts ""
+    puts ''
     @view.second_ingredient
     @second_simple_ingredient_index = gets.chomp.to_i
     clear
@@ -305,17 +305,17 @@ class PotionController < ParentController
 
   def create_simple_recipe
     # Put message saying making potions ....
-    slow_dialogue("Mᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴ".light_magenta.blink, delay = 0.015, false)
+    slow_dialogue('Mᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴ'.light_magenta.blink, 0.015, false)
     # Add random delay between each potion made.
     @potion_making_time.times do
-      print ".".light_magenta.blink
+      print '.'.light_magenta.blink
       sleep(0.050)
-      print ".".light_black
+      print '.'.light_black
       sleep(0.050)
     end
     sleep(1.25)
     does_recipe_exist
-    slow_dialogue("Cʟᴇᴀɴɪɴɢ ᴇᴏqᴜɪᴘᴍᴇɴᴛ ᴀɴᴅ sᴛᴀʀᴛɪɴɢ ᴏᴠᴇʀ...".light_black, 0.015, false)
+    slow_dialogue('Cʟᴇᴀɴɪɴɢ ᴇᴏqᴜɪᴘᴍᴇɴᴛ ᴀɴᴅ sᴛᴀʀᴛɪɴɢ ᴏᴠᴇʀ...'.light_black, 0.015, false)
     # Breaks loop
   end
 
@@ -333,7 +333,7 @@ class PotionController < ParentController
           puts "You've already created this"
         else
           puts @view.good_potion_text.sample
-          puts "Congrats, a new potion!"
+          puts 'Congrats, a new potion!'
           @player.recipes[potion] = ingredients
           @player.ingredients.delete(@first_simple_ingredient)
           @player.ingredients.delete(@second_simple_ingredient)
@@ -344,8 +344,8 @@ class PotionController < ParentController
       end
     end
 
-    if no_matches == true
-      puts ""
+    if no_matches
+      puts ''
       puts @view.bad_potion_text.sample
       sleep(2)
     end
@@ -363,13 +363,13 @@ class PotionController < ParentController
 
   def complex_potion_making_reset
     # First ingredient added to pot
-    @first_complex_ingredient = ""
+    @first_complex_ingredient = ''
 
     # Second ingredient added to pot
-    @second_complex_ingredient = ""
+    @second_complex_ingredient = ''
 
     # Second ingredient added to pot
-    @third_complex_ingredient = ""
+    @third_complex_ingredient = ''
 
     # Time it takes to make potion
     @potion_making_time = rand(20..75)
@@ -419,9 +419,9 @@ class PotionController < ParentController
       @first_complex_ingredient = return_key_for_index(@first_complex_ingredient_index - 1, @player.recipes).to_s
       # list first potion / ingredient added.
       puts @view.title_art.light_magenta.blink
-      puts ""
+      puts ''
       puts "Cauldron: #{@first_complex_ingredient}".light_black
-      puts ""
+      puts ''
       @view.quick_view_potions_as_ingredients(@player.recipes.keys)
       line(0.75)
     end
@@ -430,9 +430,9 @@ class PotionController < ParentController
   # Clears the screen, prompts user to add the second potion / ingredient
   def second_complex_ingredient_prompt
     puts @view.title_art.light_magenta.blink
-    puts ""
+    puts ''
     puts "Cauldron: #{@first_complex_ingredient} - #{@second_complex_ingredient}".light_black
-    puts ""
+    puts ''
     @view.quick_view_potions_as_ingredients(@player.recipes.keys)
     @view.second_ingredient
     @second_complex_ingredient_index = gets.chomp.to_i
@@ -458,9 +458,9 @@ class PotionController < ParentController
       # sets second ingredient to added index
       @second_complex_ingredient = return_key_for_index(@second_complex_ingredient_index - 1, @player.recipes).to_s
       puts @view.title_art.light_magenta.blink
-      puts ""
+      puts ''
       puts "Cauldron: #{@first_complex_ingredient} - #{@second_complex_ingredient}".light_black
-      puts ""
+      puts ''
       @view.quick_view_potions_as_ingredients(@player.recipes.keys)
       line(0.75)
     end
@@ -469,9 +469,9 @@ class PotionController < ParentController
   # Clears the screen, prompts user to add the third potion / ingredient
   def third_complex_ingredient_prompt
     puts @view.title_art.light_magenta.blink
-    puts ""
+    puts ''
     puts "Cauldron: #{@first_complex_ingredient} - #{@second_complex_ingredient} - #{@third_complex_ingredient}".light_black
-    puts ""
+    puts ''
     @view.quick_view_potions_as_ingredients(@player.recipes.keys)
     @view.third_ingredient
     @third_complex_ingredient_index = gets.chomp.to_i
@@ -499,7 +499,7 @@ class PotionController < ParentController
       puts @view.title_art.light_magenta.blink
       # sets third ingredient to added index
       @third_complex_ingredient = return_key_for_index(@third_complex_ingredient_index - 1, @player.recipes).to_s
-      puts ""
+      puts ''
       puts "#{@first_complex_ingredient.light_black} #{"-".light_magenta} #{@second_complex_ingredient.light_black} #{"-".light_magenta} #{@third_complex_ingredient.light_black}"
       line(0.75)
     end
@@ -507,7 +507,7 @@ class PotionController < ParentController
 
   def create_complex_recipe
     # Put message saying making potions ....
-    slow_dialogue("Bʀᴇᴡɪɴɢ ᴘᴏᴛɪᴏɴ".light_magenta.blink, delay = 0.015, false)
+    slow_dialogue("Bʀᴇᴡɪɴɢ ᴘᴏᴛɪᴏɴ".light_magenta.blink, 0.015, false)
     # Add random delay between each potion made.
     @potion_making_time.times do
       print ".".light_magenta.blink
@@ -542,7 +542,7 @@ class PotionController < ParentController
         if @player.recipes.key?(potion)
           puts "You've already created this"
         else
-          puts ""
+          puts ''
           puts "#{"Glinda> ".light_yellow}I'm so sorry... but this is irreversable. I warned you..." if final_potion_created
           puts @view.good_potion_text.sample unless final_potion_created
           puts "Congrats, a new potion!" unless final_potion_created
@@ -555,7 +555,7 @@ class PotionController < ParentController
     end
 
     if no_matches == true
-      puts ""
+      puts ''
       puts @view.bad_potion_text.sample
       sleep(2)
     end

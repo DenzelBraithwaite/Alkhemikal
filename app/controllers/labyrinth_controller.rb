@@ -15,31 +15,31 @@ class LabyrinthController < ParentController
     ]
     # Hats that can be found when exploring
     @all_hats = [
-      "pointy hat",
-      "magic hood",
-      "long grey wig",
+      'pointy hat',
+      'magic hood',
+      'long grey wig',
       "witch's hat",
-      "sorting hat",
-      "short purple wig",
-      "sacred crown",
+      'sorting hat',
+      'short purple wig',
+      'sacred crown',
       "magician's hay",
-      "plague doctor mask",
-      "invisible coif",
-      "black bonnet"
+      'plague doctor mask',
+      'invisible coif',
+      'black bonnet'
     ]
     # Robes that can be found when exploring
     @all_robes = [
-      "peasant robe",
+      'peasant robe',
       "wizard's robe",
-      "Beautifying robe",
-      "dark cloak",
+      'Beautifying robe',
+      'dark cloak',
       "witch's robe",
-      "Quidditch uniform",
-      "Wings of freedom cloak",
-      "magic cape",
-      "blue kirtle",
-      "litte red riding hood",
-      "ash grey capelet"
+      'Quidditch uniform',
+      'Wings of freedom cloak',
+      'magic cape',
+      'blue kirtle',
+      'litte red riding hood',
+      'ash grey capelet'
     ]
   end
 
@@ -143,7 +143,6 @@ class LabyrinthController < ParentController
     sleep(0.75)
   end
 
-
   def move_up
     @current_room = @repo.find_room(@current_room.row_id - 1, @current_room.column_id)
   end
@@ -166,14 +165,14 @@ class LabyrinthController < ParentController
 
   # Checks if left is valid, if false then change current room to the room on the left.
   def move_left?
-      if @current_room.left
-        move_left
-        puts @view.move_to_next_room
-        @last_movement = "left"
-      else
-        @view.display_no_room
-      end
-      sleep(0.75)
+    if @current_room.left
+      move_left
+      puts @view.move_to_next_room
+      @last_movement = "left"
+    else
+      @view.display_no_room
+    end
+    sleep(0.75)
   end
 
   def move_left
@@ -183,11 +182,11 @@ class LabyrinthController < ParentController
   # Checks if right is valid, if true then change current room to the room on the right.
   def move_right?
     if @current_room.right
-        move_right
-        puts @view.move_to_next_room
-        @last_movement = "right"
+      move_right
+      puts @view.move_to_next_room
+      @last_movement = "right"
     else
-        @view.display_no_room
+      @view.display_no_room
     end
     sleep(0.75)
   end
@@ -241,59 +240,60 @@ class LabyrinthController < ParentController
     end
   end
 
+  # Cyclomatic complexity too high
   def define_floors
     case @current_room.row_id
 
     # Dark area
     when (1..5) && @current_room.column_id.between?(1, 5)
-      return "you are in the dark, "
+      "you are in the dark, "
 
     # Desert area
     when (6..10) && @current_room.column_id.between?(1, 5) ||
       @current_room.row_id.between?(1, 10) && @current_room.column_id.between?(6, 10)
       if @current_room.row_id.between?(9, 10) && @current_room.column_id.between?(9, 10)
-        return "You are at the center of the maze, "
+        "You are at the center of the maze, "
       else
-        return "You're in the desert, "
+        "You're in the desert, "
       end
 
     # Volcano area
     when (1..5) && @current_room.column_id.between?(16, 20)
-      return "you're at the volcano, "
+      "you're at the volcano, "
 
     # Outer volcano mountain area
     when (1..10) && @current_room.column_id.between?(11, 15) ||
-         @current_room.row_id.between?(6, 10) && @current_room.column_id.between?(11, 20)
+      @current_room.row_id.between?(6, 10) && @current_room.column_id.between?(11, 20)
       if @current_room.row_id.between?(9, 10) && @current_room.column_id == 11
-        return "You are at the center of the maze, "
+        "You are at the center of the maze, "
       else
-        return "You are on a dry mountain, "
+        "You are on a dry mountain, "
       end
 
     # Jungle area
     when (16..20) && @current_room.column_id.between?(16, 20)
-      return "You are in a swamp, "
+      "You are in a swamp, "
 
     # Forest area
     when (11..20) && @current_room.column_id.between?(11, 15) ||
       @current_room.row_id.between?(11, 15) && @current_room.column_id.between?(11, 20)
       if @current_room.row_id == 11 && @current_room.column_id == 11
-        return "You are at the center of the maze, "
+        "You are at the center of the maze, "
       else
-        return "You're in a forest, "
+        "You're in a forest, "
       end
 
     # Frozen area
     when (16..20) && @current_room.column_id.between?(1, 5)
-        return "You are in a frozen wasteland, "
+      "You are in a frozen wasteland, "
 
     # Wet area
     when (11..15) && @current_room.column_id.between?(1, 10) ||
       @current_room.row_id.between?(11, 20) && @current_room.column_id.between?(6, 10)
       if @current_room.row_id == 11 && @current_room.column_id.between?(9, 10)
-        return "You are at the center of the maze, "
+        "You are at the center of the maze, "
       else
-        return "You are the cold wetlands, "
+        "You are the cold wetlands, "
       end
     end
   end
