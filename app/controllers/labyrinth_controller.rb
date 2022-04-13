@@ -46,7 +46,7 @@ class LabyrinthController < ParentController
   def run
     @running = true
     @last_movement = @last_movement || "none"
-    @current_room = @current_room || @repo.rooms[rand(1..200)]
+    @current_room = @current_room || @repo.rooms[0] # @repo.rooms[rand(1..200)]
     puts @view.title_art.yellow.blink
     line
     # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Welcome... to the Wiccan Labyrinth!", 0.010, false)
@@ -198,13 +198,13 @@ class LabyrinthController < ParentController
   def define_walls
     case @current_room.column_id
     when 1
-      "You're surrounded by a forest of trees, "
+        "You're surrounded by a forest of trees, "
     when 11
       "You're surrounded by darkness and glaring eyes, "
     when 2
-      "Giant mushrooms tower around you, "
+      'Giant mushrooms tower around you, '
     when 12
-      "The air is humid, palm trees are in every direction, "
+      'The air is humid, palm trees are in every direction, '
     when 3
       "It's cold, walls of ice are all around you, "
     when 13
@@ -218,9 +218,9 @@ class LabyrinthController < ParentController
     when 15
       "It's humid, there are many long and thick vines surrounding you, "
     when 6
-      "Tall bamboo in every direction you look, "
+      'Tall bamboo in every direction you look, '
     when 16
-      "Tall bamboo in every direction you look, "
+      'Tall bamboo in every direction you look, '
     when 7
       "You can't see a thing, the fog is too thick, "
     when 17
@@ -234,9 +234,9 @@ class LabyrinthController < ParentController
     when 19
       "You're burning up, everything is on fire, "
     when 10
-      "The walls around you are made of brick it seems, "
+      'The walls around you are made of brick it seems, '
     when 20
-      "The walls around you are made of brick it seems, "
+      'The walls around you are made of brick it seems, '
     end
   end
 
@@ -244,56 +244,63 @@ class LabyrinthController < ParentController
   def define_floors
     case @current_room.row_id
 
-    # Dark area
-    when (1..5) && @current_room.column_id.between?(1, 5)
-      "you are in the dark, "
+    # Dark area // Volcano area
+    when (1..5)
+      if @current_room.column_id.between?(1, 5)
+        'you are in the dark, '
+      elsif @current_room.column_id.between?(16, 20)
+        "you're at the volcano, "
+      end
 
     # Desert area
-    when (6..10) && @current_room.column_id.between?(1, 5) ||
-      @current_room.row_id.between?(1, 10) && @current_room.column_id.between?(6, 10)
-      if @current_room.row_id.between?(9, 10) && @current_room.column_id.between?(9, 10)
-        "You are at the center of the maze, "
-      else
-        "You're in the desert, "
+    when (6..10)
+      if @current_room.column_id.between?(1, 5)
+        if (@current_room.row_id.between?(9, 10) && @current_room.column_id.between?(9, 10))
+          'You are at the center of the maze, '
+        else
+          "You're in the desert, "
+        end
       end
-
-    # Volcano area
-    when (1..5) && @current_room.column_id.between?(16, 20)
-      "you're at the volcano, "
 
     # Outer volcano mountain area
-    when (1..10) && @current_room.column_id.between?(11, 15) ||
-      @current_room.row_id.between?(6, 10) && @current_room.column_id.between?(11, 20)
-      if @current_room.row_id.between?(9, 10) && @current_room.column_id == 11
-        "You are at the center of the maze, "
-      else
-        "You are on a dry mountain, "
+    when (1..10)
+      if @current_room.column_id.between?(11, 15)
+        if @current_room.row_id.between?(6, 10) && @current_room.column_id.between?(11, 20) ||
+           @current_room.row_id.between?(9, 10) && @current_room.column_id == 11
+          'You are at the center of the maze, '
+        else
+          'You are on a dry mountain, '
+        end
       end
 
-    # Jungle area
-    when (16..20) && @current_room.column_id.between?(16, 20)
-      "You are in a swamp, "
+    # Jungle area / Frozen area
+    when (16..20)
+      if @current_room.column_id.between?(16, 20)
+        'You are in a swamp, '
+      elsif @current_room.column_id.between?(1, 5)
+        'You are in a frozen wasteland, '
+      end
 
     # Forest area
-    when (11..20) && @current_room.column_id.between?(11, 15) ||
-      @current_room.row_id.between?(11, 15) && @current_room.column_id.between?(11, 20)
-      if @current_room.row_id == 11 && @current_room.column_id == 11
-        "You are at the center of the maze, "
-      else
-        "You're in a forest, "
+    when (11..20)
+      if @current_room.column_id.between?(11, 15)
+        if @current_room.row_id.between?(11, 15) && @current_room.column_id.between?(11, 20) ||
+           @current_room.row_id == 11 && @current_room.column_id == 11
+          'You are at the center of the maze, '
+        else
+          "You're in a forest, "
+        end
       end
 
-    # Frozen area
-    when (16..20) && @current_room.column_id.between?(1, 5)
-      "You are in a frozen wasteland, "
-
     # Wet area
-    when (11..15) && @current_room.column_id.between?(1, 10) ||
-      @current_room.row_id.between?(11, 20) && @current_room.column_id.between?(6, 10)
-      if @current_room.row_id == 11 && @current_room.column_id.between?(9, 10)
-        "You are at the center of the maze, "
-      else
-        "You are the cold wetlands, "
+    when (11..15)
+      if @current_room.column_id.between?(1, 10)
+        if @current_room.row_id.between?(11, 20) && @current_room.column_id.between?(6, 10) ||
+           @current_room.row_id == 11 && @current_room.column_id.between?(9, 10)
+          'You are at the center of the maze, '
+        else
+          'You are the cold wetlands, '
+        end
       end
     end
   end
