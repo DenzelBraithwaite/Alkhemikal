@@ -240,21 +240,17 @@ class LabyrinthController < ParentController
     end
   end
 
-  # Cyclomatic complexity too high
+  # Cyclomatic complexity too high, change case statement to if elsif.
   def define_floors
-    case @current_room.row_id
-
     # Dark area // Volcano area
-    when (1..5)
-      if @current_room.column_id.between?(1, 5)
+      if @current_room.row_id.between?(1..5) && @current_room.column_id.between?(1, 5)
         'you are in the dark, '
-      elsif @current_room.column_id.between?(16, 20)
+      elsif @current_room.row_id.between?(1..5) && @current_room.column_id.between?(16, 20)
         "you're at the volcano, "
       end
 
     # Desert area
-    when (6..10)
-      if @current_room.column_id.between?(1, 5)
+      if @current_room.row_id.between?(6..10) && @current_room.column_id.between?(1, 5)
         if (@current_room.row_id.between?(9, 10) && @current_room.column_id.between?(9, 10))
           'You are at the center of the maze, '
         else
