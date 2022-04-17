@@ -3,7 +3,7 @@ require_relative 'models/witch'
 require_relative 'views/main_view'
 
 class Router
-  def initialize(parent_controller, main_controller, explore_controller, potion_controller, billywig_controller, maze_controller, inventory_controller)
+  def initialize(parent_controller, main_controller, explore_controller, potion_controller, billywig_controller, labyrinth_controller, inventory_controller)
     @running = true
     @view = MainView.new
     @parent_controller = parent_controller
@@ -11,7 +11,7 @@ class Router
     @explore_controller = explore_controller
     @potion_controller = potion_controller
     @billywig_controller = billywig_controller
-    @maze_controller = maze_controller
+    @labyrinth_controller = labyrinth_controller
     @inventory_controller = inventory_controller
     @player = @parent_controller.player
   end
@@ -60,7 +60,7 @@ class Router
       @billywig_controller.run
     when 4
       # @main_controller.fast_loading
-      @maze_controller.run
+      @labyrinth_controller.menu
     when 5
       # @main_controller.fast_loading
       @inventory_controller.run
@@ -103,7 +103,7 @@ class Router
     @billywig_controller.player = @player
     @explore_controller.player = @player
     @potion_controller.player = @player
-    @maze_controller.player = @player
+    @labyrinth_controller.player = @player
     @inventory_controller.player = @player
   end
 end

@@ -11,16 +11,42 @@ class LabyrinthController < ParentController
     @new_robe_index = 0
   end
 
+  # Labyrinth game main menu
+  def menu
+    @in_menu = true
+    while @in_menu
+      @view.labyrinth_main_menu
+      print "#{@player.name}#{'> '.yellow}"
+      menu_action = gets.chomp.to_i
+      clear
+      menu_route_action(menu_action)
+      clear
+    end
+  end
+
+  # Let's player decide to play or run the tutorial
+  def menu_route_action(menu_action)
+    case menu_action
+    when 1 then run
+    when 2 then tutorial
+    when 9 then @in_menu = false
+    else
+      puts 'Invalid option'
+    end
+  end
+
+  # Displays dialogue on how to play Billywig
+  def tutorial
+    clear
+    puts @view.title_art.yellow.blink
+    puts ''
+    slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} #{@view.tutorial}", 0.010, true)
+  end
+
   def run
     @running = true
     @last_movement = @last_movement || "none"
-    @current_room = @current_room || @repo.rooms[300]  # @repo.rooms[rand(100..279)]
-    # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Welcome... to the Wiccan Labyrinth!", 0.010, false)
-    # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} This will test the will and endurance of even the most wicked of witches.", 0.010, false)
-    # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} The rules are simply dea girl so listen close, I WON'T be repeating myself!", 0.010, false)
-    # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Your goal is to wander the labyrinth, in search of rare ingredients.", 0.010, false)
-    # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Only problem is of course, you're not alone in there.", 0.010, false)
-    # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Be careful and don't forget, when you think you've had enough, call my name three times.", 0.010, false)
+    @current_room = @current_room || @repo.rooms[rand(100..279)]
 
     while @running
       clear
@@ -36,6 +62,7 @@ class LabyrinthController < ParentController
     end
   end
 
+  # Menu that will always be present while navigating maze
   def route_action(action)
     case action
     when "up" then move_up?
@@ -45,7 +72,7 @@ class LabyrinthController < ParentController
     when "9" then @running = false
     when "info" then room_info
     else
-      puts "Invalid option"
+      puts 'Invalid option'
     end
   end
 

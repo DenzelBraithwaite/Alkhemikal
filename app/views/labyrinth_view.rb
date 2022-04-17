@@ -1,7 +1,7 @@
 require 'colorize'
 
 class LabyrinthView < MainView
-  attr_reader :area_descriptions, :area_transition_descriptions
+  attr_reader :area_descriptions, :area_transition_descriptions, :tutorial
 
   def initialize
       @title_art = "
@@ -18,19 +18,31 @@ class LabyrinthView < MainView
       ██║░░░░░██╔══██║██╔══██╗░░╚██╔╝░░██╔══██╗██║██║╚████║░░░██║░░░██╔══██║
       ███████╗██║░░██║██████╦╝░░░██║░░░██║░░██║██║██║░╚███║░░░██║░░░██║░░██║
       ╚══════╝╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚═╝░░╚═╝"
+      @tutorial = "Welcome... to the Wiccan Labyrinth#{'!!'.yellow}\n
+      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} This will test the will and endurance of even the most wicked of witches#{'.'.yellow}\n
+      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} Caution to the brave and foolish enough to enter these grounds#{','.yellow} Nyaaakakaa#{'.'.yellow}\n
+      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} You'll need to navigate the labyrinth blindly by following random paths#{'.'.yellow}\n
+      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} There are many regions#{','.yellow} some big and some small#{'.'.yellow} Some safe and some... not so safe#{'.'.yellow}\n
+      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} As you progress through the trial#{','.yellow} you'll find robes and hats of previous fools#{'.'.yellow}\n
+      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} They've got no use for it now NYAAK#{','.yellow} so if you see something#{','.yellow} grab it#{'!'.yellow}\n
+      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} If an area is dangerous#{','.yellow} you'll receive a warning#{','.yellow} don't ignore it#{'!'.yellow}\n
+      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} If you do#{','.yellow} you'll find yourself waking up outside the labyrinth#{','.yellow} courtesy of yours truly#{'!'.yellow}\n
+      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} When you enter the labyrinth again#{','.yellow} you'll be somwhere completely different#{','.yellow} be warned#{'!'.yellow}\n
+      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} Last but not least#{','.yellow} there are a total of #{'21'.yellow} items to find in the labyrinth#{'!'.yellow}\n
+      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} They're evenly scattered so good luck#{','.yellow} and try not to die.. NYAAAKAKAAAAA#{'!'.yellow}\n"
       @area_descriptions = {
         center_area: [
-          'Standing in the center of the maze, you feel a calming sensation envelop you.',
-          "You're at the center of the maze, you look northwest and see a desert.",
-          "You're at the center of the maze, you look northeast and see a mountain.",
-          "You're at the center of the maze, you look southwest and see a marsh.",
-          "You're at the center of the maze, you look southeast and see a jungle.",
+          'Standing in the center of the labyrinth, you feel a calming sensation envelop you.',
+          "You're at the center of the labyrinth, you look northwest and see a desert.",
+          "You're at the center of the labyrinth, you look northeast and see a mountain.",
+          "You're at the center of the labyrinth, you look southwest and see a marsh.",
+          "You're at the center of the labyrinth, you look southeast and see a jungle.",
           'You are at the center of the labyrinth, everything connects here.',
           'You are at the center of the labyrinth, everything connects here.',
           'You are at the center of the labyrinth, everything connects here.',
-          "It's quiet, the climate is balanced, it's safe here. You're at the center of the maze.",
-          "It's quiet, the climate is balanced, it's safe here. You're at the center of the maze.",
-          "It's quiet, the climate is balanced, it's safe here. You're at the center of the maze.",
+          "It's quiet, the climate is balanced, it's safe here. You're at the center of the labyrinth.",
+          "It's quiet, the climate is balanced, it's safe here. You're at the center of the labyrinth.",
+          "It's quiet, the climate is balanced, it's safe here. You're at the center of the labyrinth.",
         ],
         dark_area: [
           "It's too dark to see here",
@@ -176,20 +188,22 @@ class LabyrinthView < MainView
       }
   end
 
-  def display_no_room
-    puts "Yᴏᴜ ᴄᴀɴ'ᴛ ɢᴏ ᴛʜᴀᴛ ᴡᴀʏ".light_red
-  end
-
-  def move_to_next_room
-    'Yᴏᴜ ᴍᴏᴠᴇ ɪɴᴛᴏ ᴛʜᴇ ɴᴇxᴛ ʀᴏᴏᴍ...'.light_black.blink
-  end
-
-  def press_9_to_quit
-    nine = " 9 ".light_red
-    print "Tɪᴘ: ".yellow
-    print "Pʀᴇss".light_black
-    print nine
-    puts "ᴀᴛ ᴀɴʏ ᴛɪᴍᴇ ᴛᴏ ʀᴇᴛᴜʀɴ ᴛᴏ ᴛʜᴇ ᴍᴀɪɴ ᴍᴇɴᴜ. Wʜᴇɴ ʏᴏᴜ ᴘʟᴀʏ ᴀɢᴀɪɴ ʏᴏᴜ'ʟʟ sᴛᴀʀᴛ ғʀᴏᴍ ᴛʜᴇ sᴀᴍᴇ ʀᴏᴏᴍ.".light_black
+  def labyrinth_main_menu
+    puts @title_art.yellow.blink
+    puts ''
+    puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.yellow}"
+    puts ''
+    sleep(0.05)
+    puts " 𝟙 #{'-'.yellow} ℙ𝕝𝕒𝕪"
+    puts ''
+    sleep(0.05)
+    puts " 𝟚 #{'-'.yellow} 𝕋𝕦𝕥𝕠𝕣𝕚𝕒𝕝"
+    puts ''
+    sleep(0.05)
+    puts " 𝟡 #{'-'.yellow} #{'𝔹𝕒𝕔𝕜'.light_red}"
+    puts ''
+    sleep(0.05)
+    puts ''
   end
 
   def labyrinth_menu_options(role, last_move)
@@ -223,6 +237,22 @@ class LabyrinthView < MainView
       "#{'('.yellow}#{'New room'.light_black}#{')'.yellow}"
     end
   end
+
+    def display_no_room
+      puts "Yᴏᴜ ᴄᴀɴ'ᴛ ɢᴏ ᴛʜᴀᴛ ᴡᴀʏ".light_red
+    end
+
+    def move_to_next_room
+      'Yᴏᴜ ᴍᴏᴠᴇ ɪɴᴛᴏ ᴛʜᴇ ɴᴇxᴛ ʀᴏᴏᴍ...'.light_black.blink
+    end
+
+    def press_9_to_quit
+      nine = " 9 ".light_red
+      print "Tɪᴘ: ".yellow
+      print "Pʀᴇss".light_black
+      print nine
+      puts "ᴀᴛ ᴀɴʏ ᴛɪᴍᴇ ᴛᴏ ʀᴇᴛᴜʀɴ ᴛᴏ ᴛʜᴇ ᴍᴀɪɴ ᴍᴇɴᴜ. Wʜᴇɴ ʏᴏᴜ ᴘʟᴀʏ ᴀɢᴀɪɴ ʏᴏᴜ'ʟʟ sᴛᴀʀᴛ ғʀᴏᴍ ᴛʜᴇ sᴀᴍᴇ ʀᴏᴏᴍ.".light_black
+    end
 
   # Displays arrows depending on which direction is available
   def available_direction_arrows(role)
