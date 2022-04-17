@@ -1,6 +1,6 @@
 # All actions for each labyrinth room, determines of the player can move or not.
 class LabyrinthRoom
-  attr_reader :row_id, :column_id, :up, :down, :left, :right, :name
+  attr_reader :row_id, :column_id, :up, :down, :left, :right, :name, :role
 
   def initialize(attributes = {})
     @role = attributes[:role]

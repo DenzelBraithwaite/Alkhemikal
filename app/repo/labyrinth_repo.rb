@@ -1,8 +1,58 @@
 require_relative '../models/labyrinth_room'
 class LabyrinthRepo
   attr_reader :rooms
+  attr_accessor :all_hats, :all_robes, :item_room_indexes
 
   def initialize
+    # Hats that can be found when exploring
+    @all_hats = [
+      'pointy hat',
+      'magic hood',
+      'long grey wig',
+      "witch's hat",
+      'sorting hat',
+      'short purple wig',
+      'sacred crown',
+      "magician's hay",
+      'plague doctor mask',
+      'invisible coif',
+      'black bonnet'
+    ]
+    # Robes that can be found when exploring
+    @all_robes = [
+      'peasant robe',
+      "wizard's robe",
+      'Beautifying robe',
+      'dark cloak',
+      "witch's robe",
+      'Quidditch uniform',
+      'Wings of freedom cloak',
+      'magic cape',
+      'blue kirtle',
+      'litte red riding hood',
+      'ash grey capelet'
+    ]
+    # Rooms with something to be found
+    @item_room_indexes = [
+      # Center area *1
+      189,
+      # Dark area *2
+      21, 63,
+      # Volcano area *2
+      38, 76,
+      # Swamp area *2
+      336, 399,
+      # Tundra area *2
+      323, 340,
+      # Desert area *3
+      46, 146, 122,
+      # Mountain area *3
+      93, 246, 159,
+      # Jungle area *3
+      277, 373, 274,
+      # Marsh area *3
+      330, 272, 291
+    ]
     @rooms = [
       @room_r1_c1 = LabyrinthRoom.new(row_id: 1, column_id: 1, role: :top_left_corner), # 0
       @room_r1_c2 = LabyrinthRoom.new(row_id: 1, column_id: 2, role: :only_horizontal),
@@ -121,7 +171,7 @@ class LabyrinthRepo
       @room_r6_c10 = LabyrinthRoom.new(row_id: 6, column_id: 10, role: :only_horizontal),
       @room_r6_c11 = LabyrinthRoom.new(row_id: 6, column_id: 11, role: :only_left),
       @room_r6_c12 = LabyrinthRoom.new(row_id: 6, column_id: 12, role: :top_left_corner),
-      @room_r6_c13 = LabyrinthRoom.new(row_id: 6, column_id: 13, role: :horizontal),
+      @room_r6_c13 = LabyrinthRoom.new(row_id: 6, column_id: 13, role: :only_horizontal),
       @room_r6_c14 = LabyrinthRoom.new(row_id: 6, column_id: 14, role: :top_right_corner),
       @room_r6_c15 = LabyrinthRoom.new(row_id: 6, column_id: 15, role: :only_vertical),
       @room_r6_c16 = LabyrinthRoom.new(row_id: 6, column_id: 16, role: :only_vertical),
@@ -228,11 +278,11 @@ class LabyrinthRepo
       @room_r11_c12 = LabyrinthRoom.new(row_id: 11, column_id: 12, role: :top_left_corner),
       @room_r11_c13 = LabyrinthRoom.new(row_id: 11, column_id: 13, role: :bottom_right_corner),
       @room_r11_c14 = LabyrinthRoom.new(row_id: 11, column_id: 14, role: :top_left_corner),
-      @room_r11_c15 = LabyrinthRoom.new(row_id: 11, column_id: 15, role: :top_right_corner),
+      @room_r11_c15 = LabyrinthRoom.new(row_id: 11, column_id: 15, role: :only_left),
       @room_r11_c16 = LabyrinthRoom.new(row_id: 11, column_id: 16, role: :bottom_left_corner),
       @room_r11_c17 = LabyrinthRoom.new(row_id: 11, column_id: 17, role: :only_horizontal),
       @room_r11_c18 = LabyrinthRoom.new(row_id: 11, column_id: 18, role: :bottom_right_corner),
-      @room_r11_c19 = LabyrinthRoom.new(row_id: 11, column_id: 29, role: :bottom_left_corner),
+      @room_r11_c19 = LabyrinthRoom.new(row_id: 11, column_id: 19, role: :bottom_left_corner),
       @room_r11_c20 = LabyrinthRoom.new(row_id: 11, column_id: 20, role: :top_right_corner),
 
       @room_r12_c1 = LabyrinthRoom.new(row_id: 12, column_id: 1, role: :only_up), # 220
@@ -247,10 +297,10 @@ class LabyrinthRepo
       @room_r12_c10 = LabyrinthRoom.new(row_id: 12, column_id: 10, role: :bottom_right_corner),
       @room_r12_c11 = LabyrinthRoom.new(row_id: 12, column_id: 11, role: :only_vertical),
       @room_r12_c12 = LabyrinthRoom.new(row_id: 12, column_id: 12, role: :only_up),
-      @room_r12_c13 = LabyrinthRoom.new(row_id: 12, column_id: 13, role: :top_right_corner),
+      @room_r12_c13 = LabyrinthRoom.new(row_id: 12, column_id: 13, role: :top_left_corner),
       @room_r12_c14 = LabyrinthRoom.new(row_id: 12, column_id: 14, role: :no_right),
       @room_r12_c15 = LabyrinthRoom.new(row_id: 12, column_id: 15, role: :top_left_corner),
-      @room_r12_c16 = LabyrinthRoom.new(row_id: 12, column_id: 16, role: :only_vertical),
+      @room_r12_c16 = LabyrinthRoom.new(row_id: 12, column_id: 16, role: :only_horizontal),
       @room_r12_c17 = LabyrinthRoom.new(row_id: 12, column_id: 17, role: :no_up),
       @room_r12_c18 = LabyrinthRoom.new(row_id: 12, column_id: 18, role: :only_left),
       @room_r12_c19 = LabyrinthRoom.new(row_id: 12, column_id: 19, role: :top_left_corner),
