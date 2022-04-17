@@ -6,12 +6,12 @@ class MainView
   def initialize
     @intro_message =
     "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Hello there, my name is Gl- Gruntilda*. You are about to learn the subtle science and exact art of potion-making.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} As there is little foolish wand-waving here, many of you will hardly believe this is magic.
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} As there is little foolish wand-waving here, you will hardly believe this is magic.
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} I don't expect you will really understand the beauty of the softly simmering cauldron with its shimmering fumes,
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} the delicate power of liquids that creep through the human veins, bewitching the minds, ensnaring the senses...
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} I can teach you how to bottle liquid light, brew glory, and even capture the essence of flames.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Let's hope you aren't as big a dunderhead as the last one.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} He created a - now forbidden... potion that is irreversible. It's called the \"Vile vial of Amortentia\"
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Let's hope you aren't as big a dunderhead as my last student, Nyaaa...
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} He created a - now forbidden... potion that is irreversible. It's called the vile'Vial of Amortentia'
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} Never, EVER, create the vial of Amortentia... Ever!"
 
     @potions_tutorial = "#{"Gʀᴜɴᴛɪʟᴅᴀ>".yellow} It's time to learn and in time; master, the subtle science of potion-making.

@@ -143,6 +143,7 @@ class ParentController
       fill_screen("                                                                                                                                                                                                                          ".on_light_magenta)
     end
 
+    # Move this to dedicated view
     sleep(2)
     25.times { print "reek foul disgusting malodorousness Vile                                                                                                                                                                                                                                       ".light_black.on_white }
     sleep(2.5)
