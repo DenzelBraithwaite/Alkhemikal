@@ -14,9 +14,7 @@ class LabyrinthController < ParentController
   def run
     @running = true
     @last_movement = @last_movement || "none"
-    @current_room = @current_room || @repo.rooms[48] # @repo.rooms[rand(1..200)]
-    puts @view.title_art.yellow.blink
-    line
+    @current_room = @current_room || @repo.rooms[300]  # @repo.rooms[rand(100..279)]
     # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Welcome... to the Wiccan Labyrinth!", 0.010, false)
     # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} This will test the will and endurance of even the most wicked of witches.", 0.010, false)
     # slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} The rules are simply dea girl so listen close, I WON'T be repeating myself!", 0.010, false)
@@ -27,11 +25,10 @@ class LabyrinthController < ParentController
     while @running
       clear
       @view.press_9_to_quit
-      @view.labyrinth_menu_options
-      puts "#{'Cᴜʀʀᴇɴᴛ ʀᴏᴏᴍ:'.yellow} #{define_room}" # assign to var earlier if error
-      line
-      puts @view.last_move(@last_movement)
-      line
+      @view.labyrinth_menu_options(@current_room.role, @last_movement)
+      puts "#{'Cᴜʀʀᴇɴᴛ ʀᴏᴏᴍ:'.yellow} #{define_room}"
+      puts @view.room_visited?(@current_room)
+      puts ''
       # Cheks if room has an item
       check_if_room_is_special
       # Checks if room is freezing or burning, sets a timer
@@ -65,6 +62,7 @@ class LabyrinthController < ParentController
   end
 
   def move_up
+    @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id - 1, @current_room.column_id)
   end
 
@@ -81,6 +79,7 @@ class LabyrinthController < ParentController
   end
 
   def move_down
+    @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id + 1, @current_room.column_id)
   end
 
@@ -97,6 +96,7 @@ class LabyrinthController < ParentController
   end
 
   def move_left
+    @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id - 1)
   end
 
@@ -113,6 +113,7 @@ class LabyrinthController < ParentController
   end
 
   def move_right
+    @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id + 1)
   end
 
@@ -151,7 +152,7 @@ class LabyrinthController < ParentController
   # Determines room description region changes.
   def region_transition_to(row_range, col_range, trans_descr, area_descr)
     if row_range.include?(@current_room.row_id) && col_range.include?(@current_room.column_id)
-      @view.area_transition_descriptions[trans_descr]
+      @view.area_transition_descriptions[trans_descr].sample
     else
       @view.area_descriptions[area_descr].sample
     end
@@ -161,7 +162,7 @@ class LabyrinthController < ParentController
   def inner_region_transition_to(row, col_range, col, row_range, trans_descr, area_descr)
     if @current_room.row_id == row && col_range.include?(@current_room.column_id) ||
        @current_room.column_id == col && row_range.include?(@current_room.row_id)
-      @view.area_transition_descriptions[trans_descr]
+      @view.area_transition_descriptions[trans_descr].sample
     else
       @view.area_descriptions[area_descr].sample
     end
@@ -202,17 +203,14 @@ class LabyrinthController < ParentController
     end
     clear
     @view.press_9_to_quit
-    @view.labyrinth_menu_options
+    @view.labyrinth_menu_options(@current_room.role, @last_movement)
     puts "#{'Cᴜʀʀᴇɴᴛ ʀᴏᴏᴍ:'.yellow} #{define_room}"
-    line
-    puts @view.last_move(@last_movement)
-    line
     slow_dialogue("You've unlocked: #{item_name.yellow}".blink, 0.04, false)
   end
 
   def normal_or_timer_room
     if timer_room?
-      region_timer(10) do
+      region_timer(11) do
         print "#{@player.name}#{'> '.yellow}"
         @action = gets.chomp.downcase
       end
@@ -241,7 +239,7 @@ class LabyrinthController < ParentController
       @action = '9'
       puts 'You begin to lose consciousness...'.light_black
       sleep(2.5)
-      @current_room = @repo.rooms[rand(1..200)]
+      @current_room = @repo.rooms[rand(100..279)]
     end
   end
 

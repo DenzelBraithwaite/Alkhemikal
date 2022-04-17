@@ -1,11 +1,13 @@
 # All actions for each labyrinth room, determines of the player can move or not.
 class LabyrinthRoom
+  attr_accessor :visited
   attr_reader :row_id, :column_id, :up, :down, :left, :right, :name, :role
 
   def initialize(attributes = {})
     @role = attributes[:role]
     @row_id = attributes[:row_id]
     @column_id = attributes[:column_id]
+    @visited = false
     load_role
   end
 
