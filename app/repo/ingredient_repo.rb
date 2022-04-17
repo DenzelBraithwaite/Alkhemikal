@@ -111,7 +111,7 @@ class IngredientRepo
       'a dragon claw',
       'a fairy wing',
       "a griffin's beak",
-      "a harp egg",
+      'a harp egg',
       'a mandrake',
       'a moonstone',
       'a wyvern ear',

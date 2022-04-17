@@ -63,30 +63,35 @@ class PotionRepo
       "Vial of the Volatile": ['a dragon claw', 'aconite'],
       "Potion Potion": [
         # Any 3 potions combined except brew of visions
-        "Witch's Brew",
-        "Warlock's Brew",
-        'Time Potion',
-        'Potion of Altered Perception',
+        "Witch's brew",
+        "Warlock's brew",
+        'Time potion',
+        'Potion of altered perception',
         'Potion of the arcane',
-        'Magical Medley',
-        'Vial of Corruption',
-        'Screaming Dreams',
-        'Flask of Gills',
-        'Flask of Blood',
-        'Bowl of Smoke and Embers',
-        'Tonic of Transcendence',
-        'Draught of Secrets',
-        'Philter of Desires',
-        'Spicy Syrum',
-        'Brew of Beginnings',
-        'Liquid Light',
-        'Vial of Knowledge',
-        'Slimy Syrum',
-        'Vial of the Volatile'
+        'Magical medley',
+        'Vial of corruption',
+        'Screaming dreams',
+        'Flask of gills',
+        'Flask of blood',
+        'Bowl of smoke and embers',
+        'Tonic of transcendence',
+        'Draught of secrets',
+        'Philter of desires',
+        'Spicy syrum',
+        'Brew of beginnings',
+        'Liquid light',
+        'Vial of knowledge',
+        'Slimy syrum',
+        'Vial of the volatile',
+        'Hearing gel',
+        'Healing salve',
+        'Appetitus increasus syrum',
+        'Tincture of temptation',
+        'Philter of unborn death'
       ],
 
       # Hash for Final potion
-      "Vile Vial of Amortentia": ['Bowl of Smoke and Embers', 'Brew of Visions', 'Time Potion']
+      "Vile Vial of Amortentia": ['Bowl of smoke and embers', 'Brew of visions', 'Time potion']
     }
   end
 end
