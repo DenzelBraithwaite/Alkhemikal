@@ -66,9 +66,13 @@ class LabyrinthController < ParentController
   def route_action(action)
     case action
     when "up" then move_up?
+    when "u" then move_up?
     when "down" then move_down?
+    when "d" then move_down?
     when "left" then move_left?
+    when "l" then move_left?
     when "right" then move_right?
+    when "r" then move_right?
     when "9" then @running = false
     when "info" then room_info
     else

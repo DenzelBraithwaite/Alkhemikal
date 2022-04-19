@@ -343,7 +343,7 @@ class LabyrinthRepo
       @room_r14_c14 = LabyrinthRoom.new(row_id: 14, column_id: 14, role: :bottom_right_corner),
       @room_r14_c15 = LabyrinthRoom.new(row_id: 14, column_id: 15, role: :only_up),
       @room_r14_c16 = LabyrinthRoom.new(row_id: 14, column_id: 16, role: :top_left_corner),
-      @room_r14_c17 = LabyrinthRoom.new(row_id: 14, column_id: 17, role: :only_vertical),
+      @room_r14_c17 = LabyrinthRoom.new(row_id: 14, column_id: 17, role: :only_horizontal),
       @room_r14_c18 = LabyrinthRoom.new(row_id: 14, column_id: 18, role: :only_left),
       @room_r14_c19 = LabyrinthRoom.new(row_id: 14, column_id: 19, role: :top_left_corner),
       @room_r14_c20 = LabyrinthRoom.new(row_id: 14, column_id: 20, role: :bottom_right_corner),

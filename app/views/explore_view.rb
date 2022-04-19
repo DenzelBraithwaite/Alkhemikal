@@ -30,7 +30,7 @@ class ExploreView
       "Umm.... I think it's safe to say we don't need this",
       "Eww, no. Put it back",
       "I have too many of these already, no thanks",
-      "Wow, that's a good fine! Too bad it's not useful for potions.",
+      "Wow, that's a good find! Too bad it's not useful for potions.",
       "Throw that away now!"
     ]
   end
@@ -54,7 +54,7 @@ class ExploreView
   def quick_view_ingredients(ingredients)
     puts "Iɴɢʀᴇᴅɪᴇɴᴛs:".light_green
     puts ""
-    sleep(0.5)
+    sleep(0.25)
     ingredients.each_with_index do |ingredient, index|
       puts "#{index + 1} #{"-".light_green} #{ingredient}"
       sleep(0.05)
@@ -62,6 +62,39 @@ class ExploreView
     puts ""
     puts "ᴇɴᴅ".light_red
     puts ""
+  end
+
+  # When multiple ingredients are found
+  def multiple_ingredients_found_text(ingredients_found)
+    puts "You found#{':'.green}\n"
+    sleep(0.75)
+    ingredients_found.each { |ingredient| puts "#{'-'.green} #{ingredient}"}
+    puts ''
+  end
+
+  def how_many_good_ingredients_found(number_of_good_ingredients, number_of_ingredients_found)
+    case number_of_good_ingredients
+    # Change these to sample more text
+    when 0
+      if number_of_ingredients_found == 2
+        puts 'Neither of these ingredients are useful you dingbat!'
+      else
+        puts "NYAAK, all of your ingredients suck! Do you know what you're looking for?"
+      end
+    when 1
+      if number_of_ingredients_found == 2
+        puts 'One of these we can use, throw the other away.'
+      else
+        puts 'one of your ingredients is good, the rest suck...'
+      end
+    when 2
+      if number_of_ingredients_found == 2
+        puts 'Not bad, these two ingredients will work well...'
+      else
+        puts "Well I can't use one of these, but the other 2 should be good"
+      end
+    when 3 then puts 'A witch in her prime! These are all fantastic for potion making.'
+    end
   end
 
   def explore_menu_options

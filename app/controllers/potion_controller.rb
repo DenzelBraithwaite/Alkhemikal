@@ -15,7 +15,7 @@ class PotionController < ParentController
 
   def run
     @running = true
-    # run_tutorial
+    run_tutorial
     while @running
       clear
       @view.menu_options
@@ -160,12 +160,12 @@ class PotionController < ParentController
     puts ''
     puts " Wᴏᴜʟᴅ ʏᴏᴜ ʟɪᴋᴇ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ ᴍᴀᴋɪɴɢ ᴘᴏᴛɪᴏɴs #{'?'.light_magenta}"
     puts ''
-    sleep(1)
+    sleep(0.5)
     puts " 𝟙 #{'-'.light_magenta} 𝕪𝕖𝕤"
     puts ''
     sleep(0.5)
     puts " 𝟚 #{'-'.light_magenta} #{'𝕟𝕠'.light_red}"
-    sleep(1)
+    sleep(0.5)
     puts ''
     puts ''
   end
@@ -179,7 +179,7 @@ class PotionController < ParentController
     special_index = 1
     @player.recipes.each_with_index do |potion, index|
       puts "#{index + 1} #{'-'.light_magenta} #{potion}"
-      sleep(0.15)
+      sleep(0.05)
       special_index += 1
     end
     if @already_upgraded
@@ -220,7 +220,7 @@ class PotionController < ParentController
     @second_simple_ingredient = ''
 
     # Time it takes to make potion
-    @potion_making_time = rand(10..55)
+    @potion_making_time = rand(15..60)
   end
 
   def add_simple_ingredients_to_pot
@@ -253,7 +253,7 @@ class PotionController < ParentController
       # list first ingredient added.
       puts ''
       puts "#{@first_simple_ingredient} added to the pot...".light_black
-      line(0.75)
+      line(0.25)
     end
   end
 
@@ -286,7 +286,7 @@ class PotionController < ParentController
       @second_simple_ingredient = @player.ingredients[@second_simple_ingredient_index - 1]
       puts ''
       puts "#{@second_simple_ingredient.light_magenta} #{"added to the pot with".light_black} #{@first_simple_ingredient.light_magenta}"
-      line(0.75)
+      line(0.25)
     end
   end
 
@@ -308,9 +308,9 @@ class PotionController < ParentController
     # Add random delay between each potion made.
     @potion_making_time.times do
       print '.'.light_magenta.blink
-      sleep(0.050)
+      sleep(0.015)
       print '.'.light_black
-      sleep(0.050)
+      sleep(0.015)
     end
     sleep(1.25)
     does_recipe_exist
@@ -325,7 +325,7 @@ class PotionController < ParentController
       if ingredients.include?(@first_simple_ingredient) && ingredients.include?(@second_simple_ingredient)
         # Display text after creating the potion
         puts "You've created the #{potion.to_s.light_magenta}!" # Add ingredient descriptions after
-        sleep(1.5)
+        sleep(1)
 
         # Check if potion exists in player recipes, don't add it if it does.
         if @player.recipes.key?(potion)
@@ -346,7 +346,7 @@ class PotionController < ParentController
     if no_matches
       puts ''
       puts @view.bad_potion_text.sample
-      sleep(2)
+      sleep(1)
     end
   end
 
@@ -371,7 +371,7 @@ class PotionController < ParentController
     @third_complex_ingredient = ''
 
     # Time it takes to make potion
-    @potion_making_time = rand(20..75)
+    @potion_making_time = rand(15..60)
   end
 
   def add_complex_ingredients_to_pot
@@ -510,11 +510,11 @@ class PotionController < ParentController
     # Add random delay between each potion made.
     @potion_making_time.times do
       print ".".light_magenta.blink
-      sleep(0.050)
+      sleep(0.015)
       print ".".light_black
-      sleep(0.050)
+      sleep(0.015)
     end
-    sleep(1.25)
+    sleep(1)
     does_complex_recipe_exist
     slow_dialogue("Cʟᴇᴀɴɪɴɢ ᴇᴏqᴜɪᴘᴍᴇɴᴛ ᴀɴᴅ sᴛᴀʀᴛɪɴɢ ᴏᴠᴇʀ...".light_black, 0.015, false)
     # Breaks loop
@@ -534,7 +534,7 @@ class PotionController < ParentController
         else
           # Display text after creating the potion
           puts "You've created the #{potion.to_s.light_magenta}!" # Add ingredient descriptions after
-          sleep(1.5)
+          sleep(1)
         end
 
         # Checks if potion exists in player recipes, don't add it if it does.
@@ -556,7 +556,7 @@ class PotionController < ParentController
     if no_matches == true
       puts ''
       puts @view.bad_potion_text.sample
-      sleep(2)
+      sleep(1)
     end
   end
 end

@@ -121,7 +121,7 @@ class PotionMakingView < MainView
     puts ''
     puts 'Pʟᴇᴀsᴇ sᴇʟᴇᴄᴛ ᴀ ᴠᴀʟɪᴅ ᴏᴘᴛɪᴏɴ'.light_red
     puts '(You used the same ingredient twice.)'.light_black
-    sleep(2)
+    sleep(1.25)
   end
 
   def menu_options
@@ -177,10 +177,10 @@ class PotionMakingView < MainView
   def quick_view_ingredients(ingredients)
     puts 'Iɴɢʀᴇᴅɪᴇɴᴛs:'.magenta
     puts ''
-    sleep(0.5)
+    sleep(0.25)
     ingredients.each_with_index do |ingredient, index|
       puts "#{index + 1} #{'-'.light_magenta} #{ingredient}"
-      sleep(0.025)
+      sleep(0.010)
     end
     puts ''
     puts 'end'.light_red
@@ -190,10 +190,10 @@ class PotionMakingView < MainView
   def quick_view_potions_as_ingredients(potions)
     puts "potions:".light_magenta
     puts ''
-    sleep(0.5)
+    sleep(0.25)
     potions.each_with_index do |potion, index|
       puts "#{index + 1} #{'-'.light_magenta} #{potion}"
-      sleep(0.025)
+      sleep(0.010)
     end
     puts ''
     puts 'end'.light_red

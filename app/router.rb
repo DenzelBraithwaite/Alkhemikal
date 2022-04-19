@@ -23,14 +23,14 @@ class Router
     sleep(1.5)
 
     # Display opening art sequence, sleeps then prompts to continue and clears.
-    @main_controller.first_loading_screen
+    # @main_controller.first_loading_screen
 
     # Display intro message
-    @parent_controller.slow_dialogue(@view.intro_message)
+    # @parent_controller.slow_dialogue(@view.intro_message)
 
     # Gets users name and stores it, used below to save the name prompt for all menus
-    @player.name = @view.get_user_name.capitalize
-    # @player.name = "Test mode"
+    # @player.name = @view.get_user_name.capitalize
+    @player.name = "Test mode"
     @player.name = @parent_controller.capitalize_sentence(@player.name)
     synchronize_witch_name
     @main_controller.continue_prompt
@@ -50,19 +50,14 @@ class Router
   def route_action(action)
     case action
     when 1
-      # @main_controller.fast_loading
       @explore_controller.run
     when 2
-      # @main_controller.fast_loading
       @potion_controller.run
     when 3
-      # @main_controller.fast_loading
       @billywig_controller.run
     when 4
-      # @main_controller.fast_loading
       @labyrinth_controller.menu
     when 5
-      # @main_controller.fast_loading
       @inventory_controller.run
     when 9 then stop
     else
@@ -72,9 +67,9 @@ class Router
   end
 
   def stop
-  #   puts @view.game_over
-  #  puts "Game over #{@player.name}..."
-  #  sleep(3.5)
+    puts @view.game_over
+   puts "Game over #{@player.name}..."
+   sleep(3.5)
     @running = false
   end
 

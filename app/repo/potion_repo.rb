@@ -59,7 +59,7 @@ class PotionRepo
       "Healing salve": ['centaur arteries', 'a chimera tail'],
       "Appetitus increasus syrum": ['goblin gums', "a griffin's beak"],
       "Tincture of temptation": ['mermaid scales', 'siren vocal cords'],
-      "Philter of unborn death": ['a harp egg', 'ghost essence'],
+      "Philter of unborn death": ['a harpy egg', 'ghost essence'],
       "Vial of the Volatile": ['a dragon claw', 'aconite'],
       "Potion Potion": [
         # Any 3 potions combined except brew of visions
