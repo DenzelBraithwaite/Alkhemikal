@@ -20,7 +20,7 @@ class Router
     @main_controller.clear
     # Display demo version number, sleeps then clears screen.
     puts @view.demo_version
-    sleep(1.5)
+    # sleep(1.5)
 
     # Display opening art sequence, sleeps then prompts to continue and clears.
     # @main_controller.first_loading_screen
@@ -33,7 +33,7 @@ class Router
     @player.name = "Test mode"
     @player.name = @parent_controller.capitalize_sentence(@player.name)
     synchronize_witch_name
-    @main_controller.continue_prompt
+    # @main_controller.continue_prompt
     @main_controller.clear
 
     while @running
@@ -49,16 +49,12 @@ class Router
 
   def route_action(action)
     case action
-    when 1
-      @explore_controller.run
-    when 2
-      @potion_controller.run
-    when 3
-      @billywig_controller.run
-    when 4
-      @labyrinth_controller.menu
-    when 5
-      @inventory_controller.run
+    when 1 then @explore_controller.run
+    when 2 then @potion_controller.run
+    when 3 then @billywig_controller.run
+    when 4 then @labyrinth_controller.menu
+    when 5 then @inventory_controller.run
+    when 6 then @main_controller.tutorial
     when 9 then stop
     else
     @view.invalid_option
@@ -87,6 +83,8 @@ class Router
     puts " 𝟜 #{'-'.light_cyan} 𝕃𝕒𝕓𝕪𝕣𝕚𝕟𝕥𝕙"
     @main_controller.line(0.05)
     puts " 𝟝 #{'-'.light_cyan} 𝕀𝕟𝕧𝕖𝕟𝕥𝕠𝕣𝕪"
+    @main_controller.line(0.05)
+    puts " 𝟞 #{'-'.light_cyan} 𝕋𝕦𝕥𝕠𝕣𝕚𝕒𝕝"
     @main_controller.line(0.05)
     puts " 𝟡 #{'-'.light_cyan} #{'ℚ𝕦𝕚𝕥'.light_red}"
     2.times { @main_controller.line(0.1) }

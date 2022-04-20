@@ -25,10 +25,9 @@ class ExploreController < ParentController
 
   def route_action(action)
     case action
-    when 1
-      search_route_action
-    when 2
-      check_ingredients
+    when 1 then search_route_action
+    when 2 then check_ingredients
+    when 3 then tutorial
     when 9 then stop
     else
       @view.invalid_option
@@ -49,6 +48,14 @@ class ExploreController < ParentController
       action = gets.chomp.to_i
       searching = false if action == 9
     end
+  end
+
+  # Displays dialogue on how to search for ingredients.
+  def tutorial
+    clear
+    puts @view.title_art.light_green.blink
+    line
+    slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".green} #{@view.tutorial}", 0.010, true)
   end
 
   def check_ingredients
@@ -98,8 +105,8 @@ class ExploreController < ParentController
   def found_ingredient
     # Find random ingredient
     if @ingredient_repo.all_ingredients.empty?
-      slow_dialogue('Well that seems to be the last of them, ', 0.015, false)
-      slow_dialogue("guess we'd better start makin' some potions.", 0.015, false)
+      slow_dialogue("#{'Gʀᴜɴᴛɪʟᴅᴀ> '.green}Well that seems to be the last of them, ", 0.015, false)
+      slow_dialogue("#{'Gʀᴜɴᴛɪʟᴅᴀ> '.green}guess we'd better start makin' some potions.", 0.015, false)
       sleep(0.25)
       damaged_final_recipe
     else
@@ -129,12 +136,12 @@ class ExploreController < ParentController
       sleep(0.75)
       # Check to see if the ingredient can be used
       if @ingredient_repo.good_ingredients.include?(ingredients_found.first)
-        puts "#{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} #{@view.good_ingredient_text.sample}"
+        puts "#{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} #{@view.good_ingredient_text.sample}"
         @player.ingredients << ingredients_found.first unless @player.ingredients.include?(ingredients_found.first)
       else
         # Ingredient is bad and can't be used
         puts ''
-        puts "#{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} #{@view.bad_ingredient_text.sample}"
+        puts "#{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} #{@view.bad_ingredient_text.sample}"
       end
     else
       # Checks to see if it's a good or bad item.

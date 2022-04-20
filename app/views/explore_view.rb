@@ -35,6 +35,14 @@ class ExploreView
     ]
   end
 
+  def tutorial
+    "Lᴇᴛ's ᴘʟᴀʏ sᴏᴍᴇ Bɪʟʟʏᴡɪɢ!!\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} I'm assuming you've played before? I believe it's similar to what the muggles refer to as 'black jack'.\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} But there's a twist...NYAAAAKAKAKAAA!!!\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} There's 1 card that's worth 21 all by itself!! I'll let you discover the other differences while playing.\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} I wish you all the worst luck, now Lets. Play. Some. BILLYWIIIIIIG!\n"
+  end
+
   def read_damaged_recipe
     puts ""
     puts "#{" Kᴀᴢ's Jᴏᴜʀɴᴀʟ:".green}\n #{"Year:".green} 1743\n #{"Moon:".green} Garnet\n\n#{" It reads:".green}"
@@ -77,23 +85,23 @@ class ExploreView
     # Change these to sample more text
     when 0
       if number_of_ingredients_found == 2
-        puts 'Neither of these ingredients are useful you dingbat!'
+        puts "#{'Gʀᴜɴᴛɪʟᴅᴀ> '.green}Neither of these ingredients are useful you dingbat!"
       else
-        puts "NYAAK, all of your ingredients suck! Do you know what you're looking for?"
+        puts "#{'Gʀᴜɴᴛɪʟᴅᴀ> '.green}NYAAK, all of your ingredients suck! Do you know what you're looking for?"
       end
     when 1
       if number_of_ingredients_found == 2
-        puts 'One of these we can use, throw the other away.'
+        puts "#{'Gʀᴜɴᴛɪʟᴅᴀ> '.green}One of these we can use, throw the other away."
       else
-        puts 'one of your ingredients is good, the rest suck...'
+        puts "#{'Gʀᴜɴᴛɪʟᴅᴀ> '.green}one of your ingredients is good, the rest suck..."
       end
     when 2
       if number_of_ingredients_found == 2
-        puts 'Not bad, these two ingredients will work well...'
+        puts "#{'Gʀᴜɴᴛɪʟᴅᴀ> '.green}Not bad, these two ingredients will work well..."
       else
-        puts "Well I can't use one of these, but the other 2 should be good"
+        puts "#{'Gʀᴜɴᴛɪʟᴅᴀ> '.green}Well I can't use one of these, but the other 2 should be good"
       end
-    when 3 then puts 'A witch in her prime! These are all fantastic for potion making.'
+    when 3 then puts "#{'Gʀᴜɴᴛɪʟᴅᴀ> '.green}A witch in her prime! These are all fantastic for potion making."
     end
   end
 
@@ -107,6 +115,9 @@ class ExploreView
     puts ""
     sleep(0.05)
     puts " 𝟚 #{'-'.light_green} 𝕀𝕟𝕘𝕣𝕖𝕕𝕚𝕖𝕟𝕥𝕤"
+    puts ""
+    sleep(0.05)
+    puts " 𝟛 #{'-'.light_green} 𝕋𝕦𝕥𝕠𝕣𝕚𝕒𝕝"
     puts ""
     sleep(0.05)
     puts " 𝟡 #{'-'.light_green} #{'𝔹𝕒𝕔𝕜'.light_red}"

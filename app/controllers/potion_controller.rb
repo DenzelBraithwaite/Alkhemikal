@@ -15,7 +15,6 @@ class PotionController < ParentController
 
   def run
     @running = true
-    run_tutorial
     while @running
       clear
       @view.menu_options
@@ -75,20 +74,12 @@ class PotionController < ParentController
   end
 
   def play_tutorial
-    slow_dialogue(@view.potion_tutorial_1, 0.01, true)
+    slow_dialogue(@view.potion_tutorial_one, 0.01, true)
     clear
     puts @view.title_art.light_magenta.blink
-    slow_dialogue(@view.potion_tutorial_2, 0.01, false)
+    slow_dialogue(@view.potion_tutorial_two, 0.01, false)
     slow_dialogue(":Bʀᴇᴡ ᴏғ Bᴇɢɪɴɴɪɴɢs => [ᴡᴀᴛᴇʀ, sᴍᴀʟʟ ʙᴏɴᴇs]", 0.025, true).light_black
     clear
-  end
-
-  def run_tutorial
-    if @intro_message_completed == false
-      puts @view.intro_message
-      continue_prompt
-    end
-    @intro_message_completed = true if @intro_message_completed == false
   end
 
   # Check if player has created all potions, upgrade equipment if true.

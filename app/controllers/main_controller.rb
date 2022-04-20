@@ -36,4 +36,12 @@ class MainController < ParentController
     continue_prompt
     clear
   end
+
+  # Displays tutorial on each menu option.
+  def tutorial
+    clear
+    puts @view.title_art.cyan.blink
+    line
+    slow_dialogue("#{@view.tutorial_message}", 0.010, true)
+  end
 end
