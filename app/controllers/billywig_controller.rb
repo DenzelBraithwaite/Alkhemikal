@@ -40,7 +40,7 @@ class BillywigController < ParentController
     clear
     puts @view.title_art.light_blue.blink
     line
-    slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} #{@view.tutorial}", 0.010, true)
+    slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} #{@view.tutorial}", 0.010, true)
   end
 
   def play_billywig
@@ -58,7 +58,7 @@ class BillywigController < ParentController
       # Game loop, asks for a card, checks if it's over 21, asks if you want another card.
       while @playing_again && @player_score < 21 && @player_card_amount < 6
         puts state_of_the_game
-        slow_dialogue("#{'Gʀᴜɴᴛɪʟᴅᴀ> '.light_yellow}Press #{'enter'.light_blue} to conjure a new card, anything else will make you #{'hold'.light_red}.", 0.002, false)
+        slow_dialogue("#{'Gʀᴜɴᴛɪʟᴅᴀ> '.light_blue}Press #{'enter'.light_cyan} to conjure a new card, anything else will make you #{'hold'.light_red}.", 0.002, false)
         print "#{@player.name}#{'> '.light_blue}"
         player_hit_or_hold = gets.chomp.downcase
         if player_hit_or_hold.empty?
@@ -152,28 +152,28 @@ class BillywigController < ParentController
     too_many = (@player_score - 21)
     if @player_score > 21
       puts @view.end_results(@player_score, @bank_score)
-      "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Hot ghoul, looks like ya lost NYAAKAkakaaa! You have #{@player_score.to_s.light_green} points, that's #{too_many.to_s.light_red} too many!"
+      "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} Hot ghoul, looks like ya lost NYAAKAkakaaa! You have #{@player_score.to_s.light_green} points, that's #{too_many.to_s.light_red} too many!"
     elsif @player_score == 21
       puts @view.end_results(@player_score, @bank_score)
-      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} I can't believe you got a perfect score!!!
+      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} I can't believe you got a perfect score!!!
       #{@view.billywig_art.cyan}"
       puts ""
       ""
     elsif six_cards_under_21?
       puts @view.end_results(@player_score, @bank_score)
-      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} NYAK, #{'6 cards under 21?'.light_magenta} You must be cheating#{'...'.light_magenta}"
+      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} NYAK, #{'6 cards under 21?'.light_magenta} You must be cheating#{'...'.light_magenta}"
     elsif @player_score > bank_score
       puts @view.end_results(@player_score, @bank_score)
-      "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Meh! I guess you win... with a score of #{@player_score.to_s.light_green}."
+      "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} Meh! I guess you win... with a score of #{@player_score.to_s.light_green}."
     elsif @player_score < bank_score
       next_card_color
       puts @view.end_results(@player_score, @bank_score)
-      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} You would've gotten #{next_card_color} next!"
-      "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} Sweet mortis bats! I thought you played this before? I win!! With #{bank_score.to_s.light_red} points!"
+      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} You would've gotten #{next_card_color} next!"
+      "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} Sweet mortis bats! I thought you played this before? I win!! With #{bank_score.to_s.light_red} points!"
     elsif @player_score == bank_score
       puts @view.end_results(@player_score, @bank_score)
-      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} You would've gotten #{next_card_color} next!"
-      "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_yellow} As even as a porlock's toe nails. I guess nobody wins this round."
+      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} You would've gotten #{next_card_color} next!"
+      "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} As even as a porlock's toe nails. I guess nobody wins this round."
     end
   end
 

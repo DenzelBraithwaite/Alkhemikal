@@ -25,8 +25,34 @@ class PotionMakingView < MainView
     ██║██║╚████║██║░░╚██╗██╔══██╗██╔══╝░░██║░░██║██║██╔══╝░░██║╚████║░░░██║░░░░╚═══██╗
     ██║██║░╚███║╚██████╔╝██║░░██║███████╗██████╔╝██║███████╗██║░╚███║░░░██║░░░██████╔╝
     ╚═╝╚═╝░░╚══╝░╚═════╝░╚═╝░░╚═╝╚══════╝╚═════╝░╚═╝╚══════╝╚═╝░░╚══╝░░░╚═╝░░░╚═════╝░"
-
-    @potion_tutorial_one = "#{'Gʀᴜɴᴛɪʟᴅᴀ>'.magenta} It's time to learn and in time; master, the subtle science of potion-making.
+    @hints = [
+      "Witch#{"'".light_magenta}s brew#{':'.light_magenta} cat hair #{'+'.light_magenta} ?",
+      "Witch#{"'".light_magenta}s brew#{':'.light_magenta} bat spleen #{'+'.light_magenta} ?",
+      "Warlock#{"'".light_magenta}s brew#{':'.light_magenta} frog brains #{'+'.light_magenta} ?",
+      "Warlock#{"'".light_magenta}s brew#{':'.light_magenta} tongue of dog #{'+'.light_magenta} ?",
+      "Time potion#{':'.light_magenta} star grass #{'+'.light_magenta} ?",
+      "Time potion#{':'.light_magenta} toadstools #{'+'.light_magenta} ?",
+      "Potion of altered perception#{':'.light_magenta} assorted eyeballs #{'+'.light_magenta} ?",
+      "Potion of altered perception#{':'.light_magenta} cyclops sweat #{'+'.light_magenta} ?",
+      "Potion of the arcane#{':'.light_magenta} a fairy wing #{'+'.light_magenta} ?",
+      "Potion of the arcane#{':'.light_magenta} arcana rocks #{'+'.light_magenta} ?",
+      "Magical medley#{':'.light_magenta} mushrooms #{'+'.light_magenta} ?",
+      "Magical medley#{':'.light_magenta} pixie wings #{'+'.light_magenta} ?",
+      "Vial of corruption#{':'.light_magenta} gorgon tears #{'+'.light_magenta} ?",
+      "Vial of corruption#{':'.light_magenta} an ogre toenail #{'+'.light_magenta} ?",
+      "Screaming dreams#{':'.light_magenta} a moonstone #{'+'.light_magenta} ?",
+      "Screaming dreams#{':'.light_magenta} a mandrake #{'+'.light_magenta} ?",
+      "Flask of gills#{':'.light_magenta} octopus powder #{'+'.light_magenta} ?",
+      "Flask of gills#{':'.light_magenta} Ink #{'+'.light_magenta} ?",
+      "Flask of blood#{':'.light_magenta} Iguana blood #{'+'.light_magenta} ?",
+      "Flask of blood#{':'.light_magenta} crocodile heart #{'+'.light_magenta} ?",
+      "Bow of smoke and embers#{':'.light_magenta} wormwood #{'+'.light_magenta} ?",
+      "Bow of smoke and embers#{':'.light_magenta} rubies #{'+'.light_magenta} ?",
+      "Tonic of transcendence#{':'.light_magenta} an owl feather #{'+'.light_magenta} ?",
+      "Tonic of transcendence#{':'.light_magenta} sage #{'+'.light_magenta} ?"
+    ]
+    @potion_tutorial_one = "
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.magenta} It's time to learn and in time; master, the subtle science of potion-making.
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} This will not be easy and you will fail many times, but a true witch knows failure preceeds greatness.
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} I don't expect you will really understand the beauty of the softly simmering cauldron with its shimmering fumes,
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Get lost in a world of forgotten arts, once passed down through a bloodline of incredible magical beings!
@@ -36,7 +62,8 @@ class PotionMakingView < MainView
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} If you fancy some new garments, you can always test your luck in the witch's labyrinth beside the forest.
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Let me know when you're ready to begin, and once you start... there's no going back."
 
-    @potion_tutorial_two = "#{'Gʀᴜɴᴛɪʟᴅᴀ>'.magenta} Alright, to be honest potion making is actually incredibly intuitive,
+    @potion_tutorial_two = "
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.magenta} Alright, to be honest potion making is actually incredibly intuitive,
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} you simply need to mix 2 ingredients together in a cauldron and see what happens.
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Certain potions are a little special, and may require more ingredients or special ingredients,
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} but please don't get consumed by the process, it's an art but by no means is it an obsession!
@@ -116,6 +143,9 @@ class PotionMakingView < MainView
   end
 
   def menu_options
+    print 'Hint: '.light_magenta
+    puts @hints.sample
+    puts ''
     puts @title_art.light_magenta.blink
     puts ''
     puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.light_magenta}"

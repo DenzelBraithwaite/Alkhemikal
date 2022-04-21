@@ -11,6 +11,13 @@ class ExploreView
     ██╔══╝░░░██╔██╗░██╔═══╝░██║░░░░░██║░░██║██╔══██╗██╔══╝░░╚═╝
     ███████╗██╔╝╚██╗██║░░░░░███████╗╚█████╔╝██║░░██║███████╗██╗
     ╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚══════╝░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝"
+    @tips = [
+      "Keep pressing #{"'".light_green}enter#{"'".light_green} in a menu to cycle through the tips #{'/'.light_green} hints#{'.'.light_green}",
+      "Every time you explore#{','.light_green} you have a chance to find 1#{'-'.light_green}3 ingredients#{'.'.light_green}",
+      "When you#{"'".light_green}ve found all of the ingredients#{','.light_green} you#{"'".light_green}ll be able to view any damaged recipes you#{"'".light_green}ve collected#{'.'.light_green}",
+      "You can press enter a few times in a row to continue searching for a few rounds at a time#{'.'.light_green}",
+      "You can check the good ingredients you#{"'".light_green}ve found by looking at your ingredients from the menu#{'.'.light_green}"
+    ]
     # Array of things to say when a good ingredient is found
     @good_ingredient_text = [
       "Another stellar ingredient to add to my collection",
@@ -36,11 +43,10 @@ class ExploreView
   end
 
   def tutorial
-    "Lᴇᴛ's ᴘʟᴀʏ sᴏᴍᴇ Bɪʟʟʏᴡɪɢ!!\n
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} I'm assuming you've played before? I believe it's similar to what the muggles refer to as 'black jack'.\n
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} But there's a twist...NYAAAAKAKAKAAA!!!\n
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} There's 1 card that's worth 21 all by itself!! I'll let you discover the other differences while playing.\n
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} I wish you all the worst luck, now Lets. Play. Some. BILLYWIIIIIIG!\n"
+    "Lᴇᴛ's explore!!\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} Exploring is very simple, you press enter to keep searching for ingredients until you're satisfied.\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} The good ingredients will be kept, and the bad ones discarded.\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.green} Each ingredient is used to make a potion, so there's no time to wase, let's explore!!\n"
   end
 
   def read_damaged_recipe
@@ -106,6 +112,9 @@ class ExploreView
   end
 
   def explore_menu_options
+    print 'Tip: '.light_green
+    puts @tips.sample
+    puts ''
     puts title_art.light_green.blink
     puts ""
     puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.light_green}"

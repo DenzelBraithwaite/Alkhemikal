@@ -1,7 +1,7 @@
 require 'colorize'
 
 class BillywigView
-  attr_reader :title_art, :billywig_art
+  attr_reader :title_art, :billywig_art, :tips
 
   def initialize
     @title_art = "
@@ -20,17 +20,27 @@ class BillywigView
     ╰┻┻╯╰━━┻┻━┻━┻━╮╭╯╰╯╰╯╰┻━╮┃╰┻┻╯
     ╱╱╱╱╱╱╱╱╱╱╱╱╭━╯┃╱╱╱╱╱╱╭━╯┃
     ╱╱╱╱╱╱╱╱╱╱╱╱╰━━╯╱╱╱╱╱╱╰━━╯"
+    @tips = [
+      "Keep pressing #{"'".light_blue}enter#{"'".light_blue} in a menu to cycle through the tips #{'/'.light_blue} hints#{'.'.light_blue}",
+      "There's one card in the deck that's worth 21 points alone!",
+      "If you get 6 cards under 21, you win!!",
+      "Gruntilda cheats, so if she's ever going to draw a card that will make her bust, she'll pass it to you instead",
+      "The odds are stacked against you in this game, Your best bet is to win early."
+    ]
   end
 
   def tutorial
     "Lᴇᴛ's ᴘʟᴀʏ sᴏᴍᴇ Bɪʟʟʏᴡɪɢ!!\n
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} I'm assuming you've played before? I believe it's similar to what the muggles refer to as 'black jack'.\n
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} But there's a twist...NYAAAAKAKAKAAA!!!\n
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} There's 1 card that's worth 21 all by itself!! I'll let you discover the other differences while playing.\n
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} I wish you all the worst luck, now Lets. Play. Some. BILLYWIIIIIIG!\n"
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} I'm assuming you've played before? I believe it's similar to what the muggles refer to as 'black jack'.\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} But there's a twist...NYAAAAKAKAKAAA!!!\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} There's 1 card that's worth 21 all by itself!! I'll let you discover the other differences while playing.\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} I wish you all the worst luck, now Lets. Play. Some. BILLYWIIIIIIG!\n"
   end
 
   def billywig_menu_options
+    print 'Tip: '.light_blue
+    puts @tips.sample
+    puts ''
     puts title_art.light_blue.blink
     puts ''
     puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.light_blue}"

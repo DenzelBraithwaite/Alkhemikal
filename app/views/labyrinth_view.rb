@@ -18,6 +18,12 @@ class LabyrinthView < MainView
       ██║░░░░░██╔══██║██╔══██╗░░╚██╔╝░░██╔══██╗██║██║╚████║░░░██║░░░██╔══██║
       ███████╗██║░░██║██████╦╝░░░██║░░░██║░░██║██║██║░╚███║░░░██║░░░██║░░██║
       ╚══════╝╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚═╝░░╚═╝"
+      @tips = [
+      "Keep pressing #{"'".yellow}enter#{"'".yellow} in a menu to cycle through the tips #{'/'.yellow} hints#{'.'.yellow}",
+      "There are 8 regions in the labyrinth#{','.yellow} 2 of which are dangerous#{'.'.yellow}",
+      "If you die#{','.yellow} you don#{"'".yellow}t lose anything but you respawn in a different #{'('.yellow}safer#{')'.yellow} room#{'.'.yellow}",
+      "Technically#{','.yellow} the labyrinth is a maze#{'...'.yellow} But labyrinth sounds much cooler#{'.'.yellow}"
+      ]
       @tutorial = "Welcome... to the Wiccan Labyrinth#{'!!'.yellow}\n
       #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} This will test the will and endurance of even the most wicked of witches#{'.'.yellow}\n
       #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} Caution to the brave and foolish enough to enter these grounds#{','.yellow} Nyaaakakaa#{'.'.yellow}\n
@@ -189,6 +195,9 @@ class LabyrinthView < MainView
   end
 
   def labyrinth_main_menu
+    print 'Tip: '.yellow
+    puts @tips.sample
+    puts ""
     puts @title_art.yellow.blink
     puts ''
     puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.yellow}"

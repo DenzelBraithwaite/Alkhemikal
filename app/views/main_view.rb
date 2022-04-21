@@ -1,7 +1,7 @@
 require 'colorize'
 
 class MainView
-  attr_reader :intro_message, :tutorial_message, :title_art, :demo_version,:witch_art, :game_over
+  attr_reader :intro_message, :tutorial_message, :title_art, :demo_version,:witch_art, :game_over, :tips
 
   def initialize
     @intro_message = "#{'Gʀᴜɴᴛɪʟᴅᴀ>'.cyan} Welcome, to the small town of Alkhemikal, home to the greatest witches ever born.
@@ -28,6 +28,11 @@ class MainView
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".cyan} Finally, #5 you have your inventory, where you can change your hat and robe or even your name!
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".cyan} Each option has it's own tutorial so don't worry, if you're ever lost, run the tutorial one more time.
     \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".cyan} Enjoy!"
+    @tips = [
+      "Keep pressing #{"'".cyan}enter#{"'".cyan} in a menu to cycle through the tips #{'/'.cyan} hints#{'.'.cyan}",
+      "You can change your name in #{"'".cyan}Inventory#{"'".cyan} ",
+      "It#{"'".cyan}s better to catch 20#{'-'.cyan}30 ingredients before making potions#{'.'.cyan}",
+      "You can die in the labyrinth, but you won#{"'".cyan}t lose any items. The next time you play you#{"'".cyan}ll start in a different room#{'.'.cyan}"]
     @title_art = "
               ░█████╗░██╗░░░░░██╗░░██╗██╗░░██╗███████╗███╗░░░███╗██╗██╗░░██╗░█████╗░██╗░░░░░
               ██╔══██╗██║░░░░░██║░██╔╝██║░░██║██╔════╝████╗░████║██║██║░██╔╝██╔══██╗██║░░░░░
