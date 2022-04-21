@@ -16,7 +16,9 @@ class LabyrinthRepo
       "magician's hay",
       'plague doctor mask',
       'invisible coif',
-      'black bonnet'
+      'black bonnet',
+      'seer scarf',
+      'pumpkin head'
     ]
     # Robes that can be found when exploring
     @all_robes = [
@@ -30,7 +32,10 @@ class LabyrinthRepo
       'magic cape',
       'blue kirtle',
       'litte red riding hood',
-      'ash grey capelet'
+      'ash grey capelet',
+      'salem dress',
+      'avocado onesie'
+
     ]
     # Rooms with something to be found
     @item_room_indexes = [
@@ -51,7 +56,15 @@ class LabyrinthRepo
       # Jungle area *3
       277, 373, 274,
       # Marsh area *3
-      330, 272, 291
+      330, 272, 291,
+      # Between desert and marsh
+      280,
+      # Between desert and mountains
+      89,
+      # Between jungle and mountains
+      212,
+      # Between jungle and marsh
+      370
     ]
     @rooms = [
       @room_r1_c1 = LabyrinthRoom.new(row_id: 1, column_id: 1, role: :top_left_corner), # 0
