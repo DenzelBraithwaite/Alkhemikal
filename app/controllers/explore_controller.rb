@@ -88,7 +88,7 @@ class ExploreController < ParentController
   end
 
   def how_many_ingredients_found
-    if @ingredient_repo.all_ingredients.length <= 2
+    if @ingredient_repo.all_ingredients.length == 2
       @magic_number == rand(1..2)
     elsif @ingredient_repo.all_ingredients.length == 1
       @magic_number = 1
@@ -105,6 +105,7 @@ class ExploreController < ParentController
   def found_ingredient
     # Find random ingredient
     if @ingredient_repo.all_ingredients.empty?
+      puts ''
       slow_dialogue("#{'Gʀᴜɴᴛɪʟᴅᴀ> '.green}Well that seems to be the last of them, ", 0.015, false)
       slow_dialogue("#{'Gʀᴜɴᴛɪʟᴅᴀ> '.green}guess we'd better start makin' some potions.", 0.015, false)
       sleep(0.25)

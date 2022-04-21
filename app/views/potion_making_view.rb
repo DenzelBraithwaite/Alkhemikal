@@ -1,7 +1,8 @@
 require 'colorize'
 
 class PotionMakingView < MainView
-	attr_reader :intro_message, :potion_tutorial_one, :potion_tutorial_two, :good_potion_text, :bad_potion_text, :recipes_art, :ingredients_art
+	attr_reader :intro_message, :potion_tutorial_one, :potion_tutorial_two,
+              :good_potion_text, :bad_potion_text, :recipes_art, :ingredients_art, :complex_hints, :hints
 
   def initialize
     @title_art = "
@@ -50,6 +51,12 @@ class PotionMakingView < MainView
       "Bow of smoke and embers#{':'.light_magenta} rubies #{'+'.light_magenta} ?",
       "Tonic of transcendence#{':'.light_magenta} an owl feather #{'+'.light_magenta} ?",
       "Tonic of transcendence#{':'.light_magenta} sage #{'+'.light_magenta} ?"
+    ]
+    @complex_hints = [
+      "Simple potions require 2 ingredients#{','.light_magenta} complex potions require 3 potions as ingredients#{'.'.light_magenta}",
+      "When you use a potion as an ingredient#{','.light_magenta} it stays in your inventory so you can use it again#{'.'.light_magenta}",
+      "There aren't nearly as many complex potions to make as simple ones#{'.'.light_magenta}",
+      "Having a hard time making the final potion? Try using the bowl of smoke and embers#{'.'.light_magenta}"
     ]
     @potion_tutorial_one = "
     #{'Gʀᴜɴᴛɪʟᴅᴀ>'.magenta} It's time to learn and in time#{';'.light_magenta} master#{','.light_magenta} the subtle science of potion-making#{'.'.light_magenta}
@@ -169,6 +176,9 @@ class PotionMakingView < MainView
   end
 
   def simple_or_complex
+    print 'Hint: '.light_magenta
+    puts @complex_hints.sample
+    puts ''
     puts @title_art.light_magenta.blink
     puts ''
     puts " Dᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴍᴀᴋɪɴɢ ᴀ sɪᴍᴘʟᴇ ᴏʀ ᴄᴏᴍᴘʟᴇx ᴘᴏᴛɪᴏɴ #{'?'.light_magenta}"

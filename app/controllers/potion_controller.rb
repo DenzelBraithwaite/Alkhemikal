@@ -22,6 +22,9 @@ class PotionController < ParentController
       print "#{@player.name}#{'> '.light_magenta}"
       action = gets.chomp.to_i
       clear
+      print 'Hint: '.light_magenta
+      puts @view.hints.sample
+      puts ''
       puts @view.title_art.light_magenta.blink
       route_action(action)
     end
@@ -76,6 +79,9 @@ class PotionController < ParentController
   def play_tutorial
     slow_dialogue(@view.potion_tutorial_one, 0.01, true)
     clear
+    print 'Hint: '.light_magenta
+    puts @view.hints.sample
+    puts ''
     puts @view.title_art.light_magenta.blink
     slow_dialogue(@view.potion_tutorial_two, 0.01, false)
     slow_dialogue(":Bʀᴇᴡ ᴏғ Bᴇɢɪɴɴɪɴɢs => [ᴡᴀᴛᴇʀ, sᴍᴀʟʟ ʙᴏɴᴇs]", 0.025, true).light_black
@@ -99,6 +105,9 @@ class PotionController < ParentController
 
   def check_ingredients
     clear
+    print 'Hint: '.light_magenta
+    puts @view.hints.sample
+    puts ''
     puts @view.ingredients_art.light_magenta.blink
     puts ''
     @view.quick_view_ingredients(@player.ingredients)
@@ -136,6 +145,9 @@ class PotionController < ParentController
 
   def not_enough_ingredients
     clear
+    print 'Hint: '.light_magenta
+    puts @view.hints.sample
+    puts ''
     puts @view.title_art.light_magenta.blink
     puts ''
     @view.quick_view_ingredients(player.ingredients)
@@ -146,6 +158,9 @@ class PotionController < ParentController
 
   # Text displayed to prompt search again
   def potion_making_again_text
+    print 'Hint: '.light_magenta
+    puts @view.hints.sample
+    puts ''
     puts @view.title_art.light_magenta.blink
     puts ''
     puts ''
@@ -163,6 +178,9 @@ class PotionController < ParentController
 
   def view_recipes
     clear
+    print 'Hint: '.light_magenta
+    puts @view.hints.sample
+    puts ''
     puts @view.recipes_art.light_magenta.blink
     puts ''
     slow_dialogue("Checking recipes...".light_black, 0.01, false)
@@ -216,6 +234,9 @@ class PotionController < ParentController
 
   def add_simple_ingredients_to_pot
     clear
+    print 'Hint: '.light_magenta
+    puts @view.hints.sample
+    puts ''
     # display title art and list all owned ingredients.
     puts @view.title_art.light_magenta.blink
     @view.quick_view_ingredients(@player.ingredients)
@@ -251,6 +272,9 @@ class PotionController < ParentController
   # Clears the screen, prompts user to add the first ingredient
   def first_simple_ingredient_prompt
     clear
+    print 'Hint: '.light_magenta
+    puts @view.hints.sample
+    puts ''
     puts @view.title_art.light_magenta.blink
     @view.quick_view_ingredients(@player.ingredients)
     @view.first_ingredient
@@ -272,6 +296,9 @@ class PotionController < ParentController
       # Add second ingredient again until it is not same as first ingredient.
       second_simple_ingredient_prompt
     else
+      print 'Hint: '.light_magenta
+      puts @view.hints.sample
+      puts ''
       puts @view.title_art.light_magenta.blink
       # sets second ingredient to added index
       @second_simple_ingredient = @player.ingredients[@second_simple_ingredient_index - 1]
@@ -283,6 +310,9 @@ class PotionController < ParentController
 
   # Clears the screen, prompts user to add the second ingredient
   def second_simple_ingredient_prompt
+    print 'Hint: '.light_magenta
+    puts @view.hints.sample
+    puts ''
     puts @view.title_art.light_magenta.blink
     @view.quick_view_ingredients(@player.ingredients)
     puts "#{@first_simple_ingredient} added to the pot...".light_black
@@ -367,6 +397,9 @@ class PotionController < ParentController
 
   def add_complex_ingredients_to_pot
     clear
+    print 'Hint: '.light_magenta
+    puts @view.hints.sample
+    puts ''
     # display title art and list all owned potions.
     puts @view.title_art.light_magenta.blink
     @view.quick_view_potions_as_ingredients(@player.recipes.keys)
@@ -390,6 +423,9 @@ class PotionController < ParentController
   # Clears the screen, prompts user to add the first potion / ingredient
   def first_complex_ingredient_prompt
     clear
+    print 'Hint: '.light_magenta
+    puts @view.hints.sample
+    puts ''
     puts @view.title_art.light_magenta.blink
     @view.quick_view_potions_as_ingredients(@player.recipes.keys)
     @view.first_ingredient
@@ -408,6 +444,9 @@ class PotionController < ParentController
       # sets first potion / ingredient to added index
       @first_complex_ingredient = return_key_for_index(@first_complex_ingredient_index - 1, @player.recipes).to_s
       # list first potion / ingredient added.
+      print 'Hint: '.light_magenta
+      puts @view.hints.sample
+      puts ''
       puts @view.title_art.light_magenta.blink
       puts ''
       puts "Cauldron: #{@first_complex_ingredient}".light_black
@@ -419,6 +458,9 @@ class PotionController < ParentController
 
   # Clears the screen, prompts user to add the second potion / ingredient
   def second_complex_ingredient_prompt
+    print 'Hint: '.light_magenta
+    puts @view.hints.sample
+    puts ''
     puts @view.title_art.light_magenta.blink
     puts ''
     puts "Cauldron: #{@first_complex_ingredient} - #{@second_complex_ingredient}".light_black
@@ -447,6 +489,9 @@ class PotionController < ParentController
     else
       # sets second ingredient to added index
       @second_complex_ingredient = return_key_for_index(@second_complex_ingredient_index - 1, @player.recipes).to_s
+      print 'Hint: '.light_magenta
+      puts @view.hints.sample
+      puts ''
       puts @view.title_art.light_magenta.blink
       puts ''
       puts "Cauldron: #{@first_complex_ingredient} - #{@second_complex_ingredient}".light_black
@@ -458,6 +503,9 @@ class PotionController < ParentController
 
   # Clears the screen, prompts user to add the third potion / ingredient
   def third_complex_ingredient_prompt
+    print 'Hint: '.light_magenta
+    puts @view.hints.sample
+    puts ''
     puts @view.title_art.light_magenta.blink
     puts ''
     puts "Cauldron: #{@first_complex_ingredient} - #{@second_complex_ingredient} - #{@third_complex_ingredient}".light_black
@@ -486,6 +534,9 @@ class PotionController < ParentController
       @third_complex_ingredient = "?"
       third_complex_ingredient_prompt
     else
+      print 'Hint: '.light_magenta
+      puts @view.hints.sample
+      puts ''
       puts @view.title_art.light_magenta.blink
       # sets third ingredient to added index
       @third_complex_ingredient = return_key_for_index(@third_complex_ingredient_index - 1, @player.recipes).to_s
