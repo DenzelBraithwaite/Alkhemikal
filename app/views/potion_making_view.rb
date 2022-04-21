@@ -52,24 +52,24 @@ class PotionMakingView < MainView
       "Tonic of transcendence#{':'.light_magenta} sage #{'+'.light_magenta} ?"
     ]
     @potion_tutorial_one = "
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.magenta} It's time to learn and in time; master, the subtle science of potion-making.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} This will not be easy and you will fail many times, but a true witch knows failure preceeds greatness.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} I don't expect you will really understand the beauty of the softly simmering cauldron with its shimmering fumes,
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Get lost in a world of forgotten arts, once passed down through a bloodline of incredible magical beings!
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} I will do my best to teach you the basics, but after that, you're on your own.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Are you ready to create your first potion? I hope you brought all the necessary ingredients...
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} You can leave this place at any time if you start to run low, there's a forest out back with plenty of fresh resources.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} If you fancy some new garments, you can always test your luck in the witch's labyrinth beside the forest.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Let me know when you're ready to begin, and once you start... there's no going back."
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.magenta} It's time to learn and in time#{';'.light_magenta} master#{','.light_magenta} the subtle science of potion-making#{'.'.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} This will not be easy and you will fail many times#{','.light_magenta} but a true witch knows failure preceeds greatness#{'.'.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} I don't expect you will really understand the beauty of the softly simmering cauldron with its shimmering fumes#{','.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Get lost in a world of forgotten arts#{','.light_magenta} once passed down through a bloodline of incredible magical beings#{'!'.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} I will do my best to teach you the basics#{','.light_magenta} but after that#{','.light_magenta} you're on your own#{'.'.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Are you ready to create your first potion#{'?'.light_magenta} I hope you brought all the necessary ingredients#{'...'.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} You can leave this place at any time if you start to run low#{','.light_magenta} there's a forest out back with plenty of fresh resources#{'.'.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} If you fancy some new garments#{','.light_magenta} you can always test your luck in the witch's labyrinth beside the forest#{'.'.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Let me know when you're ready to begin#{','.light_magenta} and once you start#{'...'.light_magenta} there's no going back#{'.'.light_magenta}"
 
     @potion_tutorial_two = "
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.magenta} Alright, to be honest potion making is actually incredibly intuitive,
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} you simply need to mix 2 ingredients together in a cauldron and see what happens.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Certain potions are a little special, and may require more ingredients or special ingredients,
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} but please don't get consumed by the process, it's an art but by no means is it an obsession!
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Let me see what ingredients you've brought...Akkk! You barely have anything!
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} I guess we'll have to make the brew of beginnings, a wise first choice for any novice potion maker.
-    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Here's the recipe, you get to look at it but it's MINE so you can't keep it! Make your own.."
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.magenta} Alright#{','.light_magenta} to be honest potion making is actually incredibly intuitive#{','.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} you simply need to mix 2 ingredients together in a cauldron and see what happens#{'.'.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Certain potions are a little special#{','.light_magenta} and may require more ingredients or special ingredients#{','.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} but please don't get consumed by the process#{','.light_magenta} it's an art but by no means is it an obsession#{'!'.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Let me see what ingredients you've brought#{'...'.light_magenta}Akkk! You barely have anything#{'!'.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} I guess we'll have to make the brew of beginnings#{','.light_magenta} a wise first choice for any novice potion maker#{'.'.light_magenta}
+    \n#{"Gʀᴜɴᴛɪʟᴅᴀ>".magenta} Here's the recipe#{','.light_magenta} you get to look at it but it's MINE so you can't keep it! Make your own#{'..'.light_magenta}"
     # Array of things to say when a good potion is created
     @good_potion_text = [
       'A stellar potion indeed.',

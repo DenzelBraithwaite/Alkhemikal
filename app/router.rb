@@ -20,20 +20,20 @@ class Router
     @main_controller.clear
     # Display demo version number, sleeps then clears screen.
     puts @view.demo_version
-    # sleep(1.5)
+    sleep(1.5)
 
     # Display opening art sequence, sleeps then prompts to continue and clears.
-    # @main_controller.first_loading_screen
+    @main_controller.first_loading_screen
 
     # Display intro message
-    # @parent_controller.slow_dialogue(@view.intro_message)
+    @parent_controller.slow_dialogue(@view.intro_message)
 
     # Gets users name and stores it, used below to save the name prompt for all menus
-    # @player.name = @view.get_user_name.capitalize
-    @player.name = "Test mode"
+    @player.name = @view.get_user_name.capitalize
+    # @player.name = "Test mode"
     @player.name = @parent_controller.capitalize_sentence(@player.name)
     synchronize_witch_name
-    # @main_controller.continue_prompt
+    @main_controller.continue_prompt
     @main_controller.clear
 
     while @running
