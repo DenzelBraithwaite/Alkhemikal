@@ -10,7 +10,7 @@ class InventoryController < ParentController
     @running = true
     while @running
       @view.inventory_menu_options
-      @view.current_clothing(@player.hat, @player.robe)
+      @view.current_clothing(@player.hat, @player.robe, @player.gold)
       print "#{@player.name}#{'> '.light_black}"
       action = gets.chomp.to_i
       clear

@@ -52,8 +52,14 @@ class BillywigController < ParentController
       @player_card_amount = 0
       @player_score = 0
       @bank_score = rand(6..9)
+      @view.place_bet(@player.gold)
+      print "#{@player.name}#{'> '.light_blue}"
+      @get_bet = gets.chomp.to_i
+      set_bet
+      clear
       puts @view.title_art.light_blue.blink
       line
+      puts "Your bet: #{@bet.to_s.yellow}#{'G'.yellow}"
 
       # Game loop, asks for a card, checks if it's over 21, asks if you want another card.
       while @playing_again && @player_score < 21 && @player_card_amount < 6
@@ -87,6 +93,17 @@ class BillywigController < ParentController
 
     #====================================================================#
 
+  def set_bet
+    case @get_bet
+    when 1 then @bet = 5
+    when 2 then @bet = 20
+    when 3 then @bet = 50
+    when 4 then @bet = 100
+    else
+      @bet = 0
+    end
+  end
+
   def pick_bank_score
       [
       1, 1, 1, 1,
@@ -108,7 +125,7 @@ class BillywigController < ParentController
     if (@bank_score + card) <= 21
       @bank_score += card
     else
-      puts ""
+      puts ''
       puts "Gruntilda gives you the card instead...".light_black
     end
   end
@@ -138,7 +155,7 @@ class BillywigController < ParentController
   #====================================================================#
 
   def state_of_the_game
-    puts ""
+    puts ''
     puts @view.you_drew(@next_card, @player_card_amount)
     puts "Gruntilda's score: #{@bank_score.to_s.light_red}"
     puts "Your score: #{@player_score.to_s.light_green}"
@@ -148,32 +165,44 @@ class BillywigController < ParentController
   # slow_dialogue(text, delay = 0.010, false) incorpoate later?
 
   def end_game_message(player_score, bank_score)
+    winning_bet = (@bet * 2)
     @player_score = player_score
     too_many = (@player_score - 21)
     if @player_score > 21
+      @player.gold -= @bet
       puts @view.end_results(@player_score, @bank_score)
       "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} Hot ghoul, looks like ya lost NYAAKAkakaaa! You have #{@player_score.to_s.light_green} points, that's #{too_many.to_s.light_red} too many!"
+      puts "You #{'lost'.red} #{@bet.to_s.yellow}#{'G'.yellow}"
     elsif @player_score == 21
+      @player.gold += winning_bet
       puts @view.end_results(@player_score, @bank_score)
       puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} I can't believe you got a perfect score!!!
       #{@view.billywig_art.cyan}"
-      puts ""
-      ""
+      puts "You #{'won'.cyan} #{winning_bet.to_s.yellow}#{'G'.yellow}"
+      puts ''
+      puts ''
     elsif six_cards_under_21?
+      @player.gold += winning_bet
       puts @view.end_results(@player_score, @bank_score)
       puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} NYAK, #{'6 cards under 21?'.light_magenta} You must be cheating#{'...'.light_magenta}"
+      puts "You #{'won'.cyan} #{winning_bet.to_s.yellow}#{'G'.yellow}"
     elsif @player_score > bank_score
+      @player.gold += winning_bet
       puts @view.end_results(@player_score, @bank_score)
       "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} Meh! I guess you win... with a score of #{@player_score.to_s.light_green}."
+      puts "You #{'won'.cyan} #{winning_bet.to_s.yellow}#{'G'.yellow}"
     elsif @player_score < bank_score
+      @player.gold -= @bet
       next_card_color
       puts @view.end_results(@player_score, @bank_score)
       puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} You would've gotten #{next_card_color} next!"
-      "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} Sweet mortis bats! I thought you played this before? I win!! With #{bank_score.to_s.light_red} points!"
+      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} Sweet mortis bats! I thought you played this before? I win!! With #{bank_score.to_s.light_red} points!"
+      "You #{'lost'.red} #{@bet.to_s.yellow}#{'G'.yellow}"
     elsif @player_score == bank_score
       puts @view.end_results(@player_score, @bank_score)
       puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} You would've gotten #{next_card_color} next!"
-      "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} As even as a porlock's toe nails. I guess nobody wins this round."
+      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} As even as a porlock's toe nails. I guess nobody wins this round."
+      "You #{'kept'.light_black} your #{@bet.to_s.yellow}#{'G'.yellow}"
     end
   end
 

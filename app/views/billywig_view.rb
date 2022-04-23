@@ -25,7 +25,9 @@ class BillywigView
       "There's one card in the deck that's worth 21 points alone!",
       "If you get 6 cards under 21, you win!!",
       "Gruntilda cheats, so if she's ever going to draw a card that will make her bust, she'll pass it to you instead",
-      "The odds are stacked against you in this game, Your best bet is to win early."
+      "The odds are stacked against you in this game, Your best bet is to win early.",
+      "You can bet even if you don't have enough gold. But you'll owe Gruntilda!",
+      "If you don't want to bet anything, just press 'enter'."
     ]
   end
 
@@ -34,7 +36,32 @@ class BillywigView
     #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} I'm assuming you've played before? I believe it's similar to what the muggles refer to as 'black jack'.\n
     #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} But there's a twist...NYAAAAKAKAKAAA!!!\n
     #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} There's 1 card that's worth 21 all by itself!! I'll let you discover the other differences while playing.\n
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} I wish you all the worst luck, now Lets. Play. Some. BILLYWIIIIIIG!\n"
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} I wish you all the worst luck, now Lets. Play. Some. BILLYWIIIIIIG!\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} One last thing, we're gambling witches here, so don't play if you ain't got any #{'GOLD'.yellow}! NYAAkakakakaaa \n"
+  end
+
+  def place_bet(gold)
+    print 'Tip: '.light_blue
+    puts @tips.sample
+    puts ''
+    puts @title_art.light_blue.blink
+    puts ''
+    puts " Pʟᴀᴄᴇ ʏᴏᴜʀ ʙᴇᴛs #{'!'.light_blue}"
+    puts ''
+    sleep(0.05)
+    puts " １ #{'-'.light_blue} #{'5G'.yellow}"
+    puts ''
+    sleep(0.05)
+    puts " ２ #{'-'.light_blue} #{'20G'.yellow}"
+    puts ''
+    sleep(0.05)
+    puts " ３ #{'-'.light_blue} #{'50G'.yellow}"
+    puts ''
+    sleep(0.05)
+    puts " ４ #{'-'.light_blue} #{'100G'.yellow}"
+    puts ''
+    puts "Your gold: #{gold.to_s.yellow}#{'G'.yellow}"
+    puts ''
   end
 
   def billywig_menu_options

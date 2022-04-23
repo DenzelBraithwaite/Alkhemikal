@@ -11,6 +11,7 @@ require_relative 'controllers/potion_controller'
 require_relative 'controllers/billywig_controller'
 require_relative 'controllers/labyrinth_controller'
 require_relative 'controllers/inventory_controller'
+require_relative 'controllers/shop_controller'
 
 
 require_relative 'repo/ingredient_repo'
@@ -46,8 +47,12 @@ labyrinth_controller = LabyrinthController.new(labyrinth_repo)
 # Related to inventory main menu. Used to customize player.
 inventory_controller = InventoryController.new
 
+# Related to shop main menu. Used to purchase items.
+shop_controller = ShopController.new
+
 # Router
-router = Router.new(parent_controller, main_controller, explore_controller, potion_controller, billywig_controller, labyrinth_controller, inventory_controller)
+router = Router.new(parent_controller, main_controller, explore_controller, potion_controller, billywig_controller,
+                    labyrinth_controller, inventory_controller, shop_controller)
 
 # Start the app
 router.run

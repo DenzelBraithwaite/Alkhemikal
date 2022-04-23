@@ -120,6 +120,7 @@ class ExploreController < ParentController
 
   # Text displayed when 3 good items are found
   def three_good_ingredients_alert
+    @player.gold += 10
     clear
     2.times do
       fill_screen("                                PERFECT SEARCH!!                          PERFECT SEARCH!!                                                                                                                                     ".black.on_green, 0.40)
@@ -167,6 +168,7 @@ class ExploreController < ParentController
 
   def searching_loop
     searching_time = rand(15..60)
+    @player.gold += rand(4..8)
     puts @view.title_art.light_green.blink
     puts ''
     # Put message saying searching while walking

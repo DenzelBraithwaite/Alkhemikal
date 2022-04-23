@@ -71,12 +71,14 @@ class InventoryView < MainView
       sleep(0.05)
     end
 
-    def current_clothing(hat, robe)
-      puts " Cᴜʀʀᴇɴᴛ ᴄʟᴏᴛʜɪɴɢ:".light_black
+    def current_clothing(hat, robe, gold)
+      puts " Cᴜʀʀᴇɴᴛ ᴇqᴜɪᴘᴍᴇɴᴛ:".light_black
       sleep(0.05)
       puts " Hᴀᴛ: #{hat.magenta}"
       sleep(0.05)
       puts " Rᴏʙᴇ: #{robe.magenta}"
+      sleep(0.05)
+      puts " Gᴏʟᴅ: #{gold.to_s.yellow}#{'G'.yellow}"
       sleep(0.05)
       puts ""
       puts ""

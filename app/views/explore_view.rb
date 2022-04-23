@@ -16,7 +16,9 @@ class ExploreView
       "Every time you explore#{','.light_green} you have a chance to find 1#{'-'.light_green}3 ingredients#{'.'.light_green}",
       "When you#{"'".light_green}ve found all of the ingredients#{','.light_green} you#{"'".light_green}ll be able to view any damaged recipes you#{"'".light_green}ve collected#{'.'.light_green}",
       "You can press enter a few times in a row to continue searching for a few rounds at a time#{'.'.light_green}",
-      "You can check the good ingredients you#{"'".light_green}ve found by looking at your ingredients from the menu#{'.'.light_green}"
+      "You can check the good ingredients you#{"'".light_green}ve found by looking at your ingredients from the menu#{'.'.light_green}",
+      "Evevery time you search, you find a bit of gold too.",
+      "If you get a perfect explore run, you'll earn yourself some extra gold."
     ]
     # Array of things to say when a good ingredient is found
     @good_ingredient_text = [

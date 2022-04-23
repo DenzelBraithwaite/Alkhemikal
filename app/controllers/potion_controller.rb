@@ -11,6 +11,7 @@ class PotionController < ParentController
     @potion_repo = PotionRepo.new
     @intro_message_completed = false
     @already_upgraded = false
+    @bonus_gold_received = false
   end
 
   def run
@@ -354,6 +355,7 @@ class PotionController < ParentController
         else
           puts @view.good_potion_text.sample
           puts 'Congrats, a new potion!'
+          @player.gold += 50
           @player.recipes[potion] = ingredients
           @player.ingredients.delete(@first_simple_ingredient)
           @player.ingredients.delete(@second_simple_ingredient)
@@ -572,6 +574,8 @@ class PotionController < ParentController
           puts "You've created the #{potion.to_s.light_red}!" # Add ingredient descriptions after
           game_ending
           final_potion_created = true
+          @player.gold += 1000 unless @bonus_gold_received
+          @bonus_gold_received = true
           sleep(5)
         else
           # Display text after creating the potion
@@ -584,9 +588,10 @@ class PotionController < ParentController
           puts "You've already created this"
         else
           puts ''
-          puts "#{"Glinda> ".light_yellow}I'm so sorry... but this is irreversable. I warned you..." if final_potion_created
+          puts "#{"Glinda> ".cyan}I'm so sorry... but this is irreversable. I warned you..." if final_potion_created
           puts @view.good_potion_text.sample unless final_potion_created
           puts "Congrats, a new potion!" unless final_potion_created
+          @player.gold += 100
           @player.special_recipes[potion] = ingredients # Currently adds the to 1 array on one line, fix this
         end
         no_matches = false

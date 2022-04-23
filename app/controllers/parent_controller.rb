@@ -154,8 +154,10 @@ class ParentController
     10.times { ending_slow_dialogue("(: You've suffered a terrible fate haven't you :)".red, 0.005) }
     30.times { ending_slow_dialogue("(: You've suffered a terrible fate haven't you :)".red, 0.001) }
     250.times { ending_slow_dialogue("):< YOU'VE SUFFERED A TERRIBLE FATE HAVEN'T YOU >:(".red, 0.0001) }
-    sleep(2.5)
+    450.times { ending_slow_dialogue("):< YOU'VE SUFFERED A TERRIBLE FATE HAVEN'T YOU >:(".red, 0.00000001) }
+    sleep(4)
     system('clear')
+    sleep(1)
     ending_slow_dialogue("\n#{"Glinda> ".cyan}My dear witch, my poor pathetic foolish witch. Your arrogance and greed have been judged by Satan himself.", 0.035)
     ending_slow_dialogue("\n For lack of obedience and submission, despite my countless warnings, you still ventured down the path of temptation, the path of darkness...", 0.035)
     ending_slow_dialogue("\n The path of no return. Since it's come to this, I will share with you the tale of Kazpian, the first to discover the curse of Amortentia.", 0.035)
@@ -181,14 +183,14 @@ class ParentController
     ending_slow_dialogue("\n When he was finished, he immediately began mixing potions together and brewing a potion of the likes I had never seen nor smelt before.", 0.035)
     ending_slow_dialogue("\n Something felt wrong, so I peeked in his journal and saw this page open, glaring back at me. It read:", 0.035)
 
-    ending_slow_dialogue("\n\n#{"Kaz's journal:".black.on_light_red}\n #{"Year: 1743".black.on_light_red}\n #{"Moon: Garnet".black.on_light_red}\n\n #{"Kazpian> ".light_red}I've almost figured it out... the vial of Amortentia. I've tried and failed so many times, but this moon will be different.", 0.035)
+    ending_slow_dialogue("\n\n#{"Kaz's journal:".black.on_light_red}\n #{"Year: 1743".black.on_light_red}\n #{"Moon: ".black.on_light_red}#{"Garnet".red.on_light_red}\n\n #{"Kazpian> ".light_red}I've almost figured it out... the vial of Amortentia. I've tried and failed so many times, but this moon will be different.", 0.035)
     ending_slow_dialogue("\n I've discovered that the key ingredient isn't an ingredient at all, it's a potion!! In fact, all the ingredients are potions.", 0.035)
     ending_slow_dialogue("\n This is my hypothesis, if you combine the Brew of visions with a time potion and a bowl of smoke and embers, you create the curse of Amortentia!", 0.035)
     ending_slow_dialogue("\n During my scouting expeditions in the forest, I found remnants of a cult long since passed. They worshipped the Goddess of love and pain, Amortentia.", 0.035)
     ending_slow_dialogue("\n It's unclear what happened to this cult, but signs point to a battle that resulted in them abandoning this land.", 0.035)
     ending_slow_dialogue("\n what they left behind however, was the means to control another living being through the power of aromas alone.", 0.035)
     ending_slow_dialogue("\n The only problem is, they never specified the final ingredient. Without it, who knows what effect the potion could have.", 0.035)
-    ending_slow_dialogue("\n\n #{"Year: 1743".black.on_light_red}\n #{"Moon: ".black.on_light_red}#{"Scarlet".magenta.on_light_red}\n\n #{"Kazpian> ".light_red}I've almost figured it out... the vial of Amortentia. I've tried and failed so many times, but this moon will be different.", 0.035)
+    ending_slow_dialogue("\n\n #{"Year: 1743".black.on_light_red}\n #{"Moon: ".black.on_light_red}#{"Scarlet".red.on_light_red}\n\n #{"Kazpian> ".light_red}I've almost figured it out... the vial of Amortentia. I've tried and failed so many times, but this moon will be different.", 0.035)
     ending_slow_dialogue("\n Today I discovered what my potions have been lacking... It's the #{"blood".red} of a witch.", 0.035)
     ending_slow_dialogue("\n Most likely this is what caused their disappearance, as these grounds are known to be witching territory. I must discover for myself if this witchcraf#{"-".light_red}", 0.035)
 

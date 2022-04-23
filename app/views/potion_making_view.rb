@@ -50,13 +50,17 @@ class PotionMakingView < MainView
       "Bow of smoke and embers#{':'.light_magenta} wormwood #{'+'.light_magenta} ?",
       "Bow of smoke and embers#{':'.light_magenta} rubies #{'+'.light_magenta} ?",
       "Tonic of transcendence#{':'.light_magenta} an owl feather #{'+'.light_magenta} ?",
-      "Tonic of transcendence#{':'.light_magenta} sage #{'+'.light_magenta} ?"
+      "Tonic of transcendence#{':'.light_magenta} sage #{'+'.light_magenta} ?",
+      "Potions earn you 100 gold a pop, as long as they're made correctly.",
+      "Making the same potion twice won't earn you any bonus gold."
     ]
     @complex_hints = [
       "Simple potions require 2 ingredients#{','.light_magenta} complex potions require 3 potions as ingredients#{'.'.light_magenta}",
       "When you use a potion as an ingredient#{','.light_magenta} it stays in your inventory so you can use it again#{'.'.light_magenta}",
       "There aren't nearly as many complex potions to make as simple ones#{'.'.light_magenta}",
-      "Having a hard time making the final potion? Try using the bowl of smoke and embers#{'.'.light_magenta}"
+      "Having a hard time making the final potion? Try using the bowl of smoke and embers#{'.'.light_magenta}",
+      "A successful complex potion will earn you 100G, but don't try making the same thing twice.",
+      "The final potion will earn you a heaping pile of gold."
     ]
     @potion_tutorial_one = "
     #{'Gʀᴜɴᴛɪʟᴅᴀ>'.magenta} It's time to learn and in time#{';'.light_magenta} master#{','.light_magenta} the subtle science of potion-making#{'.'.light_magenta}

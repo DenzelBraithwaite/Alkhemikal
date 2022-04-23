@@ -93,6 +93,7 @@ class LabyrinthController < ParentController
   end
 
   def move_up
+    @player.gold += rand(4..8) unless @current_room.visited
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id - 1, @current_room.column_id)
   end
@@ -110,6 +111,7 @@ class LabyrinthController < ParentController
   end
 
   def move_down
+    @player.gold += rand(4..8) unless @current_room.visited
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id + 1, @current_room.column_id)
   end
@@ -127,6 +129,7 @@ class LabyrinthController < ParentController
   end
 
   def move_left
+    @player.gold += rand(4..8) unless @current_room.visited
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id - 1)
   end
@@ -144,6 +147,7 @@ class LabyrinthController < ParentController
   end
 
   def move_right
+    @player.gold += rand(4..8) unless @current_room.visited
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id + 1)
   end
