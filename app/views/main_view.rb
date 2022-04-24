@@ -89,6 +89,43 @@ class MainView
                     Previous: Demo Version 2.1 - last update: #{'labyrinth'.yellow}"
   end
 
+  def easter_egg
+    2.times do
+      puts 'congrats, you found an easter egg :)'.black.on_white.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_black.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.red.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_red.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.green.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_green.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.yellow.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_yellow.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.blue.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_blue.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.magenta.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_magenta.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.cyan.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_cyan.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.white.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_white.blink
+    end
+    sleep(2)
+  end
+
   def get_user_name
     puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".cyan} Before I forget#{','.cyan} what's your name my dear witch#{'?'.cyan}"
     name = gets.chomp.downcase

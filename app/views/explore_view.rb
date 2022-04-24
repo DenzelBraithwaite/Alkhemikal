@@ -17,8 +17,11 @@ class ExploreView
       "When you#{"'".light_green}ve found all of the ingredients#{','.light_green} you#{"'".light_green}ll be able to view any damaged recipes you#{"'".light_green}ve collected#{'.'.light_green}",
       "You can press enter a few times in a row to continue searching for a few rounds at a time#{'.'.light_green}",
       "You can check the good ingredients you#{"'".light_green}ve found by looking at your ingredients from the menu#{'.'.light_green}",
-      "Evevery time you search, you find a bit of gold too.",
-      "If you get a perfect explore run, you'll earn yourself some extra gold."
+      'Every time you search, you find a bit of gold too. You can use that gold down at the shop.',
+      "If you get a perfect explore run, you'll earn yourself some extra gold.",
+      'Almost every ingredient can be found while exploring... Almost.',
+      'Unfortunately, Gruntilda always seems to join you when you search for ingredients.',
+      "Not all tips are useful, most of them are, but this one isn't.",
     ]
     # Array of things to say when a good ingredient is found
     @good_ingredient_text = [
@@ -58,7 +61,7 @@ class ExploreView
     puts "  ℐ'𝓋ℯ 𝓉𝓇𝒾ℯ𝒹 𝒶𝓃𝒹 𝒻𝒶𝒾𝓁ℯ𝒹 𝓈ℴ 𝓂𝒶𝓃𝓎 𝓉𝒾𝓂ℯ𝓈, 𝒷𝓊𝓉 𝓉𝒽𝒾𝓈 𝓂ℴℴ𝓃 𝓌𝒾𝓁𝓁 𝒷ℯ 𝒹𝒾𝒻𝒻ℯ𝓇ℯ𝓃𝓉.".black.on_light_yellow
     puts "  ℐ'𝓋ℯ 𝒹𝒾𝓈𝒸ℴ𝓋ℯ𝓇ℯ𝒹 𝓉𝒽𝒶𝓉 𝓉𝒽ℯ 𝓀ℯ𝓎 𝒾𝓃ℊ𝓇ℯ𝒹𝒾ℯ𝓃𝓉𝓈 𝒶𝓇ℯ 𝒶𝒸𝓉𝓊𝒶𝓁𝓁𝓎 𝓅ℴ𝓉𝒾ℴ𝓃𝓈!!.     ".black.on_light_yellow
     puts "  ℐ𝓃 𝒻𝒶𝒸𝓉 𝒶𝓁𝓁 𝓉𝒽ℯ 𝒾𝓃ℊ𝓇ℯ𝒹𝒾ℯ𝓃𝓉𝓈 𝒶𝓇ℯ 𝓅ℴ𝓉𝒾ℴ𝓃𝓈.                             ".black.on_light_yellow
-    puts "  𝒯𝒽𝒾𝓈 𝒾𝓈 𝓂𝓎 𝒽𝓎𝓅ℴ𝓉𝒽ℯ𝓈𝒾𝓈, 𝒾𝒻 𝓎ℴ𝓊 𝒸ℴ𝓂𝒷𝒾𝓃ℯ 𝓉𝒽ℯ ℬ𝓇ℯ𝓌 ℴ𝒻 𝓋𝒾𝓈𝒾ℴ𝓃𝓈 𝓌-         ".black.on_light_yellow
+    puts "  𝒯𝒽𝒾𝓈 𝒾𝓈 𝓂𝓎 𝒽𝓎𝓅ℴ𝓉𝒽ℯ𝓈𝒾𝓈, 𝒾𝒻 𝓎ℴ𝓊 𝒸ℴ𝓂𝒷𝒾𝓃ℯ 𝓉𝒽ℯ 𝓉𝒾𝓂ℯ 𝓅ℴ𝓉𝒾ℴ𝓃 𝓌𝒾-         ".black.on_light_yellow
     puts ""
     puts "--".light_black
     puts ""

@@ -32,9 +32,9 @@ class PotionRepo
       'Tincture of temptation',
       'Philter of unborn death',
       'Mobile madness',
-      'Imminent memories',
+      'Bottled deja vu',
       'Potent daught fromson',
-      'Ceaseless indulgence',
+      'Tonic of ceaseless indulgence',
       'Aging potion',
       'Potion potion',
       'Vile vial of amortentia'
@@ -68,7 +68,7 @@ class PotionRepo
       "Appetitus increasus syrum": ['goblin gums', "a griffin's beak"],
       "Tincture of temptation": ['mermaid scales', 'siren vocal cords'],
       "Philter of unborn death": ['a harpy egg', 'ghost essence'],
-      "Vial of the Volatile": ['a dragon claw', 'aconite'],
+      "Vial of the volatile": ['a dragon claw', 'aconite'],
       "Potion Potion": [
         # 3 potions combined, many will work.
         'Potion of the arcane',
@@ -90,13 +90,13 @@ class PotionRepo
         "Warlock's brew",
         'Potion of altered perception'
       ],
-      "Ceaseless indulgence": [
+      "Tonic of ceaseless indulgence": [
         # Potion that gives in to your inner desires
         'Screaming dreams',
         'Philter of desires',
         'Tincture of temptation'
       ],
-      "Imminent memories": [
+      "Bottled deja vu": [
         # Potion that glances into the future
         'Brew of visions',
         'Vial of knowledge',

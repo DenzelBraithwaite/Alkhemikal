@@ -23,11 +23,15 @@ class BillywigView
     @tips = [
       "Keep pressing #{"'".light_blue}enter#{"'".light_blue} in a menu to cycle through the tips #{'/'.light_blue} hints#{'.'.light_blue}",
       "There's one card in the deck that's worth 21 points alone!",
-      "If you get 6 cards under 21, you win!!",
+      'If you get 6 cards under 21, you win!!',
       "Gruntilda cheats, so if she's ever going to draw a card that will make her bust, she'll pass it to you instead",
-      "The odds are stacked against you in this game, Your best bet is to win early.",
+      'The odds are stacked against you in this game, your best bet is to win early.',
       "You can bet even if you don't have enough gold. But you'll owe Gruntilda!",
-      "If you don't want to bet anything, just press 'enter'."
+      "If you don't want to bet anything, just press 'enter'.",
+      "Legend has it, billywig got it's name from those darn blue billywig pests.",
+      "The ones some witches call 'muggles' created blackjack by stealing ideas from billywig!",
+      "Quit while you're ahead, it's very easy to go in the hole.",
+      "Not all tips are useful, most of them are, but this one isn't."
     ]
   end
 

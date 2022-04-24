@@ -25,18 +25,12 @@ class Witch
       "Tonic of transcendence": ['an owl feather', 'sage'],
       "Draught of secrets": ['ancient dust', 'gargoyle scales'],
       "Philter of desires": ['rose petals', 'ashwinder eggs'],
-      "Brew of visions": ['newt oil', 'tarot cards'],
-      "Spicy syrum": ['lavender', 'ginger'],
-      "Brew of beginnings": ['water', 'small bones'],
-      "Liquid light": ['silver', 'unicorn urine'],
-      "Vial of knowledge": ['a chess pawn', "wizard's beard hairs"],
-      "Slimy syrum": ['pickled slugs', 'leech juice'],
       "Hearing gel": ['a wyvern ear', 'werewolf fur'],
       "Healing salve": ['centaur arteries', 'a chimera tail'],
       "Appetitus increasus syrum": ['goblin gums', "a griffin's beak"],
       "Tincture of temptation": ['mermaid scales', 'siren vocal cords'],
       "Philter of unborn death": ['a harp egg', 'ghost essence'],
-      "Vial of the Volatile": ['a dragon claw', 'aconite'],
+      "Vial of the volatile": ['a dragon claw', 'aconite'],
     }
     @special_recipes = {}
     @unlocked_hats = ["none"]

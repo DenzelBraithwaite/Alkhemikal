@@ -8,8 +8,9 @@ class ShopController < ParentController
 
   def run
     @running = true
+    @enter_shop = true
     while @running
-      @view.shop_menu_options(@player.gold)
+      @view.shop_menu_options(@player.gold, @enter_shop)
       print "#{@player.name}#{'> '.blue}"
       action = gets.chomp.to_i
       clear
@@ -17,31 +18,43 @@ class ShopController < ParentController
       route_action(action)
       clear
     end
+    @view.visited = true
   end
 
   # Routes player depending on their choice
   def route_action(action)
     case action
     when 1
+      @enter_shop = false
       @item_category = 'hat'
       buy_hat
     when 2
+      @enter_shop = false
       @item_category = 'robe'
       buy_robe
     when 3
+      @enter_shop = false
       @item_category = 'ingredient'
       buy_ingredient
     when 4
+      @enter_shop = false
       @item_category = 'potion'
       buy_potion
     when 5
+      @enter_shop = false
       @item_category = 'piece of advice'
       buy_advice
-    when 9 then @running = false
+    when 9
+      @running = false
     else
       @view.invalid_option
       clear
     end
+  end
+
+  # Handles logic for player buying something from shop
+  def make_purchase
+
   end
 
   def buy_hat
@@ -76,4 +89,3 @@ class ShopController < ParentController
 
 
 end
-# @view.shop_menu_options(@item_category)

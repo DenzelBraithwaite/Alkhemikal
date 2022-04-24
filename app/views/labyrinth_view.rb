@@ -19,23 +19,28 @@ class LabyrinthView < MainView
       ███████╗██║░░██║██████╦╝░░░██║░░░██║░░██║██║██║░╚███║░░░██║░░░██║░░██║
       ╚══════╝╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚═╝░░╚═╝"
       @tips = [
-      "Keep pressing #{"'".yellow}enter#{"'".yellow} in a menu to cycle through the tips #{'/'.yellow} hints#{'.'.yellow}",
-      "There are 8 regions in the labyrinth#{','.yellow} 2 of which are dangerous#{'.'.yellow}",
-      "If you die#{','.yellow} you don#{"'".yellow}t lose anything but you respawn in a different #{'('.yellow}safer#{')'.yellow} room#{'.'.yellow}",
-      "Technically#{','.yellow} the labyrinth is a maze#{'...'.yellow} But labyrinth sounds much cooler#{'.'.yellow}"
+        "Keep pressing #{"'".yellow}enter#{"'".yellow} in a menu to cycle through the tips #{'/'.yellow} hints#{'.'.yellow}",
+        "There are 8 regions in the labyrinth#{','.yellow} 2 of which are dangerous#{'.'.yellow}",
+        "If you die#{','.yellow} you don#{"'".yellow}t lose anything but you respawn in a different #{'('.yellow}safer#{')'.yellow} room#{'.'.yellow}",
+        "Technically#{','.yellow} the labyrinth is a maze#{'...'.yellow} But labyrinth sounds much cooler#{'.'.yellow}",
+        'Try to find the center of the labyrinth.',
+        'The center of labyrinth is the only room in which you can freely move in any direction.',
+        'There are a total of 400 rooms in the labyrinth, nobody has ever seen them all, nobody.',
+        "You'll be alone in the labyrinth, I'm pretty sure at least. Yeah, or maybe ... no yeah you're most likely alone, probably.",
+        "Not all tips are useful, most of them are, but this one isn't."
       ]
       @tutorial = "Welcome... to the Wiccan Labyrinth#{'!!'.yellow}\n
-      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} This will test the will and endurance of even the most wicked of witches#{'.'.yellow}\n
-      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} Caution to the brave and foolish enough to enter these grounds#{','.yellow} Nyaaakakaa#{'.'.yellow}\n
-      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} You'll need to navigate the labyrinth blindly by following random paths#{'.'.yellow}\n
-      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} There are many regions#{','.yellow} some big and some small#{'.'.yellow} Some safe and some... not so safe#{'.'.yellow}\n
-      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} As you progress through the trial#{','.yellow} you'll find robes and hats of previous fools#{'.'.yellow}\n
-      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} They've got no use for it now NYAAK#{','.yellow} so if you see something#{','.yellow} grab it#{'!'.yellow}\n
-      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} If an area is dangerous#{','.yellow} you'll receive a warning#{','.yellow} don't ignore it#{'!'.yellow}\n
-      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} If you do#{','.yellow} you'll find yourself waking up outside the labyrinth#{','.yellow} courtesy of yours truly#{'!'.yellow}\n
-      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} When you enter the labyrinth again#{','.yellow} you'll be somwhere completely different#{','.yellow} be warned#{'!'.yellow}\n
-      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} Last but not least#{','.yellow} there are a total of #{'21'.yellow} items to find in the labyrinth#{'!'.yellow}\n
-      #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} They're evenly scattered so good luck#{','.yellow} and try not to die.. NYAAAKAKAAAAA#{'!'.yellow}\n"
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} This will test the will and endurance of even the most wicked of witches#{'.'.yellow}\n
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} Caution to the brave and foolish enough to enter these grounds#{','.yellow} Nyaaakakaa#{'.'.yellow}\n
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} You'll need to navigate the labyrinth blindly by following random paths#{'.'.yellow}\n
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} There are many regions#{','.yellow} some big and some small#{'.'.yellow} Some safe and some... not so safe#{'.'.yellow}\n
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} As you progress through the trial#{','.yellow} you'll find robes and hats of previous fools#{'.'.yellow}\n
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} They've got no use for it now NYAAK#{','.yellow} so if you see something#{','.yellow} grab it#{'!'.yellow}\n
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} If an area is dangerous#{','.yellow} you'll receive a warning#{','.yellow} don't ignore it#{'!'.yellow}\n
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} If you do#{','.yellow} you'll find yourself waking up outside the labyrinth#{','.yellow} courtesy of yours truly#{'!'.yellow}\n
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} When you enter the labyrinth again#{','.yellow} you'll be somwhere completely different#{','.yellow} be warned#{'!'.yellow}\n
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} Last but not least#{','.yellow} there are a total of #{'21'.yellow} items to find in the labyrinth#{'!'.yellow}\n
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} They're evenly scattered so good luck#{','.yellow} and try not to die.. NYAAAKAKAAAAA#{'!'.yellow}\n"
       @area_descriptions = {
         center_area: [
           'Standing in the center of the labyrinth, you feel a calming sensation envelop you.',
@@ -43,12 +48,12 @@ class LabyrinthView < MainView
           "You're at the center of the labyrinth, you look northeast and see a mountain.",
           "You're at the center of the labyrinth, you look southwest and see a marsh.",
           "You're at the center of the labyrinth, you look southeast and see a jungle.",
+          "The center of the labyrinth, it's quiet, you stop to rest your weary bones for a moment.",
           'You are at the center of the labyrinth, everything connects here.',
-          'You are at the center of the labyrinth, everything connects here.',
-          'You are at the center of the labyrinth, everything connects here.',
+          'Everything connects here, this must be the center of the labyrinth.',
           "It's quiet, the climate is balanced, it's safe here. You're at the center of the labyrinth.",
-          "It's quiet, the climate is balanced, it's safe here. You're at the center of the labyrinth.",
-          "It's quiet, the climate is balanced, it's safe here. You're at the center of the labyrinth.",
+          "You're at the center of the labyrinth, stay for as long as you'd like.",
+          'No danger in site, a path in all directions, you take some time to plan your next move.'
         ],
         dark_area: [
           "It's too dark to see here",

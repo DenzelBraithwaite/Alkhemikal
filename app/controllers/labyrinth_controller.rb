@@ -9,6 +9,7 @@ class LabyrinthController < ParentController
     @repo = repo
     @new_hat_index = 0
     @new_robe_index = 0
+    @center_ingredient_found = false
   end
 
   # Labyrinth game main menu
@@ -218,16 +219,19 @@ class LabyrinthController < ParentController
 
   # Adds the only ingredient that can be found in the labyrinth, required for final potion
   def center_labyrinth_ingredient
+    return if @center_ingredient_found
     new_item_alert('? ! ? ', 'Telephonic device')
     puts "You have no earthly idea what this could be....".light_black
     @player.ingredients << 'telephonic device'
+    @center_ingredient_found = true
     continue_prompt
   end
 
   # A list of all rooms with hidden clothing, if entered, it will be added to your inventory.
   def check_if_room_is_special
-    center_labyrinth_ingredient if @current_room = @repo.rooms[189]
+    center_labyrinth_ingredient if @current_room == @repo.rooms[189]
     room_index = @repo.find_room_index(@current_room.row_id, @current_room.column_id)
+    death_in_the_dark if @repo.dark_death_rooms.include?(room_index)
     return unless @repo.item_room_indexes.include?(room_index)
 
     @repo.item_room_indexes.delete(room_index)
@@ -237,6 +241,20 @@ class LabyrinthController < ParentController
     else
       add_clothing_to_inventory(@repo.all_robes[@new_robe_index], false)
     end
+  end
+
+  # If player dies in maze from dark region
+  def death_in_the_dark
+    death_reasons = [
+      'You hear footsteps rapidly approaching from all directions.',
+      'You slip, fall and hit your head on something.',
+      'Out of nowhere, someone grabs you and blocks your breathing.'
+    ]
+    puts death_reasons.sample.light_black
+    sleep(3)
+    puts 'You wake up somewhere completely different...'.light_black
+    sleep(3.25)
+    @current_room = @repo.rooms[rand(100..279)]
   end
 
   # Alerts player when a new clothing is found
