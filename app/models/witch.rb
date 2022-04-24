@@ -6,7 +6,7 @@ class Witch
                 :hat, :unlocked_hats, :robe, :unlocked_robes, :special_recipes, :gold
 
   def initialize
-    @gold = 0
+    @gold = 200
     @ladle = "wooden spoon"
     @cauldron = "simple cauldron"
     @ingredients = ["water"] # Start with only water

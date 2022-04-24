@@ -64,7 +64,9 @@ class ShopView < MainView
       'I hear bad things about the potions here, probably better to make your own with Gruntilda.',
       "For some reason, the shopkeeper always refers to Gruntilda as 'Glinda', strange right?",
       'Advice pays, if you feel stuck, consider talking to the shopkeeper',
-      "Not all tips are useful, most of them are, but this one isn't."
+      "Not all tips are useful, most of them are, but this one isn't.",
+      "Don't think the shop revolves around you, if you buy the same item twice, you'll have two of the same item",
+      "The shopkeeper doesn't only stock up for you ya know? If you want more than one of something, go ahead!"
     ]
     @visited = false
     @greetings = [
@@ -87,7 +89,7 @@ class ShopView < MainView
     puts ''
     puts title_art.blue.blink
     puts ''
-    puts " Welcome#{','.blue} what can I do ya for #{'?'.blue}"
+    puts "Shopkeeper#{'> '.blue} #{greet_player(enter_shop)}"
     puts ''
     sleep(0.05)
     puts " 𝟙 #{'-'.blue} ℍ𝕒𝕥𝕤"
@@ -108,9 +110,6 @@ class ShopView < MainView
     puts " 𝟡 #{'-'.blue} #{'𝔹𝕒𝕔𝕜'.light_red}"
     puts ''
     sleep(0.05)
-    puts "Shopkeeper#{'> '.blue} #{greet_player(enter_shop)}"
-    puts ''
-    sleep(0.05)
     puts "Current gold#{':'.blue} #{gold.to_s.yellow}#{'G'.yellow}"
     puts ''
   end
@@ -129,17 +128,12 @@ class ShopView < MainView
     end
   end
 
-  # Shop category options
-  def shop_category(category)
-    puts title_art.blue.blink
-    puts ''
-    puts " Ahh#{','.blue} a nice #{category}. Which one catches your eye #{'?'.blue}"
-    puts ''
-  end
-
   # List all hats for sale
   def display_hats(hats)
+    puts "#{'Tip:'.blue} Enter the price of the hat you'd like to buy#{'.'.blue}"
+    puts ''
     puts @title_art.blue.blink
+    puts ''
     puts ''
     hats.each do |hat, price|
       puts "#{price.to_s.yellow}#{'G'.yellow}#{' - '.blue}#{hat}"
@@ -150,7 +144,10 @@ class ShopView < MainView
 
   # List all robes for sale
   def display_robes(robes)
+    puts "#{'Tip:'.blue} Enter the price of the robe you you'd like to buy#{'.'.blue}"
+    puts ''
     puts @title_art.blue.blink
+    puts ''
     puts ''
     robes.each do |robe, price|
       puts "#{price.to_s.yellow}#{'G'.yellow}#{' - '.blue}#{robe}"
@@ -161,7 +158,10 @@ class ShopView < MainView
 
   # List all ingredients for sale
   def display_ingredients(ingredients)
+    puts "#{'Tip:'.blue} Enter the price of the ingredient you'd like to buy#{'.'.blue}"
+    puts ''
     puts @title_art.blue.blink
+    puts ''
     puts ''
     ingredients.each do |ingredient, price|
       puts "#{price.to_s.yellow}#{'G'.yellow}#{' - '.blue}#{ingredient}"
@@ -172,7 +172,10 @@ class ShopView < MainView
 
   # List all potions for sale
   def display_potions(potions)
+    puts "#{'Tip:'.blue} Enter the price of the potion you'd like to buy#{'.'.blue}"
+    puts ''
     puts @title_art.blue.blink
+    puts ''
     puts ''
     potions.each do |potion, price|
       puts "#{price.to_s.yellow}#{'G'.yellow}#{' - '.blue}#{potion}"
@@ -183,7 +186,10 @@ class ShopView < MainView
 
   # List all advice for sale
   def display_advice(advice)
+    puts "#{'Tip:'.blue} Enter the price for the piece of advice you'd like to hear#{'.'.blue}"
+    puts ''
     puts @title_art.blue.blink
+    puts ''
     puts ''
     advice.each do |piece_of_advice, price|
       puts "#{price.to_s.yellow}#{'G'.yellow}#{' - '.blue}#{piece_of_advice}"
@@ -192,8 +198,29 @@ class ShopView < MainView
     puts ''
   end
 
-  def are_you_sure
-    puts "Shopkeeper #{'>'.blue} Are you sure #{'?'.blue}"
+  # Confirms before player purchases item.
+  def confirm_purchase(item_key, item_value, player_name)
+    system('clear')
+    puts @title_art.blue.blink
+    puts ''
+    puts "Shopkeeper #{'>'.blue} #{item_key.to_s.light_blue} for #{item_value.to_s.yellow}#{'G'.yellow}, are you sure #{'?'.blue}"
+    puts ''
+    puts '1 - yes'
+    puts ''
+    puts '2 - no'
+    puts ''
+    print "#{player_name}#{'>'.blue} "
+    confirm = gets.chomp.to_i
+    case confirm
+    when 1 then return true
+    when 2 then return false
+    end
+  end
+
+  def insufficient_funds
+    puts ''
+    puts "Shopkeeper #{'>'.blue} If don't have any gold then get out#{'!'.blue}"
+    puts "Insufficient funds".light_red.blink
     puts ''
   end
 

@@ -52,15 +52,40 @@ class ShopController < ParentController
     end
   end
 
-  # Handles logic for player buying something from shop
-  def make_purchase
-
+  def insufficient_funds(price)
+    (@player.gold - price).negative?
   end
 
+  # Checks if player has enough gold, adds hat to inventory if they do, otherwise tell them they're broke.
+  def purchase_item(price, hat)
+    if insufficient_funds(price)
+      @view.insufficient_funds
+      continue_prompt
+    else
+      confirm = @view.confirm_purchase(hat, price, @player.name)
+      if confirm
+        slow_dialogue("#{hat.to_s.light_blue} #{'added to your inventory.'.light_black}", 0.02, false)
+        puts ''
+        slow_dialogue("Shopkeeper #{'>'.blue} Thanks#{','.blue} appreciate the business#{'!'.blue}", 0.008, false)
+        @player.gold -= price
+        @player.unlocked_hats << hat.to_s
+        continue_prompt
+      end
+    end
+  end
+
+  # Displays hats for purchase, checks if player has enough gold, adds hat to inventory.
   def buy_hat
     @view.display_hats(@view.hats)
     print "#{@player.name} #{'>'.blue}"
     choice = gets.chomp.to_i
+    case choice
+    when 5 then purchase_item(@view.hats.values[0], @view.hats.keys[0])
+    when 80 then purchase_item(@view.hats.values[1], @view.hats.keys[1])
+    when 120 then purchase_item(@view.hats.values[2], @view.hats.keys[2])
+    when 150 then purchase_item(@view.hats.values[3], @view.hats.keys[3])
+    when 200 then purchase_item(@view.hats.values[4], @view.hats.keys[4])
+    end
   end
 
   def buy_robe
