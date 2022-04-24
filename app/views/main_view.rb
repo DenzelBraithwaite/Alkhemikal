@@ -79,7 +79,7 @@ class MainView
   \\\\___//
    -----"
 
-    @demo_version = "Current: Demo Version 4.0 - last update: #{'Added shop and gold to game'.blue}\n
+    @demo_version = "Current: Demo Version 4.0 - last update: #{'Added shop and gold currency to game'.blue}\n
                     Current: Demo Version 3.2 - last update: #{'Added tips to all menus'.cyan}\n
                     Current: Demo Version 3.1 - last update: #{'Added labyrinth navigation helpers'.yellow}\n
                     Current: Demo Version 3.0 - last update: #{'Revamped entire labyrinth'.yellow}\n

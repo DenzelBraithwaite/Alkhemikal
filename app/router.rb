@@ -67,8 +67,8 @@ class Router
 
   def stop
     puts @view.game_over
-   puts "Game over #{@player.name}..."
-   sleep(3.5)
+    puts "Game over #{@player.name}..."
+  # sleep(3.5)
     @running = false
   end
 

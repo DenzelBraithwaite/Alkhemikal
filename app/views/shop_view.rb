@@ -9,27 +9,6 @@ class ShopView < MainView
     ░╚═══██╗██╔══██║██║░░██║██╔═══╝░
     ██████╔╝██║░░██║╚█████╔╝██║░░░░░
     ╚═════╝░╚═╝░░╚═╝░╚════╝░╚═╝░░░░░"
-    @witch_hat_art = '
-              .
-            /:\
-            /;:.\
-          //;:. \
-          ///;:.. \
-    __--"////;:... \"--__
-    --__   "--_____--"__--
-      ''"--_______--''"'
-    @witch_robe_art = "
-                  .--.
-                ,-\"  \"-,
-                /|\\____/|\\
-              / \\__  __/ \\
-              './ \\    / \\.'
-                  )  (
-                  /    \\
-                ;      ;
-                |      |
-                |      |
-                |______|"
     @hats = {
       "paper bag": 5,
       "red boarding helmet": 80,
@@ -45,11 +24,11 @@ class ShopView < MainView
       "disney princess dress": 240
     }
     @ingredients = {
-      "bottled tink": 0,
-      "dirt": 5,
-      "bubbly bubly": 10,
-      "tapioca balls": 18,
-      "cat saliva": 28,
+      "bottled tink": 0, # Bad ingredient
+      "dirt": 5, # Bad ingredient
+      "bubbly bubly": 10, # Bad ingredient
+      "tapioca balls": 18, # Bad ingredient
+      "cat saliva": 28, # Bad ingredient
       "crinkled leaves": 30,
       "various spices": 40,
       "goron seasoning": 87,
@@ -57,11 +36,11 @@ class ShopView < MainView
       "merge-dragon egg": 120 # Mobile madness
     }
     @potions = {
-      "fahkay poshun": 508,
-      "realimus-totalis": 699,
-      "skaahm": 715,
-      "authentic clear fog": 888,
-      "wayee stamuhnee": 999,
+      "fahkay poshun": 508, # Bad potion
+      "realimus-totalis": 699, # Bad potion
+      "skaahm": 715, # Bad potion
+      "authentic clear fog": 888, # Bad potion
+      "wayee stamuhnee": 999 # Gives bonus 2000G
     }
     @advice = {
       "billywig": 50, # You make money off of billywig, 3* your amount if you win, 0 if you even.

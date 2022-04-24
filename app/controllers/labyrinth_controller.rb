@@ -46,7 +46,7 @@ class LabyrinthController < ParentController
   def run
     @running = true
     @last_movement = @last_movement || "none"
-    @current_room = @current_room || @repo.rooms[rand(100..279)]
+    @current_room = @current_room || @repo.rooms[189] #rand(100..279)]
 
     while @running
       clear
@@ -216,12 +216,22 @@ class LabyrinthController < ParentController
     end
   end
 
+  # Adds the only ingredient that can be found in the labyrinth, required for final potion
+  def center_labyrinth_ingredient
+    new_item_alert('? ! ? ', 'Telephonic device')
+    puts "You have no earthly idea what this could be....".light_black
+    @player.ingredients << 'telephonic device'
+    continue_prompt
+  end
+
   # A list of all rooms with hidden clothing, if entered, it will be added to your inventory.
   def check_if_room_is_special
+    center_labyrinth_ingredient if @current_room = @repo.rooms[189]
     room_index = @repo.find_room_index(@current_room.row_id, @current_room.column_id)
     return unless @repo.item_room_indexes.include?(room_index)
 
     @repo.item_room_indexes.delete(room_index)
+    @player.gold += 10
     if room_index.odd?
       add_clothing_to_inventory(@repo.all_hats[@new_hat_index])
     else

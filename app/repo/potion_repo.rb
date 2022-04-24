@@ -30,12 +30,20 @@ class PotionRepo
       'Healing salve',
       'Appetitus increasus syrum',
       'Tincture of temptation',
-      'Philter of unborn death'
+      'Philter of unborn death',
+      'Mobile madness',
+      'Imminent memories',
+      'Potent daught fromson',
+      'Ceaseless indulgence',
+      'Aging potion',
+      'Potion potion',
+      'Vile vial of amortentia'
     ]
 
     # Hash of all creatable potions + their recipes
     @all_potion_recipes = {
       "Witch's brew": ['cat hair', 'bat spleen'],
+      "Mobile madness": ['merge-dragon egg', 'telephonic device'],
       "Warlock's brew": ['frog brains', 'tongue of dog'],
       "Time potion": ['star grass', 'toadstools'],
       "Potion of altered perception": ['assorted eyeballs', 'cyclops sweat'],
@@ -62,36 +70,47 @@ class PotionRepo
       "Philter of unborn death": ['a harpy egg', 'ghost essence'],
       "Vial of the Volatile": ['a dragon claw', 'aconite'],
       "Potion Potion": [
-        # Any 3 potions combined except brew of visions
-        "Witch's brew",
-        "Warlock's brew",
-        'Time potion',
-        'Potion of altered perception',
+        # 3 potions combined, many will work.
         'Potion of the arcane',
         'Magical medley',
         'Vial of corruption',
-        'Screaming dreams',
         'Flask of gills',
         'Flask of blood',
-        'Bowl of smoke and embers',
-        'Tonic of transcendence',
         'Draught of secrets',
-        'Philter of desires',
         'Spicy syrum',
-        'Brew of beginnings',
         'Liquid light',
-        'Vial of knowledge',
         'Slimy syrum',
         'Vial of the volatile',
-        'Hearing gel',
         'Healing salve',
-        'Appetitus increasus syrum',
-        'Tincture of temptation',
+        'Appetitus increasus syrum'
+      ],
+      "Potent daught fromson": [
+        # Gender changing complex potion
+        "Witch's brew",
+        "Warlock's brew",
+        'Potion of altered perception'
+      ],
+      "Ceaseless indulgence": [
+        # Potion that gives in to your inner desires
+        'Screaming dreams',
+        'Philter of desires',
+        'Tincture of temptation'
+      ],
+      "Imminent memories": [
+        # Potion that glances into the future
+        'Brew of visions',
+        'Vial of knowledge',
+        'Tonic of transcendence',
+      ],
+      "Aging potion": [
+        # Aging potion
+        'Hearing gel',
+        'Brew of beginnings',
         'Philter of unborn death'
       ],
 
       # Hash for Final potion
-      "Vile Vial of Amortentia": ['Bowl of smoke and embers', 'Brew of visions', 'Time potion']
+      "Vile vial of amortentia": ['Bowl of smoke and embers', 'Mobile madness', 'Time potion']
     }
   end
 end

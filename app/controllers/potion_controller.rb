@@ -41,7 +41,7 @@ class PotionController < ParentController
         print "#{@player.name}#{'> '.light_magenta}"
         action = gets.chomp.to_i
         still_cooking if action == 1
-      elsif @player.recipes.length == @potion_repo.all_potions.length
+      elsif @player.recipes.length >= 20
         upgrade_equipment
         create_which_potion
       else
@@ -92,7 +92,7 @@ class PotionController < ParentController
   # Check if player has created all potions, upgrade equipment if true.
   def upgrade_equipment
     return if @already_upgraded
-    return if @player.recipes.length != @potion_repo.all_potions.length
+    return unless @player.recipes.length >= 20
 
     # slow_dialogue(@view.upgrade(@player.name), 0.025, true)
     @player.upgrade_cauldron
@@ -570,7 +570,7 @@ class PotionController < ParentController
     @potion_repo.all_potion_recipes.each do |potion, ingredients|
       if ingredients.include?(@first_complex_ingredient) && ingredients.include?(@second_complex_ingredient) && ingredients.include?(@third_complex_ingredient)
         # Check if potion is the final potion.
-        if potion == "Vile Vial of Amortentia".to_sym
+        if potion == "Vile vial of amortentia".to_sym
           puts "You've created the #{potion.to_s.light_red}!" # Add ingredient descriptions after
           game_ending
           final_potion_created = true
@@ -584,7 +584,7 @@ class PotionController < ParentController
         end
 
         # Checks if potion exists in player recipes, don't add it if it does.
-        if @player.recipes.key?(potion)
+        if @player.recipes.key?(potion) || @player.special_recipes.key?(potion)
           puts "You've already created this"
         else
           puts ''
@@ -592,7 +592,7 @@ class PotionController < ParentController
           puts @view.good_potion_text.sample unless final_potion_created
           puts "Congrats, a new potion!" unless final_potion_created
           @player.gold += 100
-          @player.special_recipes[potion] = ingredients # Currently adds the to 1 array on one line, fix this
+          @player.special_recipes[potion] = ingredients
         end
         no_matches = false
         line(0, 3)
