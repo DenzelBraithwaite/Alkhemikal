@@ -34,6 +34,7 @@ class PotionController < ParentController
   def route_action(action)
     case action
     when 1
+      check_if_scammed
       if enough_ingredients?
         create_which_potion
         clear
@@ -54,6 +55,16 @@ class PotionController < ParentController
     else
       @view.invalid_option
       clear
+    end
+  end
+
+  def check_if_scammed
+    if @player.tricked
+      @player.tricked = false
+      puts ''
+      slow_dialogue("Gruntilda looks at your ingredients...".light_black, 0.005, false)
+      slow_dialogue("#{'Gʀᴜɴᴛɪʟᴅᴀ> '.magenta} Silly witch, these ingredients are USELESS for potion making! NYAAAAkakaka, seems the shopkeeper pulled a fast one on you.", 0.001, false)
+      slow_dialogue("Gruntilda throws away the bad ingredients...".light_black, 0.001)
     end
   end
 
@@ -94,7 +105,7 @@ class PotionController < ParentController
     return if @already_upgraded
     return unless @player.recipes.length >= 20
 
-    # slow_dialogue(@view.upgrade(@player.name), 0.025, true)
+    slow_dialogue(@view.upgrade(@player.name), 0.025, true)
     @player.upgrade_cauldron
     # sleep(3.5)
     @player.upgrade_ladle

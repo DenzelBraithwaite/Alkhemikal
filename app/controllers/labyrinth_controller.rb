@@ -90,7 +90,7 @@ class LabyrinthController < ParentController
     if @current_room.up
       move_up
       puts @view.move_to_next_room
-      @last_movement = "up"
+      @last_movement = 'up'
     else
       @view.display_no_room
     end
@@ -108,7 +108,7 @@ class LabyrinthController < ParentController
     if @current_room.down
       move_down
       puts @view.move_to_next_room
-      @last_movement = "down"
+      @last_movement = 'down'
     else
       @view.display_no_room
     end
@@ -126,7 +126,7 @@ class LabyrinthController < ParentController
     if @current_room.left
       move_left
       puts @view.move_to_next_room
-      @last_movement = "left"
+      @last_movement = 'left'
     else
       @view.display_no_room
     end
@@ -144,7 +144,7 @@ class LabyrinthController < ParentController
     if @current_room.right
       move_right
       puts @view.move_to_next_room
-      @last_movement = "right"
+      @last_movement = 'right'
     else
       @view.display_no_room
     end

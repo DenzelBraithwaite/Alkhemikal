@@ -2,14 +2,15 @@ require 'colorize'
 
 # Tracks everything related to player
 class Witch
-  attr_accessor :name, :ladle, :cauldron, :ingredients, :recipes,
+  attr_accessor :name, :ladle, :cauldron, :ingredients, :recipes, :tricked,
                 :current_hat, :hats, :current_robe, :robes, :special_recipes, :gold
 
   def initialize
     @gold = 200
-    @ladle = "wooden spoon"
-    @cauldron = "simple cauldron"
-    @ingredients = ["water"] # Start with only water
+    @tricked = false
+    @ladle = 'wooden spoon'
+    @cauldron = 'simple cauldron'
+    @ingredients = ['water']
     @recipes = {
       "Witch's brew": ['cat hair', 'bat spleen'],
       "Warlock's brew": ['frog brains', 'tongue of dog'],

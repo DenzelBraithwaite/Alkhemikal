@@ -1,5 +1,5 @@
 class ShopView < MainView
-  attr_accessor :hats, :robes, :ingredients, :potions, :advice, :tips, :visited
+  attr_accessor :hats, :robes, :ingredients, :potions, :advice, :tips, :visited, :good_explore_ingredients
 
   def initialize
     @title_art = "
@@ -9,6 +9,61 @@ class ShopView < MainView
     ░╚═══██╗██╔══██║██║░░██║██╔═══╝░
     ██████╔╝██║░░██║╚█████╔╝██║░░░░░
     ╚═════╝░╚═╝░░╚═╝░╚════╝░╚═╝░░░░░"
+    # Array of good ingredients found while exploring
+    @good_explore_ingredients = [
+      'a chess pawn',
+      'a chimera tail',
+      'a crocodile heart',
+      'a dragon claw',
+      'a fairy wing',
+      "a griffin's beak",
+      'a harpy egg',
+      'a mandrake',
+      'a merge-dragon egg',
+      'a moonstone',
+      'a wyvern ear',
+      'aconite',
+      'an ogre toenail',
+      'an owl feather',
+      'ancient dust',
+      'arcana rocks',
+      'ashwinder eggs',
+      'assorted eyeballs',
+      'bat spleen',
+      'cat hair',
+      'centaur arteries',
+      'cyclops sweat',
+      'frog brains',
+      'gargoyle scales',
+      'ghost essence',
+      'ginger',
+      'goblin gums',
+      'gorgon tears',
+      'iguana blood',
+      'ink',
+      'lavender',
+      'leech juice',
+      'mermaid scales',
+      'mushrooms',
+      'newt oil',
+      'octopus powder',
+      'pickled slugs',
+      'pixie wings',
+      'rose petals',
+      'rubies',
+      'sage',
+      'silver',
+      'siren vocal cords',
+      'small bones',
+      'star grass',
+      'tarot cards',
+      'toadstools',
+      'tongue of dog',
+      'unicorn urine',
+      'werewolf fur',
+      "wizard's beard hairs",
+      'wormwood'
+    ]
     @hats = {
       "paper bag": 5,
       "red boarding helmet": 80,
@@ -24,16 +79,18 @@ class ShopView < MainView
       "disney princess dress": 240
     }
     @ingredients = {
-      "bottled tink": 0, # Bad ingredient
-      "dirt": 5, # Bad ingredient
-      "bubbly bubly": 10, # Bad ingredient
+      "bottled tink": 1, # Bad ingredient
+      "dirt": 8, # Bad ingredient
+      "bubbly bubly": 15, # Bad ingredient
       "tapioca balls": 18, # Bad ingredient
-      "cat saliva": 28, # Bad ingredient
-      "crinkled leaves": 30,
-      "various spices": 40,
-      "goron seasoning": 87,
-      "air freshner": 111,
-      "merge-dragon egg": 120 # Mobile madness
+      "a chess pawn": 20, # Good ingredient, can be found while searching
+      "crinkled leaves": 32, # Bad ingredient
+      "air freshner": 48, # Bad ingredient
+      "cat saliva": 56, # Bad ingredient
+      "various spices": 80, # Bad ingredient
+      "goron seasoning": 105, # Bad ingredient
+      "tarot cards": 111, # Good ingredient, can be found while searching
+      "a merge-dragon egg": 210 # Mobile madness
     }
     @potions = {
       "fahkay poshun": 508, # Bad potion
@@ -128,13 +185,13 @@ class ShopView < MainView
   end
 
   # List all hats for sale
-  def display_hats(hats)
+  def display_hats
     puts "#{'Tip:'.blue} Enter the price of the hat you'd like to buy#{",".blue} press #{"'".blue}#{'9'.light_red}#{"'".blue} to go back#{'.'.blue}"
     puts ''
     puts @title_art.blue.blink
     puts ''
     puts ''
-    hats.each do |hat, price|
+    @hats.each do |hat, price|
       puts "#{price.to_s.yellow}#{'G'.yellow}#{' - '.blue}#{hat}"
       puts ''
     end
@@ -142,13 +199,13 @@ class ShopView < MainView
   end
 
   # List all robes for sale
-  def display_robes(robes)
+  def display_robes
     puts "#{'Tip:'.blue} Enter the price of the robe you you'd like to buy#{",".blue} press #{"'".blue}#{'9'.light_red}#{"'".blue} to go back#{'.'.blue}"
     puts ''
     puts @title_art.blue.blink
     puts ''
     puts ''
-    robes.each do |robe, price|
+    @robes.each do |robe, price|
       puts "#{price.to_s.yellow}#{'G'.yellow}#{' - '.blue}#{robe}"
       puts ''
     end
@@ -156,13 +213,13 @@ class ShopView < MainView
   end
 
   # List all ingredients for sale
-  def display_ingredients(ingredients)
+  def display_ingredients
     puts "#{'Tip:'.blue} Enter the price of the ingredient you'd like to buy#{",".blue} press #{"'".blue}#{'9'.light_red}#{"'".blue} to go back#{'.'.blue}"
     puts ''
     puts @title_art.blue.blink
     puts ''
     puts ''
-    ingredients.each do |ingredient, price|
+    @ingredients.each do |ingredient, price|
       puts "#{price.to_s.yellow}#{'G'.yellow}#{' - '.blue}#{ingredient}"
       puts ''
     end
@@ -170,13 +227,13 @@ class ShopView < MainView
   end
 
   # List all potions for sale
-  def display_potions(potions)
+  def display_potions
     puts "#{'Tip:'.blue} Enter the price of the potion you'd like to buy#{",".blue} press #{"'".blue}#{'9'.light_red}#{"'".blue} to go back#{'.'.blue}"
     puts ''
     puts @title_art.blue.blink
     puts ''
     puts ''
-    potions.each do |potion, price|
+    @potions.each do |potion, price|
       puts "#{price.to_s.yellow}#{'G'.yellow}#{' - '.blue}#{potion}"
       puts ''
     end
@@ -184,13 +241,13 @@ class ShopView < MainView
   end
 
   # List all advice for sale
-  def display_advice(advice)
+  def display_advice
     puts "#{'Tip:'.blue} Enter the price for the piece of advice you'd like to hear#{",".blue} press #{"'".blue}#{'9'.light_red}#{"'".blue} to go back#{'.'.blue}"
     puts ''
     puts @title_art.blue.blink
     puts ''
     puts ''
-    advice.each do |piece_of_advice, price|
+    @advice.each do |piece_of_advice, price|
       puts "#{price.to_s.yellow}#{'G'.yellow}#{' - '.blue}#{piece_of_advice}"
       puts ''
     end
