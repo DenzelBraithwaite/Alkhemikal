@@ -10,7 +10,7 @@ class ShopController < ParentController
     @running = true
     @enter_shop = true
     while @running
-      @view.shop_menu_options(@player.gold, @enter_shop)
+      @view.shop_menu_options(@player.current_hat, @player.current_robe, @player.gold, @enter_shop)
       print "#{@player.name}#{'> '.blue}"
       action = gets.chomp.to_i
       clear
@@ -57,21 +57,53 @@ class ShopController < ParentController
   end
 
   # Checks if player has enough gold, adds hat to inventory if they do, otherwise tell them they're broke.
-  def purchase_item(price, hat)
+  def purchase_item(price, item, category)
     if insufficient_funds(price)
       @view.insufficient_funds
       continue_prompt
     else
-      confirm = @view.confirm_purchase(hat, price, @player.name)
+      confirm = @view.confirm_purchase(item, price, @player.name)
       if confirm
-        slow_dialogue("#{hat.to_s.light_blue} #{'added to your inventory.'.light_black}", 0.02, false)
+        slow_dialogue("#{item.to_s.light_blue} #{'added to your inventory.'.light_black}", 0.02, false)
         puts ''
         slow_dialogue("Shopkeeper #{'>'.blue} Thanks#{','.blue} appreciate the business#{'!'.blue}", 0.008, false)
         @player.gold -= price
-        @player.unlocked_hats << hat.to_s
+        select_category(category) << item.to_s
         continue_prompt
+      elsif confirm == false
+        clear
+        reroute_category(category)
+      else
+        clear
+        @view.invalid_option
+        clear
+        purchase_item(price, item, category)
       end
     end
+  end
+
+  def reroute_category(category)
+    case category
+    when 'hats' then buy_hat
+    when 'robes' then buy_robe
+    when 'ingredients' then buy_ingredient
+    when 'potions' then buy_potion
+    when 'advice' then buy_advice
+    end
+  end
+
+  def select_category(category)
+    case category
+    when 'hats' then unlocked_to = @player.hats
+    when 'robes' then unlocked_to = @player.robes
+    when 'ingredients' then unlocked_to = @player.ingredients
+    when 'potions' then unlocked_to = nil
+    when 'advice'
+      puts "advice here"
+      sleep(2)
+      unlocked_to = nil
+    end
+    return unlocked_to unless unlocked_to.nil?
   end
 
   # Displays hats for purchase, checks if player has enough gold, adds hat to inventory.
@@ -80,37 +112,39 @@ class ShopController < ParentController
     print "#{@player.name} #{'>'.blue}"
     choice = gets.chomp.to_i
     case choice
-    when 5 then purchase_item(@view.hats.values[0], @view.hats.keys[0])
-    when 80 then purchase_item(@view.hats.values[1], @view.hats.keys[1])
-    when 120 then purchase_item(@view.hats.values[2], @view.hats.keys[2])
-    when 150 then purchase_item(@view.hats.values[3], @view.hats.keys[3])
-    when 200 then purchase_item(@view.hats.values[4], @view.hats.keys[4])
+    when 5 then purchase_item(@view.hats.values[0], @view.hats.keys[0], 'hats')
+    when 80 then purchase_item(@view.hats.values[1], @view.hats.keys[1], 'hats')
+    when 120 then purchase_item(@view.hats.values[2], @view.hats.keys[2], 'hats')
+    when 150 then purchase_item(@view.hats.values[3], @view.hats.keys[3], 'hats')
+    when 200 then purchase_item(@view.hats.values[4], @view.hats.keys[4], 'hats')
+    # This will return user to previous menu, completing the case statement
+    when 9 then nil
+    else
+      clear
+      @view.invalid_option
+      clear
+      buy_hat
     end
   end
 
+  # Displays robes for purchase, checks if player has enough gold, adds hat to inventory.
   def buy_robe
     @view.display_robes(@view.robes)
     print "#{@player.name} #{'>'.blue}"
     choice = gets.chomp.to_i
+    case choice
+    when 20 then purchase_item(@view.robes.values[0], @view.robes.keys[0], 'robes')
+    when 99 then purchase_item(@view.robes.values[1], @view.robes.keys[1], 'robes')
+    when 113 then purchase_item(@view.robes.values[2], @view.robes.keys[2], 'robes')
+    when 166 then purchase_item(@view.robes.values[3], @view.robes.keys[3], 'robes')
+    when 240 then purchase_item(@view.robes.values[4], @view.robes.keys[4], 'robes')
+    # This will return user to previous menu, completing the case statement
+  when 9 then nil
+  else
+    clear
+    @view.invalid_option
+    clear
+    buy_robe
   end
-
-  def buy_ingredient
-    @view.display_ingredients(@view.ingredients)
-    print "#{@player.name} #{'>'.blue}"
-    choice = gets.chomp.to_i
   end
-
-  def buy_potion
-    @view.display_potions(@view.potions)
-    print "#{@player.name} #{'>'.blue}"
-    choice = gets.chomp.to_i
-  end
-
-  def buy_advice
-    @view.display_advice(@view.advice)
-    print "#{@player.name} #{'>'.blue}"
-    choice = gets.chomp.to_i
-  end
-
-
 end

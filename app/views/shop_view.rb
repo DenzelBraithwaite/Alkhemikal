@@ -83,7 +83,7 @@ class ShopView < MainView
   end
 
   # Shop main menu options
-  def shop_menu_options(gold, enter_shop)
+  def shop_menu_options(hat, robe, gold, enter_shop)
     print "Tɪᴘ: ".blue
     puts @tips.sample
     puts ''
@@ -110,8 +110,7 @@ class ShopView < MainView
     puts " 𝟡 #{'-'.blue} #{'𝔹𝕒𝕔𝕜'.light_red}"
     puts ''
     sleep(0.05)
-    puts "Current gold#{':'.blue} #{gold.to_s.yellow}#{'G'.yellow}"
-    puts ''
+    current_clothing(hat, robe, gold)
   end
 
   # Greets player differently only if he just walked in
@@ -130,7 +129,7 @@ class ShopView < MainView
 
   # List all hats for sale
   def display_hats(hats)
-    puts "#{'Tip:'.blue} Enter the price of the hat you'd like to buy#{'.'.blue}"
+    puts "#{'Tip:'.blue} Enter the price of the hat you'd like to buy#{",".blue} press #{"'".blue}#{'9'.light_red}#{"'".blue} to go back#{'.'.blue}"
     puts ''
     puts @title_art.blue.blink
     puts ''
@@ -144,7 +143,7 @@ class ShopView < MainView
 
   # List all robes for sale
   def display_robes(robes)
-    puts "#{'Tip:'.blue} Enter the price of the robe you you'd like to buy#{'.'.blue}"
+    puts "#{'Tip:'.blue} Enter the price of the robe you you'd like to buy#{",".blue} press #{"'".blue}#{'9'.light_red}#{"'".blue} to go back#{'.'.blue}"
     puts ''
     puts @title_art.blue.blink
     puts ''
@@ -158,7 +157,7 @@ class ShopView < MainView
 
   # List all ingredients for sale
   def display_ingredients(ingredients)
-    puts "#{'Tip:'.blue} Enter the price of the ingredient you'd like to buy#{'.'.blue}"
+    puts "#{'Tip:'.blue} Enter the price of the ingredient you'd like to buy#{",".blue} press #{"'".blue}#{'9'.light_red}#{"'".blue} to go back#{'.'.blue}"
     puts ''
     puts @title_art.blue.blink
     puts ''
@@ -172,7 +171,7 @@ class ShopView < MainView
 
   # List all potions for sale
   def display_potions(potions)
-    puts "#{'Tip:'.blue} Enter the price of the potion you'd like to buy#{'.'.blue}"
+    puts "#{'Tip:'.blue} Enter the price of the potion you'd like to buy#{",".blue} press #{"'".blue}#{'9'.light_red}#{"'".blue} to go back#{'.'.blue}"
     puts ''
     puts @title_art.blue.blink
     puts ''
@@ -186,7 +185,7 @@ class ShopView < MainView
 
   # List all advice for sale
   def display_advice(advice)
-    puts "#{'Tip:'.blue} Enter the price for the piece of advice you'd like to hear#{'.'.blue}"
+    puts "#{'Tip:'.blue} Enter the price for the piece of advice you'd like to hear#{",".blue} press #{"'".blue}#{'9'.light_red}#{"'".blue} to go back#{'.'.blue}"
     puts ''
     puts @title_art.blue.blink
     puts ''
@@ -215,6 +214,19 @@ class ShopView < MainView
     when 1 then return true
     when 2 then return false
     end
+  end
+
+  def current_clothing(hat, robe, gold)
+    puts " Cᴜʀʀᴇɴᴛ ᴇqᴜɪᴘᴍᴇɴᴛ:".light_black
+    sleep(0.05)
+    puts " Hᴀᴛ: #{hat.blue}"
+    sleep(0.05)
+    puts " Rᴏʙᴇ: #{robe.blue}"
+    sleep(0.05)
+    puts " Gᴏʟᴅ: #{gold.to_s.yellow}#{'G'.yellow}"
+    sleep(0.05)
+    puts ''
+    puts ''
   end
 
   def insufficient_funds

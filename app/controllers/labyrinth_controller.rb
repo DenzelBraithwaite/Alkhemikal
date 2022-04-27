@@ -32,7 +32,7 @@ class LabyrinthController < ParentController
     when 2 then tutorial
     when 9 then @in_menu = false
     else
-      puts 'Invalid option'
+      @view.invalid_option
     end
   end
 
@@ -45,14 +45,16 @@ class LabyrinthController < ParentController
   end
 
   def run
+    @current_run_gold = 0
     @running = true
     @last_movement = @last_movement || "none"
-    @current_room = @current_room || @repo.rooms[189] #rand(100..279)]
+    @current_room = @current_room || @repo.rooms[rand(100..279)] #189 center
 
     while @running
       clear
       @view.press_9_to_quit
       @view.labyrinth_menu_options(@current_room.role, @last_movement)
+      @view.current_clothing(@player.current_hat, @player.current_robe)
       puts "#{'Cᴜʀʀᴇɴᴛ ʀᴏᴏᴍ:'.yellow} #{define_room}"
       puts @view.room_visited?(@current_room)
       puts ''
@@ -74,10 +76,12 @@ class LabyrinthController < ParentController
     when "l" then move_left?
     when "right" then move_right?
     when "r" then move_right?
-    when "9" then @running = false
+    when "9"
+      @player.gold += @current_run_gold
+      @running = false
     when "info" then room_info
     else
-      puts 'Invalid option'
+      @view.invalid_option
     end
   end
 
@@ -94,7 +98,7 @@ class LabyrinthController < ParentController
   end
 
   def move_up
-    @player.gold += rand(4..8) unless @current_room.visited
+    @current_run_gold += rand(4..8) unless @current_room.visited
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id - 1, @current_room.column_id)
   end
@@ -112,7 +116,7 @@ class LabyrinthController < ParentController
   end
 
   def move_down
-    @player.gold += rand(4..8) unless @current_room.visited
+    @current_run_gold += rand(4..8) unless @current_room.visited
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id + 1, @current_room.column_id)
   end
@@ -130,7 +134,7 @@ class LabyrinthController < ParentController
   end
 
   def move_left
-    @player.gold += rand(4..8) unless @current_room.visited
+    @current_run_gold += rand(4..8) unless @current_room.visited
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id - 1)
   end
@@ -148,7 +152,7 @@ class LabyrinthController < ParentController
   end
 
   def move_right
-    @player.gold += rand(4..8) unless @current_room.visited
+    @current_run_gold += rand(4..8) unless @current_room.visited
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id + 1)
   end
@@ -208,11 +212,11 @@ class LabyrinthController < ParentController
   def add_clothing_to_inventory(clothing, odd = true)
     if odd
       new_item_alert("HAT", clothing)
-      @player.unlocked_hats << clothing
+      @player.hats << clothing
       @new_hat_index += 1
     else
       new_item_alert("ROBE", clothing)
-      @player.unlocked_robes << clothing
+      @player.robes << clothing
       @new_robe_index += 1
     end
   end
@@ -229,13 +233,13 @@ class LabyrinthController < ParentController
 
   # A list of all rooms with hidden clothing, if entered, it will be added to your inventory.
   def check_if_room_is_special
-    center_labyrinth_ingredient if @current_room == @repo.rooms[189]
     room_index = @repo.find_room_index(@current_room.row_id, @current_room.column_id)
-    death_in_the_dark if @repo.dark_death_rooms.include?(room_index)
+    center_labyrinth_ingredient if @current_room == @repo.rooms[189]
+    death_in_labyrinth('dark') if @repo.dark_death_rooms.include?(room_index)
     return unless @repo.item_room_indexes.include?(room_index)
 
     @repo.item_room_indexes.delete(room_index)
-    @player.gold += 10
+    @current_run_gold += 10
     if room_index.odd?
       add_clothing_to_inventory(@repo.all_hats[@new_hat_index])
     else
@@ -244,16 +248,34 @@ class LabyrinthController < ParentController
   end
 
   # If player dies in maze from dark region
-  def death_in_the_dark
-    death_reasons = [
+  def death_in_labyrinth(region)
+    dark_death_reasons = [
       'You hear footsteps rapidly approaching from all directions.',
       'You slip, fall and hit your head on something.',
       'Out of nowhere, someone grabs you and blocks your breathing.'
     ]
-    puts death_reasons.sample.light_black
+    tundra_death_reasons = [
+      'Your body collapses, your legs have gone numb from the cold.',
+      'You slip on ice and hit your head.',
+      'The cold is more than you can handle, you stayed too long.'
+    ]
+    volcano_death_reasons = [
+      'Your skin starts to burn, the pain is too much to handle.',
+      'The smoke is too thick, you struggle to catch your breath.',
+      'The heat is more than you can handle, you stayed too long.'
+    ]
+    case region
+    when 'dark' then puts dark_death_reasons.sample.light_black
+    when 'tundra' then puts tundra_death_reasons.sample.light_black
+    when 'volcano' then puts volcano_death_reasons.sample.light_black
+    end
+
     sleep(3)
-    puts 'You wake up somewhere completely different...'.light_black
-    sleep(3.25)
+    puts 'You wake up somewhere completely different, your gold is missing...'.light_black
+    continue_prompt
+    puts "You #{'lost -'.red}#{@current_run_gold.to_s.red} gold."
+    sleep(3)
+    @current_run_gold = 0
     @current_room = @repo.rooms[rand(100..279)]
   end
 
@@ -271,15 +293,28 @@ class LabyrinthController < ParentController
     slow_dialogue("You've unlocked: #{item_name.yellow}".blink, 0.04, false)
   end
 
+  def get_direction
+    print "#{@player.name}#{'> '.yellow}"
+    @action = gets.chomp.downcase
+  end
+
   def normal_or_timer_room
     if timer_room?
-      region_timer(11) do
-        print "#{@player.name}#{'> '.yellow}"
-        @action = gets.chomp.downcase
+      # Sets dialogue for volcano region
+      if @current_room.row_id.between?(1, 5) && @current_room.column_id.between?(16, 20)
+        region_timer(10.5, 'volcano') do
+          get_direction
+        end
+      # Sets dialogue for tundra region
+      elsif @current_room.row_id.between?(16, 20) && @current_room.column_id.between?(1, 5)
+        region_timer(10.5, 'tundra') do
+          get_direction
+        end
+      else
+        get_direction
       end
     else
-      print "#{@player.name}#{'> '.yellow}"
-      @action = gets.chomp.downcase
+      get_direction
     end
     clear
     @view.press_9_to_quit
@@ -292,17 +327,17 @@ class LabyrinthController < ParentController
     @current_room.row_id.between?(16, 20) && @current_room.column_id.between?(1, 5)
   end
 
-  def region_timer(timer)
+  def region_timer(timer, region)
     start_time = Time.now
     puts "Don't stay here too long...".red.blink
     yield
     end_time = Time.now
     result = (end_time - start_time).round
-    if result >= timer
-      @action = '9'
-      puts 'You begin to lose consciousness...'.light_black
-      sleep(2.5)
-      @current_room = @repo.rooms[rand(100..279)]
+    return unless result >= timer
+
+    case region
+    when 'volcano' then death_in_labyrinth('volcano')
+    when 'tundra' then death_in_labyrinth('tundra')
     end
   end
 

@@ -10,7 +10,7 @@ class InventoryController < ParentController
     @running = true
     while @running
       @view.inventory_menu_options
-      @view.current_clothing(@player.hat, @player.robe, @player.gold)
+      @view.current_clothing(@player.current_hat, @player.current_robe, @player.gold)
       print "#{@player.name}#{'> '.light_black}"
       action = gets.chomp.to_i
       clear
@@ -38,25 +38,25 @@ class InventoryController < ParentController
 
   # Allows player to view all hats, select a hat, wear the hat.
   def change_hat
-    @view.list_hats(@player.unlocked_hats)
-    @view.view_current_hat(@player.hat)
+    @view.list_hats(@player.hats)
+    @view.view_current_hat(@player.current_hat)
     @view.ask_for_new_hat
     print "#{@player.name}#{'> '.light_black}"
     index = gets.chomp.to_i
-    index = @player.unlocked_hats.length if index > @player.unlocked_hats.length
-    @player.hat = @player.unlocked_hats[index - 1]
+    index = @player.hats.length if index > @player.hats.length
+    @player.current_hat = @player.hats[index - 1]
     @view.putting_on_hat
   end
 
   # Allows player to view all robes, select a robe, wear the robe.
   def change_robe
-    @view.list_robes(@player.unlocked_robes)
-    @view.view_current_robe(@player.robe)
+    @view.list_robes(@player.robes)
+    @view.view_current_robe(@player.current_robe)
     @view.ask_for_new_robe
     print "#{@player.name}#{'> '.light_black}"
     index = gets.chomp.to_i
-    index = @player.unlocked_robes.length if index > @player.unlocked_robes.length
-    @player.robe = @player.unlocked_robes[index - 1]
+    index = @player.robes.length if index > @player.robes.length
+    @player.current_robe = @player.robes[index - 1]
     @view.putting_on_robe
   end
 

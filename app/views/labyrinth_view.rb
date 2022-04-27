@@ -20,8 +20,8 @@ class LabyrinthView < MainView
       ╚══════╝╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚═╝░░╚═╝"
       @tips = [
         "Keep pressing #{"'".yellow}enter#{"'".yellow} in a menu to cycle through the tips #{'/'.yellow} hints#{'.'.yellow}",
-        "There are 8 regions in the labyrinth#{','.yellow} 2 of which are dangerous#{'.'.yellow}",
-        "If you die#{','.yellow} you don#{"'".yellow}t lose anything but you respawn in a different #{'('.yellow}safer#{')'.yellow} room#{'.'.yellow}",
+        "There are 8 regions in the labyrinth#{','.yellow} 3 of which are dangerous#{'.'.yellow}",
+        "If you die#{','.yellow} you'll lose , then you respawn in a different #{'('.yellow}safer#{')'.yellow} room#{'.'.yellow}",
         "Technically#{','.yellow} the labyrinth is a maze#{'...'.yellow} But labyrinth sounds much cooler#{'.'.yellow}",
         'Try to find the center of the labyrinth.',
         'The center of labyrinth is the only room in which you can freely move in any direction.',
@@ -162,9 +162,9 @@ class LabyrinthView < MainView
           "You're in a desert, sand and more sand surround you.",
           'A long stretch of desert lies ahead of you.',
           "You're standing in a desert, other than the occasional bones, there's not much to see here.",
+          "#{'Easter'.light_magenta} #{'egg'.light_cyan} #{':)'.light_green}".blink,
           'You begin to talk to yourself as the heat slowly fries your brain.',
           "Faintly, you hear the melodic sound of a guitar, it reminds you of gerudo valley.",
-          "#{'Easter'.light_magenta} #{'egg'.light_cyan} #{':)'.light_green}".blink
         ],
         mountain_area: [
           "The weather isn't bad but at the summit of the mountain lies an active volcano",
@@ -320,6 +320,17 @@ class LabyrinthView < MainView
       puts "ᴀᴛ ᴀɴʏ ᴛɪᴍᴇ ᴛᴏ ʀᴇᴛᴜʀɴ ᴛᴏ ᴛʜᴇ ᴍᴀɪɴ ᴍᴇɴᴜ. Wʜᴇɴ ʏᴏᴜ ᴘʟᴀʏ ᴀɢᴀɪɴ ʏᴏᴜ'ʟʟ sᴛᴀʀᴛ ғʀᴏᴍ ᴛʜᴇ sᴀᴍᴇ ʀᴏᴏᴍ.".light_black
     end
 
+    # Displays what equipment the player has
+    def current_clothing(hat, robe)
+      puts "Clothing:".light_black
+      sleep(0.01)
+      puts " Hᴀᴛ: #{hat.yellow}"
+      sleep(0.01)
+      puts " Rᴏʙᴇ: #{robe.yellow}"
+      sleep(0.01)
+      puts ''
+    end
+
   # Displays arrows depending on which direction is available
   def available_direction_arrows(role)
     case role
@@ -399,5 +410,13 @@ class LabyrinthView < MainView
       print "         #{'Down'.green}#{' ↓ '.green.blink}"
       print "         #{'Right'.green}#{' → '.green.blink}"
     end
+  end
+
+  def invalid_option
+    system('clear')
+    puts @title_art.yellow.blink
+    puts ""
+    puts "Please select a valid option".light_red
+    sleep(0.8)
   end
 end

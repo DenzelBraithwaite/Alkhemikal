@@ -3,7 +3,7 @@ require 'colorize'
 # Tracks everything related to player
 class Witch
   attr_accessor :name, :ladle, :cauldron, :ingredients, :recipes,
-                :hat, :unlocked_hats, :robe, :unlocked_robes, :special_recipes, :gold
+                :current_hat, :hats, :current_robe, :robes, :special_recipes, :gold
 
   def initialize
     @gold = 200
@@ -33,30 +33,30 @@ class Witch
       "Vial of the volatile": ['a dragon claw', 'aconite'],
     }
     @special_recipes = {}
-    @unlocked_hats = ["none"]
-    @unlocked_robes = ["simple black robe"]
-    @hat = @unlocked_hats.first
-    @robe = @unlocked_robes.first
+    @hats = ["none"]
+    @robes = ["simple black robe"]
+    @current_hat = @hats.first
+    @current_robe = @robes.first
   end
 
   # Adds a hat to the hat inventory, unless already owned
   def add_hat(hat)
-    @unlocked_hats << hat unless @unlocked_hats.include?(hat)
+    @hats << hat unless @hats.include?(hat)
   end
 
   # Changes hat
   def change_hat(hat)
-    @hat = hat
+    @current_hat = hat
   end
 
   # Adds a robe to the robes inventory, unless already owned
   def add_robe(robe)
-    @unlocked_robes << robe unless @unlocked_robes.include?(robe)
+    @robes << robe unless @robes.include?(robe)
   end
 
   # Changes robe
   def change_robe(robe)
-    @robe = robe
+    @current_robe = robe
   end
 
   # Method that upgrades ladle after all ingredients have been found.

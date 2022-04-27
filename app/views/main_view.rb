@@ -89,6 +89,14 @@ class MainView
                     Previous: Demo Version 2.1 - last update: #{'labyrinth'.yellow}"
   end
 
+  def special_thanks
+    puts "Special thanks to:"
+    puts "- Elisa"
+    puts "- Justin"
+    puts "- Mat"
+    puts "- Soheil"
+  end
+
   def easter_egg
     2.times do
       puts 'congrats, you found an easter egg :)'.black.on_white.blink
