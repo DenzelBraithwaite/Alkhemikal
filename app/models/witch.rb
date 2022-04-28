@@ -2,12 +2,13 @@ require 'colorize'
 
 # Tracks everything related to player
 class Witch
-  attr_accessor :name, :ladle, :cauldron, :ingredients, :recipes, :tricked,
-                :current_hat, :hats, :current_robe, :robes, :special_recipes, :gold
+  attr_accessor :name, :ladle, :cauldron, :ingredients, :recipes, :purchased_bad_ingredients,
+                :current_hat, :hats, :current_robe, :robes, :special_recipes, :gold, :purchased_bad_potions
 
   def initialize
-    @gold = 200
-    @tricked = false
+    @gold = 2000
+    @purchased_bad_ingredients = false
+    @purchased_bad_potions = false
     @ladle = 'wooden spoon'
     @cauldron = 'simple cauldron'
     @ingredients = ['water']

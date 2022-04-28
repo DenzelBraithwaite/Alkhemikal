@@ -4,12 +4,13 @@ class ShopController < ParentController
   def initialize
     super(player)
     @view = ShopView.new
+    @purchased_waste_of_money = false
   end
 
   def run
     @running = true
     @enter_shop = true
-    @player.tricked = false
+    @player.purchased_bad_ingredients = false
     while @running
       @view.shop_menu_options(@player.current_hat, @player.current_robe, @player.gold, @enter_shop)
       print "#{@player.name}#{'> '.blue}"
@@ -28,19 +29,19 @@ class ShopController < ParentController
     when 1
       @enter_shop = false
       @item_category = 'hat'
-      buy_hat
+      shop_for_hats
     when 2
       @enter_shop = false
       @item_category = 'robe'
-      buy_robe
+      shop_for_robe
     when 3
       @enter_shop = false
       @item_category = 'ingredient'
-      buy_ingredient
+      shop_for_ingredients
     when 4
       @enter_shop = false
       @item_category = 'potion'
-      buy_potion
+      shop_for_potions
     when 5
       @enter_shop = false
       @item_category = 'piece of advice'
@@ -59,10 +60,10 @@ class ShopController < ParentController
 
   def reroute_category(category)
     case category
-    when 'hats' then buy_hat
-    when 'robes' then buy_robe
-    when 'ingredients' then buy_ingredient
-    when 'potions' then buy_potion
+    when 'hats' then shop_for_hats
+    when 'robes' then shop_for_robe
+    when 'ingredients' then shop_for_ingredients
+    when 'potions' then shop_for_potions
     when 'advice' then buy_advice
     end
   end
@@ -108,7 +109,7 @@ class ShopController < ParentController
   end
 
   # Displays hats for purchase, checks if player has enough gold, adds hat to inventory.
-  def buy_hat
+  def shop_for_hats
     @view.display_hats
     print "#{@player.name} #{'>'.blue}"
     choice = gets.chomp.to_i
@@ -124,12 +125,12 @@ class ShopController < ParentController
       clear
       @view.invalid_option
       clear
-      buy_hat
+      shop_for_hats
     end
   end
 
   # Displays robes for purchase, checks if player has enough gold, adds robe to inventory.
-  def buy_robe
+  def shop_for_robe
     @view.display_robes
     print "#{@player.name} #{'>'.blue}"
     choice = gets.chomp.to_i
@@ -145,12 +146,68 @@ class ShopController < ParentController
       clear
       @view.invalid_option
       clear
-      buy_robe
+      shop_for_robe
+    end
+  end
+
+  # Displays potions for purchase, checks if player has enough gold, adds potion to inventory.
+  def shop_for_potions
+    good_potion_price = 999
+    @view.display_potions
+    print "#{@player.name} #{'>'.blue}"
+    choice = gets.chomp.to_i
+    case choice
+    when 508 then purchase_potion(@view.potions.values[0], @view.potions.keys[0])
+    when 699 then purchase_potion(@view.potions.values[1], @view.potions.keys[1])
+    when 715 then purchase_potion(@view.potions.values[2], @view.potions.keys[2])
+    when 888 then purchase_potion(@view.potions.values[3], @view.potions.keys[3])
+    when 999 then purchase_potion(@view.potions.values[4], @view.potions.keys[4])
+    # This will return user to previous menu, completing the case statement
+    when 9 then nil
+    else
+      clear
+      @view.invalid_option
+      clear
+      shop_for_potions
+    end
+  end
+
+  # Checks if player has enough gold, adds potion to potions if it's valuable.
+  def purchase_potion(price, item)
+    if insufficient_funds(price)
+      @view.insufficient_funds
+      continue_prompt
+    else
+      confirm = @view.confirm_purchase(item, price, @player.name)
+      if confirm
+        # Check if potion is good
+        if price == 999
+          slow_dialogue("#{'The shopkeeper smiles and hands you'.light_black} #{item.to_s.light_blue}#{'.'.light_black}", 0.02, false)
+          @player.gold += 2999 unless @purchased_waste_of_money
+          @player.recipes[:'wayee stamuhnee'] = ['gold', 'silver'] unless @purchased_waste_of_money
+          @purchased_waste_of_money = true
+        else
+          slow_dialogue("#{'The shopkeeper grins as he hands you'.light_black} #{item.to_s.light_blue}#{'.'.light_black}", 0.02, false)
+          @player.purchased_bad_potions = true
+        end
+        puts ''
+        slow_dialogue("Shopkeeper #{'>'.blue} Thanks#{','.blue} appreciate the business#{'!'.blue}", 0.008, false)
+        @player.gold -= price
+        continue_prompt
+      elsif confirm == false
+        clear
+        shop_for_potions
+      else
+        clear
+        @view.invalid_option
+        clear
+        purchase_potion(price, item)
+      end
     end
   end
 
   # Displays ingredients for purchase, checks if player has enough gold, adds good ingredients only.
-  def buy_ingredient
+  def shop_for_ingredients
     good_ingredient_prices = [20, 111, 210]
     bad_ingredient_prices = [0, 8, 15, 18, 32, 48, 56, 80, 105]
     @view.display_ingredients
@@ -175,7 +232,7 @@ class ShopController < ParentController
       clear
       @view.invalid_option
       clear
-      buy_ingredient
+      shop_for_ingredients
     end
   end
 
@@ -189,11 +246,11 @@ class ShopController < ParentController
       if confirm
         # Check if ingredient is good or owned
         if @view.good_explore_ingredients.include?(item.to_s)
-          slow_dialogue("#{"#{'The shopkeeper smiles and hands you'.light_black} #{item.to_s.light_blue}#{'.'.light_black}"}", 0.02, false)
+          slow_dialogue("#{'The shopkeeper smiles and hands you'.light_black} #{item.to_s.light_blue}#{'.'.light_black}", 0.02, false)
           @player.ingredients << item.to_s unless @player.ingredients.include?(item.to_s)
         else
           slow_dialogue("#{'The shopkeeper grins as he hands you'.light_black} #{item.to_s.light_blue}#{'.'.light_black}", 0.02, false)
-          @player.tricked = true
+          @player.purchased_bad_ingredients = true
         end
         puts ''
         slow_dialogue("Shopkeeper #{'>'.blue} Thanks#{','.blue} appreciate the business#{'!'.blue}", 0.008, false)
@@ -201,7 +258,7 @@ class ShopController < ParentController
         continue_prompt
       elsif confirm == false
         clear
-        buy_ingredient
+        shop_for_ingredients
       else
         clear
         @view.invalid_option

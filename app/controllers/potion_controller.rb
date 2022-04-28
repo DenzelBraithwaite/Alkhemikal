@@ -59,12 +59,18 @@ class PotionController < ParentController
   end
 
   def check_if_scammed
-    if @player.tricked
-      @player.tricked = false
+    if @player.purchased_bad_ingredients
+      @player.purchased_bad_ingredients = false
       puts ''
       slow_dialogue("Gruntilda looks at your ingredients...".light_black, 0.005, false)
       slow_dialogue("#{'Gʀᴜɴᴛɪʟᴅᴀ> '.magenta} Silly witch, these ingredients are USELESS for potion making! NYAAAAkakaka, seems the shopkeeper pulled a fast one on you.", 0.001, false)
       slow_dialogue("Gruntilda throws away the bad ingredients...".light_black, 0.001)
+    elsif @player.purchased_bad_potions
+      @player.purchased_bad_potions = false
+      puts ''
+      slow_dialogue("Gruntilda looks at your potions...".light_black, 0.005, false)
+      slow_dialogue("#{'Gʀᴜɴᴛɪʟᴅᴀ> '.magenta} Silly witch, these potions are USELESS! NYAAAAkakaka, seems the shopkeeper pulled a fast one on you.", 0.001, false)
+      slow_dialogue("Gruntilda throws away the bad potions...".light_black, 0.001)
     end
   end
 
