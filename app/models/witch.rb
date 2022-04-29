@@ -2,11 +2,11 @@ require 'colorize'
 
 # Tracks everything related to player
 class Witch
-  attr_accessor :name, :ladle, :cauldron, :ingredients, :recipes, :purchased_bad_ingredients,
+  attr_accessor :name, :ladle, :cauldron, :ingredients, :recipes, :purchased_bad_ingredients, :shopkeeper_advice,
                 :current_hat, :hats, :current_robe, :robes, :special_recipes, :gold, :purchased_bad_potions
 
   def initialize
-    @gold = 2000
+    @gold = 26
     @purchased_bad_ingredients = false
     @purchased_bad_potions = false
     @ladle = 'wooden spoon'
@@ -34,6 +34,7 @@ class Witch
       "Philter of unborn death": ['a harp egg', 'ghost essence'],
       "Vial of the volatile": ['a dragon claw', 'aconite'],
     }
+    @shopkeeper_advice = ['There are a few easter eggs hidden in the game.']
     @special_recipes = {}
     @hats = ["none"]
     @robes = ["simple black robe"]

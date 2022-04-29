@@ -43,8 +43,8 @@ class BillywigController < ParentController
     slow_dialogue("#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} #{@view.tutorial}", 0.010, true)
   end
 
+  # Clears screen and initializes the game
   def play_billywig
-    # Clears screen and initializes the game
     @playing_again = true
     while @playing_again
       clear
@@ -52,11 +52,11 @@ class BillywigController < ParentController
       @player_card_amount = 0
       @player_score = 0
       @bank_score = rand(6..9)
-      @view.place_bet(@player.gold)
-      print "#{@player.name}#{'> '.light_blue}"
-      @get_bet = gets.chomp.to_i
       set_bet
       clear
+      print 'Tip: '.light_blue
+      puts @view.tips.sample
+      puts ''
       puts @view.title_art.light_blue.blink
       line
       puts "Your bet: #{@bet.to_s.yellow}#{'G'.yellow}"
@@ -93,26 +93,15 @@ class BillywigController < ParentController
 
     #====================================================================#
 
-  def set_bet
-    case @get_bet
-    when 1 then @bet = 5
-    when 2 then @bet = 20
-    when 3 then @bet = 50
-    when 4 then @bet = 100
-    else
-      @bet = 0
-    end
-  end
-
   def pick_bank_score
-      [
-      1, 1, 1, 1,
-      2, 2, 2, 2,
-      3, 3, 3, 3,
-      4, 4, 4, 4,
-      5, 5, 5, 5, 5,
-      6, 6, 6, 6, 6,
-      7, 7, 7, 7, 7,
+    [
+      3, 3, 3,
+      3, 3, 3,
+      4, 4, 4,
+      4, 4, 4,
+      5, 5, 5, 5,
+      6, 6, 6, 6,
+      7, 7, 7, 7,
       8, 8, 8, 8, 8,
       9, 9, 9, 9, 9,
       10, 10, 10, 10,
@@ -132,12 +121,13 @@ class BillywigController < ParentController
 
   #====================================================================#
 
-  def six_cards_under_21?
-    @player_card_amount >= 6
+  def five_cards_under_21?
+    @player_card_amount >= 5
   end
 
   def pick_player_card
     [
+      0,
       1, 1, 1, 1, 1,
       2, 2, 2, 2, 2,
       3, 3, 3, 3, 3,
@@ -166,26 +156,28 @@ class BillywigController < ParentController
 
   def end_game_message(player_score, bank_score)
     winning_bet = (@bet * 2)
+    billywig = (@bet * 5)
+    five_under = (@bet * 3)
     @player_score = player_score
     too_many = (@player_score - 21)
     if @player_score > 21
-      @player.gold -= @bet
+      @player.gold -= winning_bet
       puts @view.end_results(@player_score, @bank_score)
       "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} Hot ghoul, looks like ya lost NYAAKAkakaaa! You have #{@player_score.to_s.light_green} points, that's #{too_many.to_s.light_red} too many!"
-      puts "You #{'lost'.red} #{@bet.to_s.yellow}#{'G'.yellow}"
+      puts "You #{'lost'.red} #{winning_bet.to_s.yellow}#{'G'.yellow}"
     elsif @player_score == 21
-      @player.gold += winning_bet
+      @player.gold += billywig
       puts @view.end_results(@player_score, @bank_score)
       puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} I can't believe you got a perfect score!!!
       #{@view.billywig_art.cyan}"
-      puts "You #{'won'.cyan} #{winning_bet.to_s.yellow}#{'G'.yellow}"
+      puts "You #{'won'.cyan} #{billywig.to_s.yellow}#{'G'.yellow}"
       puts ''
       puts ''
-    elsif six_cards_under_21?
-      @player.gold += winning_bet
+    elsif five_cards_under_21?
+      @player.gold += five_under
       puts @view.end_results(@player_score, @bank_score)
-      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} NYAK, #{'6 cards under 21?'.light_magenta} You must be cheating#{'...'.light_magenta}"
-      puts "You #{'won'.cyan} #{winning_bet.to_s.yellow}#{'G'.yellow}"
+      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} NYAK, #{'5 cards under 21?'.light_magenta} You must be cheating#{'...'.light_magenta}"
+      puts "You #{'won'.cyan} #{five_under.to_s.yellow}#{'G'.yellow}"
     elsif @player_score > bank_score
       @player.gold += winning_bet
       puts @view.end_results(@player_score, @bank_score)
@@ -203,6 +195,22 @@ class BillywigController < ParentController
       puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} You would've gotten #{next_card_color} next!"
       puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} As even as a porlock's toe nails. I guess nobody wins this round."
       "You #{'kept'.light_black} your #{@bet.to_s.yellow}#{'G'.yellow}"
+    end
+  end
+
+  # Confirms bet is valid
+  def set_bet
+    valid_bets = [0, 5, 20, 50, 100]
+    @view.place_bet(@player.gold)
+    print "#{@player.name}#{'> '.light_blue}"
+    @bet = gets.chomp.to_i
+    until valid_bets.include?(@bet)
+      clear
+      @view.invalid_option
+      clear
+      @view.place_bet(@player.gold)
+      print "#{@player.name}#{'> '.light_blue}"
+      @bet = gets.chomp.to_i
     end
   end
 

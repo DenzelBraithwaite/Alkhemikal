@@ -168,7 +168,7 @@ class ExploreController < ParentController
 
   def searching_loop
     searching_time = rand(15..60)
-    @player.gold += rand(4..8)
+    @player.gold += rand(8..32)
     puts @view.title_art.light_green.blink
     puts ''
     # Put message saying searching while walking

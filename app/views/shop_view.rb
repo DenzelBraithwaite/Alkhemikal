@@ -100,15 +100,18 @@ class ShopView < MainView
       "wayee stamuhnee": 999 # Gives bonus 2000G
     }
     @advice = {
-      "Inventory": 0, # If you don't want to share your name, you can change it and leave it blank.
-      "Explore": 40, # When you're done exploring, you'll get a free hint on how to create the final potion.
-      "Billywig": 50, # You make money off of billywig, 2* your amount if you win, 0 if you go even.
-      "Shop": 300, # If I had to make a recommendation, hmm... I'd say buy my most expensive potion!! AHIII ha ha haaa...
-      "Labyrinth tip": 150, # The south west and north east are the most dangerous regions
-      "Labyrinth tip 2": 2000, # info keyword cheat
-      "Complex potion": 800, # None of the ingredients in the potion potion are used in another potion.
+      "Inventory": 10, # All customization is done inside of your Inventory, including your name.
+      "Easter egg": 26, # There's a hidden easter egg in one of the menus.
+      "Explore": 40, # When you've found every ingredient while exploring, you'll get a free hint on how to create the final potion.
+      "Billywig": 50, # The odds of Billywig are against you, but if you manage to get 21, you can a nice profit.
+      "Shop": 100, # If I had to make a recommendation, hmm... I'd say buy my most expensive potion!! AHIII ha ha haaa...
+      "Cheat codes": 101, # You can change your name for secret hidden loot, try changing your name to 'Witch' for example.
+      "Simple potion": 120, # One ingredient in shop + one ingredient in the maze = M.M.
+      "Labyrinth tip": 150, # The south west and north east are dangerous, make sure to keep moving, if you stand still you'll die.
+      "Labyrinth tip 2": 300, # If you feel like you're in a dangerous area, leave the labyrinth and come back to save your gold.
+      "Complex potion": 500, # None of the ingredients in the potion potion are used in another potion.
+      "Labyrinth tip 3": 1000, # Use the keyword 'info' in the labyrinth to get more info on your location.
       "Final potion": 10_000, # "Vile vial of amortentia": ['Bowl of smoke and embers', 'Mobile madness', 'Time potion']
-      "Easter Egg": 26 # There's a hidden easter in one of the menus
     }
     @tips = [
       "Keep pressing #{"'".cyan}enter#{"'".cyan} in a menu to cycle through the tips #{'/'.blue} hints#{'.'.cyan}",

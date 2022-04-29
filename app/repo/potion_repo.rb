@@ -3,7 +3,7 @@ class PotionRepo
   attr_reader :all_potions, :all_potion_recipes
 
   def initialize
-    # Array of all creatable potions.
+    # Array of all attainable potions.
     @all_potions = [
       "Witch's brew",
       "Warlock's brew",
@@ -37,7 +37,8 @@ class PotionRepo
       'Tonic of ceaseless indulgence',
       'Aging potion',
       'Potion potion',
-      'Vile vial of amortentia'
+      'Vile vial of amortentia',
+      'wayee stamuhnee'
     ]
 
     # Hash of all creatable potions + their recipes
@@ -82,7 +83,8 @@ class PotionRepo
         'Slimy syrum',
         'Vial of the volatile',
         'Healing salve',
-        'Appetitus increasus syrum'
+        'Appetitus increasus syrum',
+        'wayee stamuhnee'
       ],
       "Potent daught fromson": [
         # Gender changing complex potion

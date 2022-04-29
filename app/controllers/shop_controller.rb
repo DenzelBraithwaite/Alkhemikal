@@ -28,24 +28,19 @@ class ShopController < ParentController
     case action
     when 1
       @enter_shop = false
-      @item_category = 'hat'
       shop_for_hats
     when 2
       @enter_shop = false
-      @item_category = 'robe'
       shop_for_robe
     when 3
       @enter_shop = false
-      @item_category = 'ingredient'
       shop_for_ingredients
     when 4
       @enter_shop = false
-      @item_category = 'potion'
       shop_for_potions
     when 5
       @enter_shop = false
-      @item_category = 'piece of advice'
-      buy_advice
+      shop_for_advice
     when 9
       @running = false
     else
@@ -206,7 +201,86 @@ class ShopController < ParentController
     end
   end
 
-  # Displays ingredients for purchase, checks if player has enough gold, adds good ingredients only.
+  # Displays advice for purchase, checks if player has enough gold, adds potion to inventory.
+  def shop_for_advice
+    @view.display_advice
+    print "#{@player.name} #{'>'.blue}"
+    choice = gets.chomp.to_i
+    purchase_advice(choice)
+  end
+
+  # Checks if player has enough gold, adds advice to inventory.
+  def purchase_advice(price)
+    return if price == 9
+    valid_prices = [10, 26, 40, 50, 100, 101, 120, 150, 300, 500, 1000, 10_000]
+    if insufficient_funds(price)
+      @view.insufficient_funds
+      continue_prompt
+    elsif valid_prices.include?(price)
+      confirm = @view.confirm_purchase('a piece of advice', price, @player.name)
+      if confirm
+        case price
+        when 10
+          @player.shopkeeper_advice << 'Inventory: All customization is done inside of your Inventory, including your name.'
+          slow_dialogue("Shopkeeper #{'>'.blue} All customization is done inside of your #{'Inventory'.light_black}, including your name.", 0.03, false)
+        when 26
+          @player.shopkeeper_advice << "Easter egg: There's a hidden easter egg in one of the menus."
+          slow_dialogue("Shopkeeper #{'>'.blue} There's a hidden #{'easter egg'.cyan} in one of the menus.", 0.03, false)
+        when 40
+          @player.shopkeeper_advice << "Explore: When you've found every ingredient while exploring, you'll get a free hint on how to create the final potion."
+          slow_dialogue("Shopkeeper #{'>'.blue} When you've found every ingredient while #{'exploring'.light_green}, you'll get a free hint on how to create the #{'final potion'.red}.", 0.03, false)
+        when 50
+          @player.shopkeeper_advice << 'Billywig: The odds of Billywig are against you, but if you manage to get 21, you can a nice profit.'
+          slow_dialogue("Shopkeeper #{'>'.blue} The odds of #{'Billywig'.light_blue} are against you, but if you manage to get 21, you can a nice profit.", 0.03, false)
+        when 100
+          @player.shopkeeper_advice << "Shop: If I had to make a recommendation, hmm... I'd say buy my most expensive potion!! AHIII hi hi hii..."
+          slow_dialogue("Shopkeeper #{'>'.blue} If I had to make a recommendation, hmm... I'd say buy my most expensive potion!! AHIII hi hi hii...", 0.03, false)
+        when 101
+          @player.shopkeeper_advice << "Cheat codes: You can change your name for secret hidden loot. Try changing your name to 'Witch' for example."
+          slow_dialogue("Shopkeeper #{'>'.blue} You can change your name for #{'secret'.blue} hidden loot. Try changing your name to '#{'Witch'.blue}' for example.", 0.03, false)
+        when 120
+          @player.shopkeeper_advice << 'Simple potion: One ingredient in shop + one ingredient in the labyrinth = M.M.'
+          slow_dialogue("Shopkeeper #{'>'.blue} One ingredient in #{'shop'.blue} + one ingredient in the #{'labyrinth'.yellow} = #{'M.M.'.light_magenta}", 0.03, false)
+        when 150
+          @player.shopkeeper_advice << "Labyrinth tip 1: The south west and north east are dangerous, make sure to keep moving, if you stand still you'll die."
+          slow_dialogue("Shopkeeper #{'>'.blue} The south west and north east are #{'dangerous'.red}, make sure to keep moving, if you stand still you'll die.", 0.03, false)
+        when 300
+          @player.shopkeeper_advice << "Labyrinth tip 2: If you feel like you're in a dangerous area, leave the labyrinth and come back to save your gold."
+          slow_dialogue("Shopkeeper #{'>'.blue} If you feel like you're in a #{'dangerous'.red} area, leave the labyrinth and come back to save your gold.", 0.03, false)
+        when 500
+          @player.shopkeeper_advice << "Complex potion: None of the ingredients in the 'Potion potion' are used in another potion."
+          slow_dialogue("Shopkeeper #{'>'.blue} None of the ingredients in the '#{'Potion potion'.light_magenta}' are used in another potion.", 0.03, false)
+        when 1000
+          @player.shopkeeper_advice << "Labyrinth tip 3: Use the keyword 'info' in the labyrinth to get more info on your location."
+          slow_dialogue("Shopkeeper #{'>'.blue} Use the keyword '#{'info'.yellow}' in the labyrinth to get more info on your location.", 0.03, false)
+        when 10_000
+          @player.shopkeeper_advice << 'Final potion: Vile vial of amortentia: [Bowl of smoke and embers, Mobile madness, Time potion]'
+          slow_dialogue("Shopkeeper #{'>'.blue} I don't want to say this out loud, don't ask questions, just take this and read it when you get home, then #{'BURN'.light_red} it immediately!", 0.03, false)
+          slow_dialogue('The shopkeeper hands you a slip of paper as he looks away...'.light_black, 0.04, false)
+        end
+        # sleep(1.5)
+        puts ''
+        slow_dialogue("Shopkeeper #{'>'.blue} Thanks#{','.blue} appreciate the business#{'!'.blue}", 0.008, false)
+        @player.gold -= price
+        continue_prompt
+      elsif confirm == false
+        clear
+        shop_for_advice
+      else
+        clear
+        @view.invalid_option
+        clear
+        purchase_advice(price)
+      end
+    else
+      clear
+      @view.invalid_option
+      clear
+      shop_for_advice
+    end
+  end
+
+  # Displays advice for purchase, checks if player has enough gold.
   def shop_for_ingredients
     good_ingredient_prices = [20, 111, 210]
     bad_ingredient_prices = [0, 8, 15, 18, 32, 48, 56, 80, 105]

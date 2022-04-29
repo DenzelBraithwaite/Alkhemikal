@@ -65,7 +65,8 @@ class PotionController < ParentController
       slow_dialogue("Gruntilda looks at your ingredients...".light_black, 0.005, false)
       slow_dialogue("#{'Gʀᴜɴᴛɪʟᴅᴀ> '.magenta} Silly witch, these ingredients are USELESS for potion making! NYAAAAkakaka, seems the shopkeeper pulled a fast one on you.", 0.001, false)
       slow_dialogue("Gruntilda throws away the bad ingredients...".light_black, 0.001)
-    elsif @player.purchased_bad_potions
+    end
+    if @player.purchased_bad_potions
       @player.purchased_bad_potions = false
       puts ''
       slow_dialogue("Gruntilda looks at your potions...".light_black, 0.005, false)
@@ -372,7 +373,7 @@ class PotionController < ParentController
         else
           puts @view.good_potion_text.sample
           puts 'Congrats, a new potion!'
-          @player.gold += 50
+          @player.gold += 100
           @player.recipes[potion] = ingredients
           @player.ingredients.delete(@first_simple_ingredient)
           @player.ingredients.delete(@second_simple_ingredient)
@@ -417,7 +418,7 @@ class PotionController < ParentController
   def add_complex_ingredients_to_pot
     clear
     print 'Hint: '.light_magenta
-    puts @view.hints.sample
+    puts @view.complex_hints.sample
     puts ''
     # display title art and list all owned potions.
     puts @view.title_art.light_magenta.blink
@@ -443,7 +444,7 @@ class PotionController < ParentController
   def first_complex_ingredient_prompt
     clear
     print 'Hint: '.light_magenta
-    puts @view.hints.sample
+    puts @view.complex_hints.sample
     puts ''
     puts @view.title_art.light_magenta.blink
     @view.quick_view_potions_as_ingredients(@player.recipes.keys)
@@ -464,7 +465,7 @@ class PotionController < ParentController
       @first_complex_ingredient = return_key_for_index(@first_complex_ingredient_index - 1, @player.recipes).to_s
       # list first potion / ingredient added.
       print 'Hint: '.light_magenta
-      puts @view.hints.sample
+      puts @view.complex_hints.sample
       puts ''
       puts @view.title_art.light_magenta.blink
       puts ''
@@ -478,7 +479,7 @@ class PotionController < ParentController
   # Clears the screen, prompts user to add the second potion / ingredient
   def second_complex_ingredient_prompt
     print 'Hint: '.light_magenta
-    puts @view.hints.sample
+    puts @view.complex_hints.sample
     puts ''
     puts @view.title_art.light_magenta.blink
     puts ''
@@ -509,7 +510,7 @@ class PotionController < ParentController
       # sets second ingredient to added index
       @second_complex_ingredient = return_key_for_index(@second_complex_ingredient_index - 1, @player.recipes).to_s
       print 'Hint: '.light_magenta
-      puts @view.hints.sample
+      puts @view.complex_hints.sample
       puts ''
       puts @view.title_art.light_magenta.blink
       puts ''
@@ -523,7 +524,7 @@ class PotionController < ParentController
   # Clears the screen, prompts user to add the third potion / ingredient
   def third_complex_ingredient_prompt
     print 'Hint: '.light_magenta
-    puts @view.hints.sample
+    puts @view.complex_hints.sample
     puts ''
     puts @view.title_art.light_magenta.blink
     puts ''
@@ -554,7 +555,7 @@ class PotionController < ParentController
       third_complex_ingredient_prompt
     else
       print 'Hint: '.light_magenta
-      puts @view.hints.sample
+      puts @view.complex_hints.sample
       puts ''
       puts @view.title_art.light_magenta.blink
       # sets third ingredient to added index
@@ -608,7 +609,7 @@ class PotionController < ParentController
           puts "#{"Glinda> ".cyan}I'm so sorry... but this is irreversable. I warned you..." if final_potion_created
           puts @view.good_potion_text.sample unless final_potion_created
           puts "Congrats, a new potion!" unless final_potion_created
-          @player.gold += 100
+          @player.gold += 150
           @player.special_recipes[potion] = ingredients
         end
         no_matches = false

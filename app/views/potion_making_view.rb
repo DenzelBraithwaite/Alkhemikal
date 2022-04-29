@@ -70,7 +70,8 @@ class PotionMakingView < MainView
       "Fancy a secret? Grunty tried craft a potion to reverse aging, but it had the opposite effect!",
       "Not all tips are useful, most of them are, but this one isn't.",
       "The final potion will earn you a heaping pile of gold, but only once!",
-      "She who seeks amortentia, need only look within. The answers will reveal themselves in time."
+      "She who seeks amortentia, need only look within. The answers will reveal themselves in time.",
+      'The aging potion that Gruntilda made had something to do with born life... or unborn death?'
     ]
     @potion_tutorial_one = "
     #{'Gʀᴜɴᴛɪʟᴅᴀ>'.magenta} It's time to learn and in time#{';'.light_magenta} master#{','.light_magenta} the subtle science of potion-making#{'.'.light_magenta}

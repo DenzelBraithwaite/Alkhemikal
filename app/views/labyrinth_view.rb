@@ -27,7 +27,8 @@ class LabyrinthView < MainView
         'The center of labyrinth is the only room in which you can freely move in any direction.',
         'There are a total of 400 rooms in the labyrinth, nobody has ever seen them all, nobody.',
         "You'll be alone in the labyrinth, I'm pretty sure at least. Yeah, or maybe ... no yeah you're most likely alone, probably.",
-        "Not all tips are useful, most of them are, but this one isn't."
+        "Not all tips are useful, most of them are, but this one isn't.",
+        "As you explore the labyrinth you'll find gold, if you die in the labyrinth, you'll lose all of the gold you've found so far."
       ]
       @tutorial = "Welcome... to the Wiccan Labyrinth#{'!!'.yellow}\n
                   #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} This will test the will and endurance of even the most wicked of witches#{'.'.yellow}\n

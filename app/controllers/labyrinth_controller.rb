@@ -58,6 +58,8 @@ class LabyrinthController < ParentController
       puts "#{'Cᴜʀʀᴇɴᴛ ʀᴏᴏᴍ:'.yellow} #{define_room}"
       puts @view.room_visited?(@current_room)
       puts ''
+      puts "Loot: #{@current_run_gold.to_s.yellow}#{'G'.yellow}"
+      puts ''
       # Cheks if room has an item
       check_if_room_is_special
       # Checks if room is freezing or burning, sets a timer
@@ -98,7 +100,7 @@ class LabyrinthController < ParentController
   end
 
   def move_up
-    @current_run_gold += rand(4..8) unless @current_room.visited
+    @current_run_gold += rand(8..32) unless @current_room.visited
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id - 1, @current_room.column_id)
   end
@@ -116,7 +118,7 @@ class LabyrinthController < ParentController
   end
 
   def move_down
-    @current_run_gold += rand(4..8) unless @current_room.visited
+    @current_run_gold += rand(8..32) unless @current_room.visited
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id + 1, @current_room.column_id)
   end
@@ -134,7 +136,7 @@ class LabyrinthController < ParentController
   end
 
   def move_left
-    @current_run_gold += rand(4..8) unless @current_room.visited
+    @current_run_gold += rand(8..32) unless @current_room.visited
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id - 1)
   end
@@ -152,7 +154,7 @@ class LabyrinthController < ParentController
   end
 
   def move_right
-    @current_run_gold += rand(4..8) unless @current_room.visited
+    @current_run_gold += rand(8..32) unless @current_room.visited
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id + 1)
   end
@@ -239,7 +241,7 @@ class LabyrinthController < ParentController
     return unless @repo.item_room_indexes.include?(room_index)
 
     @repo.item_room_indexes.delete(room_index)
-    @current_run_gold += 10
+    @current_run_gold += 100
     if room_index.odd?
       add_clothing_to_inventory(@repo.all_hats[@new_hat_index])
     else
