@@ -42,7 +42,7 @@ class PotionController < ParentController
         print "#{@player.name}#{'> '.light_magenta}"
         action = gets.chomp.to_i
         still_cooking if action == 1
-      elsif @player.recipes.length >= 20
+      elsif @player.recipes.length >= 26
         upgrade_equipment
         create_which_potion
       else
@@ -374,6 +374,7 @@ class PotionController < ParentController
           puts @view.good_potion_text.sample
           puts 'Congrats, a new potion!'
           @player.gold += 100
+          @player.gold += 100 if @player.current_robe == "witch's robe"
           @player.recipes[potion] = ingredients
           @player.ingredients.delete(@first_simple_ingredient)
           @player.ingredients.delete(@second_simple_ingredient)
@@ -593,6 +594,7 @@ class PotionController < ParentController
           game_ending
           final_potion_created = true
           @player.gold += 1000 unless @bonus_gold_received
+          @player.gold += 100 if @player.current_robe == "witch's robe"
           @bonus_gold_received = true
           sleep(5)
         else
@@ -610,6 +612,7 @@ class PotionController < ParentController
           puts @view.good_potion_text.sample unless final_potion_created
           puts "Congrats, a new potion!" unless final_potion_created
           @player.gold += 150
+          @player.gold += 100 if @player.current_robe == "witch's robe"
           @player.special_recipes[potion] = ingredients
         end
         no_matches = false

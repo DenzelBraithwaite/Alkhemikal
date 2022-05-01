@@ -31,6 +31,7 @@ class PotionRepo
       'Appetitus increasus syrum',
       'Tincture of temptation',
       'Philter of unborn death',
+      'Pot of kryptonight',
       'Mobile madness',
       'Bottled deja vu',
       'Potent daught fromson',
@@ -44,7 +45,7 @@ class PotionRepo
     # Hash of all creatable potions + their recipes
     @all_potion_recipes = {
       "Witch's brew": ['cat hair', 'bat spleen'],
-      "Mobile madness": ['merge-dragon egg', 'telephonic device'],
+      "Mobile madness": ['a merge-dragon egg', 'telephonic device'],
       "Warlock's brew": ['frog brains', 'tongue of dog'],
       "Time potion": ['star grass', 'toadstools'],
       "Potion of altered perception": ['assorted eyeballs', 'cyclops sweat'],
@@ -58,17 +59,18 @@ class PotionRepo
       "Tonic of transcendence": ['an owl feather', 'sage'],
       "Draught of secrets": ['ancient dust', 'gargoyle scales'],
       "Philter of desires": ['rose petals', 'ashwinder eggs'],
-      "Brew of visions": ['newt oil', 'tarot cards'],
+      "Brew of visions": ['ghost essence', 'tarot cards'],
       "Spicy syrum": ['lavender', 'ginger'],
       "Brew of beginnings": ['water', 'small bones'],
-      "Liquid light": ['silver', 'unicorn urine'],
+      "Liquid light": ['solid water', 'unicorn urine'],
       "Vial of knowledge": ['a chess pawn', "wizard's beard hairs"],
       "Slimy syrum": ['pickled slugs', 'leech juice'],
-      "Hearing gel": ['a wyvern ear', 'werewolf fur'],
+      "Hearing gel": ['a wyvern ear', 'human ear'],
+      "Pot of kryptonight": ['silver', 'werewolf fur'],
       "Healing salve": ['centaur arteries', 'a chimera tail'],
       "Appetitus increasus syrum": ['goblin gums', "a griffin's beak"],
       "Tincture of temptation": ['mermaid scales', 'siren vocal cords'],
-      "Philter of unborn death": ['a harpy egg', 'ghost essence'],
+      "Philter of unborn death": ['a harpy egg', 'newt oil'],
       "Vial of the volatile": ['a dragon claw', 'aconite'],
       "Potion Potion": [
         # 3 potions combined, many will work.
@@ -84,7 +86,8 @@ class PotionRepo
         'Vial of the volatile',
         'Healing salve',
         'Appetitus increasus syrum',
-        'wayee stamuhnee'
+        'wayee stamuhnee',
+        'Pot of kryptonight'
       ],
       "Potent daught fromson": [
         # Gender changing complex potion

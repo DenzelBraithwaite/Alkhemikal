@@ -3,6 +3,8 @@ require_relative '../repo/labyrinth_repo'
 
 # Add Billywig controller and hide it in a room
 class LabyrinthController < ParentController
+  attr_accessor :number_of_saves_used
+
   def initialize(repo)
     super(player)
     @view = LabyrinthView.new
@@ -10,6 +12,7 @@ class LabyrinthController < ParentController
     @new_hat_index = 0
     @new_robe_index = 0
     @center_ingredient_found = false
+    @number_of_saves_used = 0
   end
 
   # Labyrinth game main menu
@@ -55,10 +58,10 @@ class LabyrinthController < ParentController
       @view.press_9_to_quit
       @view.labyrinth_menu_options(@current_room.role, @last_movement)
       @view.current_clothing(@player.current_hat, @player.current_robe)
-      puts "#{'Cᴜʀʀᴇɴᴛ ʀᴏᴏᴍ:'.yellow} #{define_room}"
+      puts "#{'Current Region:'.yellow} #{define_room}"
       puts @view.room_visited?(@current_room)
       puts ''
-      puts "Loot: #{@current_run_gold.to_s.yellow}#{'G'.yellow}"
+      puts "Loot #{@current_run_gold.to_s.yellow}#{'G'.yellow}"
       puts ''
       # Cheks if room has an item
       check_if_room_is_special
@@ -100,7 +103,8 @@ class LabyrinthController < ParentController
   end
 
   def move_up
-    @current_run_gold += rand(8..32) unless @current_room.visited
+    @current_run_gold += rand(10..30) unless @current_room.visited
+    @current_run_gold += rand(2..4) if @player.current_robe == "little red riding hood"
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id - 1, @current_room.column_id)
   end
@@ -118,7 +122,8 @@ class LabyrinthController < ParentController
   end
 
   def move_down
-    @current_run_gold += rand(8..32) unless @current_room.visited
+    @current_run_gold += rand(10..30) unless @current_room.visited
+    @current_run_gold += rand(2..4) if @player.current_robe == "little red riding hood"
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id + 1, @current_room.column_id)
   end
@@ -136,7 +141,8 @@ class LabyrinthController < ParentController
   end
 
   def move_left
-    @current_run_gold += rand(8..32) unless @current_room.visited
+    @current_run_gold += rand(10..30) unless @current_room.visited
+    @current_run_gold += rand(2..4) if @player.current_robe == "little red riding hood"
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id - 1)
   end
@@ -154,7 +160,8 @@ class LabyrinthController < ParentController
   end
 
   def move_right
-    @current_run_gold += rand(8..32) unless @current_room.visited
+    @current_run_gold += rand(10..30) unless @current_room.visited
+    @current_run_gold += rand(2..4) if @player.current_robe == "little red riding hood"
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id + 1)
   end
@@ -237,7 +244,14 @@ class LabyrinthController < ParentController
   def check_if_room_is_special
     room_index = @repo.find_room_index(@current_room.row_id, @current_room.column_id)
     center_labyrinth_ingredient if @current_room == @repo.rooms[189]
-    death_in_labyrinth('dark') if @repo.dark_death_rooms.include?(room_index)
+    if @repo.dark_death_rooms.include?(room_index)
+      return if @player.current_robe == 'dark cloak'
+
+      @number_of_saves_used += 1 if @player.current_robe == "wizard's robe"
+      return if @number_of_saves_used == 1 && @player.current_robe == "wizard's robe"
+
+      death_in_labyrinth('dark')
+    end
     return unless @repo.item_room_indexes.include?(room_index)
 
     @repo.item_room_indexes.delete(room_index)
@@ -268,8 +282,14 @@ class LabyrinthController < ParentController
     ]
     case region
     when 'dark' then puts dark_death_reasons.sample.light_black
-    when 'tundra' then puts tundra_death_reasons.sample.light_black
-    when 'volcano' then puts volcano_death_reasons.sample.light_black
+    when 'tundra'
+      return if @player.current_robe == 'blue kirtle'
+
+      puts tundra_death_reasons.sample.light_black
+    when 'volcano'
+      return if @player.current_robe == 'ash grey capelet'
+
+      puts volcano_death_reasons.sample.light_black
     end
 
     sleep(3)
@@ -277,7 +297,7 @@ class LabyrinthController < ParentController
     continue_prompt
     puts "You #{'lost -'.red}#{@current_run_gold.to_s.red} gold."
     sleep(3)
-    @current_run_gold = 0
+    @current_run_gold = 0 unless @player.current_robe == 'magic cape'
     @current_room = @repo.rooms[rand(100..279)]
   end
 

@@ -51,6 +51,15 @@ class PotionMakingView < MainView
       "Bow of smoke and embers#{':'.light_magenta} rubies #{'+'.light_magenta} ?",
       "Tonic of transcendence#{':'.light_magenta} an owl feather #{'+'.light_magenta} ?",
       "Tonic of transcendence#{':'.light_magenta} sage #{'+'.light_magenta} ?",
+      "Draught of secrets#{':'.light_magenta} ancient dust #{'+'.light_magenta} ?",
+      "Philter of desires#{':'.light_magenta} ashwinder eggs #{'+'.light_magenta} ?",
+      "Brew of visions#{':'.light_magenta} ghost essence #{'+'.light_magenta} ?",
+      "Spicy syrum#{':'.light_magenta} lavender #{'+'.light_magenta} ?",
+      "Liquide light#{':'.light_magenta} unicorn urine #{'+'.light_magenta} ?",
+      "Vial of knowledge#{':'.light_magenta} a chess pawn #{'+'.light_magenta} ?",
+      "Slimy syrum#{':'.light_magenta} leech juice #{'+'.light_magenta} ?",
+      "Pot of kryptonight#{':'.light_magenta} silver #{'+'.light_magenta} ?",
+      "Healing salve#{':'.light_magenta} a chimera tail #{'+'.light_magenta} ?",
       "Potions earn you 100 gold a pop, as long as they're made correctly.",
       "Making the same potion twice won't earn you any bonus gold.",
       "There's a potion by the name of mobile madness, I hear it's incredibly difficult to find the right ingredients to make it."
@@ -59,19 +68,20 @@ class PotionMakingView < MainView
       "Simple potions require 2 ingredients#{','.light_magenta} complex potions require 3 potions as ingredients#{'.'.light_magenta}",
       "When you use a potion as an ingredient#{','.light_magenta} it stays in your inventory so you can use it again#{'.'.light_magenta}",
       "There aren't nearly as many complex potions to make as simple ones#{'.'.light_magenta}",
-      "Having a hard time making the final potion? Try using the bowl of smoke and embers#{'.'.light_magenta}",
+      "Having a hard time making the final potion? Try using a time potion#{'.'.light_magenta}",
       "Having a hard time making the final potion? Try asking the shopkeeper for advice#{'.'.light_magenta}",
       "Even though you'll probably end up making the final potion, you really shouldn't#{'.'.light_magenta}",
       "A successful complex potion will earn you 100G, but don't try making the same thing twice.",
       "The potion potion is the easiest complex potion to make, you'll probably end up making it by accident.",
       "There's a gender changing potion, I hear you need to combine parts of each gender or something.",
-      "A true witch can reach into her most inner desires, her most private of dreams and produce something magical.",
+      "A true witch can reach into her most inner desires, her most private of dreams and submit to temptations.",
       "Ever eperience deja vu? A prodigy can reacreate that in a bottle. Experiencing the past and the future in the present.",
       "Fancy a secret? Grunty tried craft a potion to reverse aging, but it had the opposite effect!",
       "Not all tips are useful, most of them are, but this one isn't.",
       "The final potion will earn you a heaping pile of gold, but only once!",
       "She who seeks amortentia, need only look within. The answers will reveal themselves in time.",
-      'The aging potion that Gruntilda made had something to do with born life... or unborn death?'
+      'The aging potion that Gruntilda made had something to do with born life... or unborn death?',
+      'If I could hear from the start, I would have been born... what the heck does that mean?'
     ]
     @potion_tutorial_one = "
     #{'Gʀᴜɴᴛɪʟᴅᴀ>'.magenta} It's time to learn and in time#{';'.light_magenta} master#{','.light_magenta} the subtle science of potion-making#{'.'.light_magenta}

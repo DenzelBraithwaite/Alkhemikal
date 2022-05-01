@@ -89,6 +89,7 @@ class ShopController < ParentController
         puts ''
         slow_dialogue("Shopkeeper #{'>'.blue} Thanks#{','.blue} appreciate the business#{'!'.blue}", 0.008, false)
         @player.gold -= price
+        @player.gold += (price * 0.3).round if @player.current_robe == 'Beautifying robe'
         select_category(category) << item.to_s
         continue_prompt
       elsif confirm == false
@@ -188,6 +189,7 @@ class ShopController < ParentController
         puts ''
         slow_dialogue("Shopkeeper #{'>'.blue} Thanks#{','.blue} appreciate the business#{'!'.blue}", 0.008, false)
         @player.gold -= price
+        @player.gold += (price * 0.3).round if @player.current_robe == 'Beautifying robe'
         continue_prompt
       elsif confirm == false
         clear
@@ -212,7 +214,7 @@ class ShopController < ParentController
   # Checks if player has enough gold, adds advice to inventory.
   def purchase_advice(price)
     return if price == 9
-    valid_prices = [10, 26, 40, 50, 100, 101, 120, 150, 300, 500, 1000, 10_000]
+    valid_prices = [10, 20, 26, 40, 50, 100, 101, 120, 150, 300, 500, 1000, 10_000]
     if insufficient_funds(price)
       @view.insufficient_funds
       continue_prompt
@@ -223,6 +225,9 @@ class ShopController < ParentController
         when 10
           @player.shopkeeper_advice << 'Inventory: All customization is done inside of your Inventory, including your name.'
           slow_dialogue("Shopkeeper #{'>'.blue} All customization is done inside of your #{'Inventory'.light_black}, including your name.", 0.03, false)
+        when 20
+          @player.shopkeeper_advice << 'Inventory 2: Some robes have bonus effects. The hats however are just, hats...'
+          slow_dialogue("Shopkeeper #{'>'.blue} Some robes have bonus effects. The hats however are just, #{'hats'.light_black}...", 0.03, false)
         when 26
           @player.shopkeeper_advice << "Easter egg: There's a hidden easter egg in one of the menus."
           slow_dialogue("Shopkeeper #{'>'.blue} There's a hidden #{'easter egg'.cyan} in one of the menus.", 0.03, false)
@@ -262,6 +267,7 @@ class ShopController < ParentController
         puts ''
         slow_dialogue("Shopkeeper #{'>'.blue} Thanks#{','.blue} appreciate the business#{'!'.blue}", 0.008, false)
         @player.gold -= price
+        @player.gold += (price * 0.3).round if @player.current_robe == 'Beautifying robe'
         continue_prompt
       elsif confirm == false
         clear
@@ -329,6 +335,7 @@ class ShopController < ParentController
         puts ''
         slow_dialogue("Shopkeeper #{'>'.blue} Thanks#{','.blue} appreciate the business#{'!'.blue}", 0.008, false)
         @player.gold -= price
+        @player.gold += (price * 0.3).round if @player.current_robe == 'Beautifying robe'
         continue_prompt
       elsif confirm == false
         clear

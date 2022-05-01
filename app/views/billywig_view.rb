@@ -40,8 +40,9 @@ class BillywigView
   def tutorial
     "Lᴇᴛ's ᴘʟᴀʏ sᴏᴍᴇ Bɪʟʟʏᴡɪɢ!!\n
     #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} I'm assuming you've played before? I believe it's similar to what the muggles refer to as 'black jack'.\n
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} But there's a twist...NYAAAAKAKAKAAA!!!\n
-    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} There's 1 card that's worth 21 all by itself!! I'll let you discover the other differences while playing.\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} But there's a twist...NYAAAAKAKAKAAA!!! The goal is to get to 26, not 21!\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} There's 1 card that's worth 26 all by itself!! I'll let you discover the other differences while playing.\n
+    #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} Because I'm such an amazingly generous, beautiful and talented witch, if we tie I'll let you win!.\n
     #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} I wish you all the worst luck, now Lets. Play. Some. BILLYWIIIIIIG!\n
     #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_blue} One last thing, we're gambling witches here, so don't play if you ain't got any #{'GOLD'.yellow}! NYAAkakakakaaa \n"
   end

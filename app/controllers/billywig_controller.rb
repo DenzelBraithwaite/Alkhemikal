@@ -4,8 +4,6 @@ class BillywigController < ParentController
   def initialize
     super(player)
     @view = BillywigView.new
-    @kaz_tokes = 0
-    @elisa_tokes = 0
   end
 
   def run
@@ -61,8 +59,8 @@ class BillywigController < ParentController
       line
       puts "Your bet: #{@bet.to_s.yellow}#{'G'.yellow}"
 
-      # Game loop, asks for a card, checks if it's over 21, asks if you want another card.
-      while @playing_again && @player_score < 21 && @player_card_amount < 6
+      # Game loop, asks for a card, checks if it's over 26, asks if you want another card.
+      while @playing_again && @player_score < 26 && @player_card_amount < 6
         puts state_of_the_game
         slow_dialogue("#{'Gʀᴜɴᴛɪʟᴅᴀ> '.light_blue}Press #{'enter'.light_cyan} to conjure a new card, anything else will make you #{'hold'.light_red}.", 0.002, false)
         print "#{@player.name}#{'> '.light_blue}"
@@ -105,13 +103,14 @@ class BillywigController < ParentController
       8, 8, 8, 8, 8,
       9, 9, 9, 9, 9,
       10, 10, 10, 10,
-      11, 11, 11, 11
+      11, 11, 11, 11,
+      16
     ].sample
   end
 
   def ensure_no_bank_bust
     card = pick_bank_score
-    if (@bank_score + card) <= 21
+    if (@bank_score + card) <= 26
       @bank_score += card
     else
       puts ''
@@ -121,8 +120,8 @@ class BillywigController < ParentController
 
   #====================================================================#
 
-  def five_cards_under_21?
-    @player_card_amount >= 5
+  def six_cards_under_26?
+    @player_card_amount >= 6
   end
 
   def pick_player_card
@@ -139,7 +138,8 @@ class BillywigController < ParentController
       9, 9, 9, 9,
       10, 10, 10, 10, 10,
       10, 10, 10, 10, 10,
-      21].sample
+      26
+    ].sample
   end
 
   #====================================================================#
@@ -152,39 +152,43 @@ class BillywigController < ParentController
   end
 
   #====================================================================#
-  # slow_dialogue(text, delay = 0.010, false) incorpoate later?
 
   def end_game_message(player_score, bank_score)
     winning_bet = (@bet * 2)
     billywig = (@bet * 5)
-    five_under = (@bet * 3)
+    six_under = (@bet * 3)
     @player_score = player_score
-    too_many = (@player_score - 21)
-    if @player_score > 21
+    too_many = (@player_score - 26)
+    if @player_score > 26
       @player.gold -= winning_bet
+      @player.gold += (winning_bet / 2) if @player.current_robe == "Quidditch uniform"
       puts @view.end_results(@player_score, @bank_score)
       "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} Hot ghoul, looks like ya lost NYAAKAkakaaa! You have #{@player_score.to_s.light_green} points, that's #{too_many.to_s.light_red} too many!"
       puts "You #{'lost'.red} #{winning_bet.to_s.yellow}#{'G'.yellow}"
-    elsif @player_score == 21
+    elsif @player_score == 26
       @player.gold += billywig
+      @player.gold += billywig if @player.current_robe == "avocado onesie"
       puts @view.end_results(@player_score, @bank_score)
       puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} I can't believe you got a perfect score!!!
       #{@view.billywig_art.cyan}"
       puts "You #{'won'.cyan} #{billywig.to_s.yellow}#{'G'.yellow}"
       puts ''
       puts ''
-    elsif five_cards_under_21?
-      @player.gold += five_under
+    elsif six_cards_under_26?
+      @player.gold += six_under
+      @player.gold += six_under if @player.current_robe == "avocado onesie"
       puts @view.end_results(@player_score, @bank_score)
-      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} NYAK, #{'5 cards under 21?'.light_magenta} You must be cheating#{'...'.light_magenta}"
-      puts "You #{'won'.cyan} #{five_under.to_s.yellow}#{'G'.yellow}"
+      puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} NYAK, #{'6 cards under 26?'.light_magenta} You must be cheating#{'...'.light_magenta}"
+      puts "You #{'won'.cyan} #{six_under.to_s.yellow}#{'G'.yellow}"
     elsif @player_score > bank_score
       @player.gold += winning_bet
+      @player.gold += winning_bet if @player.current_robe == "avocado onesie"
       puts @view.end_results(@player_score, @bank_score)
       "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} Meh! I guess you win... with a score of #{@player_score.to_s.light_green}."
       puts "You #{'won'.cyan} #{winning_bet.to_s.yellow}#{'G'.yellow}"
     elsif @player_score < bank_score
       @player.gold -= @bet
+      @player.gold += (@bet / 2) if @player.current_robe == "Quidditch uniform"
       next_card_color
       puts @view.end_results(@player_score, @bank_score)
       puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".light_blue} You would've gotten #{next_card_color} next!"
@@ -217,10 +221,10 @@ class BillywigController < ParentController
   def next_card_color
     @next_card_integer = @next_card
     @next_card_string = @next_card_integer.to_s
-    if @next_card_integer + @player_score > 21
+    if @next_card_integer + @player_score > 26
       @next_card_string = @next_card_string.light_red
     elsif
-      @next_card_integer + @player_score == 21
+      @next_card_integer + @player_score == 26
       @next_card_string = @next_card_string.light_magenta
     else
       @next_card_string = @next_card_string.light_green

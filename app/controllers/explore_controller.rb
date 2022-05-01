@@ -120,13 +120,46 @@ class ExploreController < ParentController
 
   # Text displayed when 3 good items are found
   def three_good_ingredients_alert
-    @player.gold += 10
+    @loot_found = 30
+    @loot_found += 10 if @player.current_robe == 'Wings of freedom cloak'
+    @player.gold += @loot_found
     clear
     2.times do
-      fill_screen("                                PERFECT SEARCH!!                          PERFECT SEARCH!!                                                                                                                                     ".black.on_green, 0.40)
-      fill_screen("                                                                    PERFECT SEARCH!!                                PERFECT SEARCH!!                                                                                                    ".black.on_light_green, 0.40)
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      puts @view.perfect_search_alert_one.black.on_green
+      sleep(0.55)
+      clear
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      puts @view.perfect_search_alert_two.black.on_green
+      sleep(0.55)
+      clear
     end
-    clear
     puts @view.title_art.light_green.blink
     puts ''
   end
@@ -168,7 +201,9 @@ class ExploreController < ParentController
 
   def searching_loop
     searching_time = rand(15..60)
-    @player.gold += rand(8..32)
+    @loot_found = rand(10..30)
+    @loot_found += 10 if @player.current_robe == 'Wings of freedom cloak'
+    @player.gold += @loot_found
     puts @view.title_art.light_green.blink
     puts ''
     # Put message saying searching while walking
@@ -181,6 +216,8 @@ class ExploreController < ParentController
       print '.'.light_black
       sleep(0.010)
     end
+    puts ''
+    puts "Gold #{'+'.yellow}#{@loot_found.to_s.yellow}#{'G'.yellow}"
   end
 
   # Method that adds ingredient to the ingredients inventory, unless already owned

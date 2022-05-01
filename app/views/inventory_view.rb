@@ -116,7 +116,7 @@ class InventoryView < MainView
     sleep(0.05)
   end
 
-  def current_clothing(hat, robe, gold)
+  def current_clothing(hat, robe, gold, bonus = 'None')
     puts " Cᴜʀʀᴇɴᴛ ᴇqᴜɪᴘᴍᴇɴᴛ:".light_black
     sleep(0.05)
     puts " Hᴀᴛ: #{hat.magenta}"
@@ -124,6 +124,8 @@ class InventoryView < MainView
     puts " Rᴏʙᴇ: #{robe.magenta}"
     sleep(0.05)
     puts " Gᴏʟᴅ: #{gold.to_s.yellow}#{'G'.yellow}"
+    sleep(0.05)
+    puts " Bonus effects: #{bonus.to_s.magenta}"
     sleep(0.05)
     puts ''
     puts ''

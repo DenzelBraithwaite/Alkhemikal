@@ -1,7 +1,7 @@
 # require 'colorize'
 
 class ExploreView
-  attr_reader :title_art, :good_ingredient_text, :bad_ingredient_text
+  attr_reader :title_art, :good_ingredient_text, :bad_ingredient_text, :perfect_search_alert_one, :perfect_search_alert_two
 
   def initialize
     @title_art = "
@@ -25,26 +25,42 @@ class ExploreView
     ]
     # Array of things to say when a good ingredient is found
     @good_ingredient_text = [
-      "Another stellar ingredient to add to my collection",
-      "Keep that, we might need it later",
+      'Another stellar ingredient to add to my collection',
+      'Keep that, we might need it later',
       "NYAAAKAKAAA that's what I'm talking about!",
       "Wow, that's a good find! I'm sure we can use this",
       "Oooh, not bad. We'll take this back",
       "Hmmm, I think I know what we can use this for... Let's grab it",
-      "We definitely need this",
-      "Finders keepers!"
+      'We definitely need this',
+      'Finders keepers!',
+      "I can't believe you found that laying around, nyak!",
+      'Quick, grab that!',
+      "That's great for making potions, grab that",
+      'You know what, I think we can use that.',
+      "Now that's what I'm talking about"
     ]
     # Array of things to say when a good ingredient is found
     @bad_ingredient_text = [
-      "Quit wasting time and find me something useful.",
+      'Quit wasting time and find me something useful.',
       "I can't imagine what anyone would do with this?",
       "Oh hell no, we don't need that!",
       "Umm.... I think it's safe to say we don't need this",
-      "Eww, no. Put it back",
-      "I have too many of these already, no thanks",
+      'Eww, no. Put it back',
+      'I have too many of these already, no thanks',
       "Wow, that's a good find! Too bad it's not useful for potions.",
-      "Throw that away now!"
+      'Throw that away now!',
+      "NYAAAKAKAKAaa- Oh, you're serious? No, put that back.",
+      'We could use that in a hexing potion, but better to leave that for now',
+      "Well I've never seen that used before, so maybe leave it where it is",
+      'Did that just move? Nope nope nope, put that back!',
+      "Hmm, maybe if it was in better condition, but nah let's leave that here",
+      'Sometimes I wonder why I even bother with you...',
+      "Wow, maybe you aren't cut out to be a witch after all?",
+      'Why would you even think we could use that?'
     ]
+    @perfect_search_alert_one = "PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  "
+    @perfect_search_alert_two = "PERFECT SEARCH!!                        PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                      PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  "
+
   end
 
   def tutorial
@@ -55,32 +71,32 @@ class ExploreView
   end
 
   def read_damaged_recipe
-    puts ""
+    puts ''
     puts "#{" Kᴀᴢ's Jᴏᴜʀɴᴀʟ:".green}\n #{"Year:".green} 1743\n #{"Moon:".green} Garnet\n\n#{" It reads:".green}"
     puts "  ℐ'𝓋ℯ 𝒶𝓁𝓂ℴ𝓈𝓉 𝒻𝒾ℊ𝓊𝓇ℯ𝒹 𝒾𝓉 ℴ𝓊𝓉... 𝓉𝒽ℯ 𝒱𝒾𝓁ℯ ℴ𝒻 𝒜𝓂ℴ𝓇𝓉ℯ𝓃𝓉𝒾𝒶.                ".black.on_light_yellow
     puts "  ℐ'𝓋ℯ 𝓉𝓇𝒾ℯ𝒹 𝒶𝓃𝒹 𝒻𝒶𝒾𝓁ℯ𝒹 𝓈ℴ 𝓂𝒶𝓃𝓎 𝓉𝒾𝓂ℯ𝓈, 𝒷𝓊𝓉 𝓉𝒽𝒾𝓈 𝓂ℴℴ𝓃 𝓌𝒾𝓁𝓁 𝒷ℯ 𝒹𝒾𝒻𝒻ℯ𝓇ℯ𝓃𝓉.".black.on_light_yellow
     puts "  ℐ'𝓋ℯ 𝒹𝒾𝓈𝒸ℴ𝓋ℯ𝓇ℯ𝒹 𝓉𝒽𝒶𝓉 𝓉𝒽ℯ 𝓀ℯ𝓎 𝒾𝓃ℊ𝓇ℯ𝒹𝒾ℯ𝓃𝓉𝓈 𝒶𝓇ℯ 𝒶𝒸𝓉𝓊𝒶𝓁𝓁𝓎 𝓅ℴ𝓉𝒾ℴ𝓃𝓈!!.     ".black.on_light_yellow
-    puts "  ℐ𝓃 𝒻𝒶𝒸𝓉 𝒶𝓁𝓁 𝓉𝒽ℯ 𝒾𝓃ℊ𝓇ℯ𝒹𝒾ℯ𝓃𝓉𝓈 𝒶𝓇ℯ 𝓅ℴ𝓉𝒾ℴ𝓃𝓈.                             ".black.on_light_yellow
-    puts "  𝒯𝒽𝒾𝓈 𝒾𝓈 𝓂𝓎 𝒽𝓎𝓅ℴ𝓉𝒽ℯ𝓈𝒾𝓈, 𝒾𝒻 𝓎ℴ𝓊 𝒸ℴ𝓂𝒷𝒾𝓃ℯ 𝓉𝒽ℯ 𝓉𝒾𝓂ℯ 𝓅ℴ𝓉𝒾ℴ𝓃 𝓌𝒾-         ".black.on_light_yellow
-    puts ""
-    puts "--".light_black
-    puts ""
-    puts "Other findings:".green
+    puts '  ℐ𝓃 𝒻𝒶𝒸𝓉 𝒶𝓁𝓁 𝓉𝒽ℯ 𝒾𝓃ℊ𝓇ℯ𝒹𝒾ℯ𝓃𝓉𝓈 𝒶𝓇ℯ 𝓅ℴ𝓉𝒾ℴ𝓃𝓈.                             '.black.on_light_yellow
+    puts '  𝒯𝒽𝒾𝓈 𝒾𝓈 𝓂𝓎 𝒽𝓎𝓅ℴ𝓉𝒽ℯ𝓈𝒾𝓈, 𝒾𝒻 𝓎ℴ𝓊 𝒸ℴ𝓂𝒷𝒾𝓃ℯ 𝓉𝒽ℯ 𝓉𝒾𝓂ℯ 𝓅ℴ𝓉𝒾ℴ𝓃 𝓌𝒾-         '.black.on_light_yellow
+    puts ''
+    puts '--'.light_black
+    puts ''
+    puts 'Other findings:'.green
     puts "damaged recipe: #{"Witch's Brew".green} => ['#{"cat hair".light_green}', 'b-'],"
     puts "damaged recipe: #{"Warlock's Brew".green} => ['#{"frog brain".light_green}', 't---u- -- d--']"
   end
 
   def quick_view_ingredients(ingredients)
     puts "Iɴɢʀᴇᴅɪᴇɴᴛs:".light_green
-    puts ""
+    puts ''
     sleep(0.25)
     ingredients.each_with_index do |ingredient, index|
       puts "#{index + 1} #{"-".light_green} #{ingredient}"
       sleep(0.05)
     end
-    puts ""
+    puts ''
     puts "ᴇɴᴅ".light_red
-    puts ""
+    puts ''
   end
 
   # When multiple ingredients are found
@@ -121,40 +137,40 @@ class ExploreView
     puts @tips.sample
     puts ''
     puts title_art.light_green.blink
-    puts ""
+    puts ''
     puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.light_green}"
-    puts ""
+    puts ''
     sleep(0.05)
     puts " 𝟙 #{'-'.light_green} 𝕊𝕖𝕒𝕣𝕔𝕙"
-    puts ""
+    puts ''
     sleep(0.05)
     puts " 𝟚 #{'-'.light_green} 𝕀𝕟𝕘𝕣𝕖𝕕𝕚𝕖𝕟𝕥𝕤"
-    puts ""
+    puts ''
     sleep(0.05)
     puts " 𝟛 #{'-'.light_green} 𝕋𝕦𝕥𝕠𝕣𝕚𝕒𝕝"
-    puts ""
+    puts ''
     sleep(0.05)
     puts " 𝟡 #{'-'.light_green} #{'𝔹𝕒𝕔𝕜'.light_red}"
-    puts ""
+    puts ''
     sleep(0.05)
-    puts ""
+    puts ''
   end
 
   # Text displayed to prompt search again
   def search_again_text
     puts @title_art.light_green.blink
-    puts ""
+    puts ''
     puts "Wᴇ'ʟʟ ᴋᴇᴇᴘ sᴇᴀʀᴄʜɪɴɢ ᴜɴᴛɪʟ ʏᴏᴜ ᴀsᴋ ᴍᴇ ᴛᴏ sᴛᴏᴘ#{'!'.light_green}"
-    puts ""
+    puts ''
     puts "𝟡 #{'-'.light_green} #{'𝕤𝕥𝕠𝕡'.light_red}"
-    puts ""
+    puts ''
     puts "Eɴᴛᴇʀ ᴀɴʏ ᴋᴇʏ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ".light_black
   end
 
   # Text displayed birefly when an invalid option is entered.
   def invalid_option
     puts @title_art.light_green.blink
-    puts ""
+    puts ''
     puts "Pʟᴇᴀsᴇ sᴇʟᴇᴄᴛ ᴀ ᴠᴀʟɪᴅ ᴏᴘᴛɪᴏɴ".light_red
     sleep(0.75)
   end

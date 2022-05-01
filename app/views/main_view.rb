@@ -18,14 +18,14 @@ class MainView
     @tutorial_message = "#{'Tutorial>'.cyan} Hello#{','.cyan} here's a quick guide to get started#{'.'.cyan}
     \n#{"Tutorial>".cyan} The main menu has several options to choose from#{','.cyan} let's start with #2#{','.cyan} 'potion making'#{'.'.cyan}
     \n#{"Tutorial>".cyan} Potion making is the core of the game. To beat the game#{','.cyan} you need to create the forbidden potion#{'.'.cyan}
-    \n#{"Tutorial>".cyan} The only way to do that#{','.cyan} is to create every potion in the game#{','.cyan} and to make a potion you need ingredients#{'.'.cyan}
-    \n#{"Tutorial>".cyan} This is where main menu option #1 'exploring' comes in. From here you'll be able to gather ingredients#{'.'.cyan}
+    \n#{"Tutorial>".cyan} The only way to do that#{','.cyan} is to create the majority of potions in the game#{','.cyan} and to make potions you need ingredients#{'!'.cyan}
+    \n#{"Tutorial>".cyan} This is where main menu option #1 'exploring' comes in. From here you'll be able to gather ingredients and make a few gold pieces#{'.'.cyan}
     \n#{"Tutorial>".cyan} Not all ingredients are good#{','.cyan} and some runs you'll find more than one ingredient#{'.'.cyan}
     \n#{"Tutorial>".cyan} When you feel like you've found enough ingredients (I'd recommend roughly 26 to start) you can start making potions#{'!'.cyan}
     \n#{"Tutorial>".cyan} #3 'Billywig' is a fun little minigame that resembles blackjack. Give it a try and see if you can best Gruntilda#{'.'.cyan}
-    \n#{"Tutorial>".cyan} #4 'Labyrinth' is my personal fav#{','.cyan} you navigate a 400 room maze to find clothing for your witch#{'.'.cyan}
-    \n#{"Tutorial>".cyan} The labyrinth is also a minigame at the moment#{','.cyan} but I'd like to incorporate it more in the future#{'.'.cyan}
-    \n#{"Tutorial>".cyan} Finally#{','.cyan} #5 you have your inventory#{','.cyan} where you can change your hat and robe or even your name#{'!'.cyan}
+    \n#{"Tutorial>".cyan} #4 'Labyrinth' is my personal fav#{','.cyan} you navigate a 400 room maze to find items for your witch#{'!'.cyan}
+    \n#{"Tutorial>".cyan} Aaannd#{','.cyan} #5 you have your inventory#{','.cyan} where you can change your hat and robe or even your name#{'!'.cyan}
+    \n#{"Tutorial>".cyan} Finally#{','.cyan} #6 you have the shopekeeper#{','.cyan} where you can buy things for your witch#{'!'.cyan}
     \n#{"Tutorial>".cyan} Each option has it's own tutorial so don't worry#{','.cyan} if you're ever lost#{','.cyan} run the tutorial one more time#{'.'.cyan}
     \n#{"Tutorial>".cyan} Enjoy#{'!'.cyan}"
     @tips = [
@@ -79,22 +79,67 @@ class MainView
   \\\\___//
    -----"
 
-    @demo_version = "Current: Demo Version 4.0 - last update: #{'Added shop and gold currency to game'.blue}\n
-                    Current: Demo Version 3.2 - last update: #{'Added tips to all menus'.cyan}\n
-                    Current: Demo Version 3.1 - last update: #{'Added labyrinth navigation helpers'.yellow}\n
-                    Current: Demo Version 3.0 - last update: #{'Revamped entire labyrinth'.yellow}\n
-                    Current: Demo Version 2.4 - last update: #{'Potions revamped'.light_magenta}\n
-                    Current: Demo Version 2.3 - last update: #{'Billywig re-vamped'.light_cyan}\n
-                    Previos: Demo Version 2.2 - last update: #{'menus color design'.cyan}\n
+    @demo_version = "Current: Full Game Version 1.0 - last update: #{'Added special effects to robes'.light_black.blink}\n
+                    Previous: Demo Version 4.0 - last update: #{'Added shop and gold currency to game'.blue}\n
+                    Previous: Demo Version 3.2 - last update: #{'Added tips to all menus'.cyan}\n
+                    Previous: Demo Version 3.1 - last update: #{'Added labyrinth navigation helpers'.yellow}\n
+                    Previous: Demo Version 3.0 - last update: #{'Revamped entire labyrinth'.yellow}\n
+                    Previous: Demo Version 2.4 - last update: #{'Potions revamped'.light_magenta}\n
+                    Previous: Demo Version 2.3 - last update: #{'Billywig re-vamped'.light_cyan}\n
+                    Previous: Demo Version 2.2 - last update: #{'menus color design'.cyan}\n
                     Previous: Demo Version 2.1 - last update: #{'labyrinth'.yellow}"
   end
 
   def special_thanks
-    puts "Special thanks to:"
-    puts "- Elisa"
-    puts "- Justin"
-    puts "- Mat"
-    puts "- Soheil"
+    puts "
+    █████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+    █░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░████████████░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░█░░░░░░██████████░░░░░░█░░░░░░██░░░░░░░░█░░░░░░░░░░░░░░█
+    █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░████████████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░░░░░░░░░██░░▄▀░░█░░▄▀░░██░░▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+    █░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░█░░▄▀░░░░░░░░░░█░░░░▄▀░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░████████████░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░░░█░░▄▀░░░░░░░░░░█
+    █░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████░░▄▀░░███████████░░▄▀░░███░░▄▀░░██░░▄▀░░█░░▄▀░░████████████████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░███░░▄▀░░█████████
+    █░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░█░░▄▀░░███████████░░▄▀░░███░░▄▀░░░░░░▄▀░░█░░▄▀░░████████████████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+    █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░███████████░░▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░████████████████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+    █░░░░░░░░░░▄▀░░█░░▄▀░░░░░░░░░░█░░▄▀░░░░░░░░░░█░░▄▀░░███████████░░▄▀░░███░░▄▀░░░░░░▄▀░░█░░▄▀░░████████████████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░███░░░░░░░░░░▄▀░░█
+    █████████░░▄▀░░█░░▄▀░░█████████░░▄▀░░█████████░░▄▀░░███████████░░▄▀░░███░░▄▀░░██░░▄▀░░█░░▄▀░░████████████████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░███████████░░▄▀░░█
+    █░░░░░░░░░░▄▀░░█░░▄▀░░█████████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░░░░░█░░░░▄▀░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░░░█░░░░░░░░░░▄▀░░█
+    █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░█████████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀░░██░░░░░░░░░░▄▀░░█░░▄▀░░██░░▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+    █░░░░░░░░░░░░░░█░░░░░░█████████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████████░░░░░░█████░░░░░░██░░░░░░█░░░░░░██░░░░░░█░░░░░░██████████░░░░░░█░░░░░░██░░░░░░░░█░░░░░░░░░░░░░░█
+    █████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████"
+    puts ''
+    puts ''
+    puts ''
+    puts "
+    ╭━━━┳╮
+    ┃╭━━┫┃
+    ┃╰━━┫┃╭┳━━┳━━╮
+    ┃╭━━┫┃┣┫━━┫╭╮┃
+    ┃╰━━┫╰┫┣━━┃╭╮┃
+    ╰━━━┻━┻┻━━┻╯╰╯"
+    sleep(1)
+    puts "
+    ╱╱╭╮╱╱╱╱╱╭╮
+    ╱╱┃┃╱╱╱╱╭╯╰╮
+    ╱╱┃┣╮╭┳━┻╮╭╋┳━╮
+    ╭╮┃┃┃┃┃━━┫┃┣┫╭╮╮
+    ┃╰╯┃╰╯┣━━┃╰┫┃┃┃┃
+    ╰━━┻━━┻━━┻━┻┻╯╰╯"
+    sleep(1)
+    puts "
+    ╭━╮╭━╮╱╱╭╮
+    ┃┃╰╯┃┃╱╭╯╰╮
+    ┃╭╮╭╮┣━┻╮╭╯
+    ┃┃┃┃┃┃╭╮┃┃
+    ┃┃┃┃┃┃╭╮┃╰╮
+    ╰╯╰╯╰┻╯╰┻━╯"
+    sleep(1)
+    puts "
+    ╭━━━╮╱╱╭╮╱╱╱╱╱╭╮
+    ┃╭━╮┃╱╱┃┃╱╱╱╱╱┃┃
+    ┃╰━━┳━━┫╰━┳━━┳┫┃
+    ╰━━╮┃╭╮┃╭╮┃┃━╋┫┃
+    ┃╰━╯┃╰╯┃┃┃┃┃━┫┃╰╮
+    ╰━━━┻━━┻╯╰┻━━┻┻━╯"
+    sleep(2)
   end
 
   def easter_egg

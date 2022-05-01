@@ -13,7 +13,7 @@ class LabyrinthRepo
       'sorting hat',
       'short purple wig',
       'sacred crown',
-      "magician's hay",
+      "magician's hat",
       'plague doctor mask',
       'invisible coif',
       'black bonnet',
@@ -22,20 +22,19 @@ class LabyrinthRepo
     ]
     # Robes that can be found when exploring
     @all_robes = [
-      'peasant robe',
-      "wizard's robe",
-      'Beautifying robe',
-      'dark cloak',
-      "witch's robe",
-      'Quidditch uniform',
-      'Wings of freedom cloak',
-      'magic cape',
-      'blue kirtle',
-      'litte red riding hood',
-      'ash grey capelet',
-      'salem dress',
-      'avocado onesie'
-
+      'peasant robe', # Lose 5 gold every time you enter inventory
+      "wizard's robe", # Cave death defense once
+      'Beautifying robe', # Lower shop prices
+      'dark cloak', # Cave death immunity
+      "witch's robe", # Gain bonus gold when making potions
+      'Quidditch uniform', # Lose less money in Billywig
+      'Wings of freedom cloak', # Gain bonus gold when exploring
+      'magic cape', # Don't lose gold on death
+      'blue kirtle', # Ice resist
+      'little red riding hood', # Gain bonus gold when in labyrinth
+      'ash grey capelet', # Heat resist
+      'salem dress', # special hint in inventory
+      'avocado onesie' # Bonus gold when playing billywig
     ]
     # Rooms where you can fall and die (in the dark region)
     @dark_death_rooms = [

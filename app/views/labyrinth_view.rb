@@ -38,9 +38,8 @@ class LabyrinthView < MainView
                   #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} As you progress through the trial#{','.yellow} you'll find robes and hats of previous fools#{'.'.yellow}\n
                   #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} They've got no use for it now NYAAK#{','.yellow} so if you see something#{','.yellow} grab it#{'!'.yellow}\n
                   #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} If an area is dangerous#{','.yellow} you'll receive a warning#{','.yellow} don't ignore it#{'!'.yellow}\n
-                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} If you do#{','.yellow} you'll find yourself waking up outside the labyrinth#{','.yellow} courtesy of yours truly#{'!'.yellow}\n
-                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} When you enter the labyrinth again#{','.yellow} you'll be somwhere completely different#{','.yellow} be warned#{'!'.yellow}\n
-                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} Last but not least#{','.yellow} there are a total of #{'21'.yellow} items to find in the labyrinth#{'!'.yellow}\n
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} If you do#{','.yellow} you'll find yourself waking up in a different area#{'!'.yellow}\n
+                  #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} Last but not least#{','.yellow} there are a total of #{'28'.yellow} items to find in the labyrinth#{'!'.yellow}\n
                   #{'Gʀᴜɴᴛɪʟᴅᴀ>'.light_yellow} They're evenly scattered so good luck#{','.yellow} and try not to die.. NYAAAKAKAAAAA#{'!'.yellow}\n"
       @area_descriptions = {
         center_area: [
@@ -210,7 +209,7 @@ class LabyrinthView < MainView
           'Wetlands, exactly as the name suggests, everything is soaked.',
           'Although the marsh water is low, anything can be lurking under the water.',
           "The fields are flooded and your feet are soaked, there's nothing worse than wet socks.",
-          "You notice a clew of leaches tethered to your calves, disgusting!",
+          "You notice a bunch of leaches tethered to your calves, disgusting!",
           "Something brushes up against your foot, nope nope nope nope nope!"
         ]
       }

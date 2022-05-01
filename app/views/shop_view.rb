@@ -11,58 +11,9 @@ class ShopView < MainView
     ╚═════╝░╚═╝░░╚═╝░╚════╝░╚═╝░░░░░"
     # Array of good ingredients found while exploring
     @good_explore_ingredients = [
-      'a chess pawn',
-      'a chimera tail',
-      'a crocodile heart',
-      'a dragon claw',
-      'a fairy wing',
-      "a griffin's beak",
-      'a harpy egg',
-      'a mandrake',
-      'a merge-dragon egg',
-      'a moonstone',
-      'a wyvern ear',
-      'aconite',
-      'an ogre toenail',
-      'an owl feather',
-      'ancient dust',
-      'arcana rocks',
-      'ashwinder eggs',
-      'assorted eyeballs',
-      'bat spleen',
-      'cat hair',
-      'centaur arteries',
-      'cyclops sweat',
-      'frog brains',
-      'gargoyle scales',
-      'ghost essence',
-      'ginger',
-      'goblin gums',
-      'gorgon tears',
-      'iguana blood',
-      'ink',
-      'lavender',
-      'leech juice',
-      'mermaid scales',
-      'mushrooms',
-      'newt oil',
-      'octopus powder',
-      'pickled slugs',
-      'pixie wings',
-      'rose petals',
-      'rubies',
-      'sage',
-      'silver',
-      'siren vocal cords',
-      'small bones',
-      'star grass',
-      'tarot cards',
-      'toadstools',
-      'tongue of dog',
-      'unicorn urine',
-      'werewolf fur',
-      "wizard's beard hairs",
-      'wormwood'
+      'human ear',
+      'solid water',
+      'a merge-dragon egg'
     ]
     @hats = {
       "paper bag": 5,
@@ -81,15 +32,15 @@ class ShopView < MainView
     @ingredients = {
       "bottled tink": 1, # Bad ingredient
       "dirt": 8, # Bad ingredient
-      "bubbly bubly": 15, # Bad ingredient
+      "solid water": 15, # Bad ingredient
       "tapioca balls": 18, # Bad ingredient
-      "a chess pawn": 20, # Good ingredient, can be found while searching
+      "a checkers piece": 20, # Good ingredient, can be found while searching
       "crinkled leaves": 32, # Bad ingredient
       "air freshner": 48, # Bad ingredient
       "cat saliva": 56, # Bad ingredient
       "various spices": 80, # Bad ingredient
       "goron seasoning": 105, # Bad ingredient
-      "tarot cards": 111, # Good ingredient, can be found while searching
+      "human ear": 111, # Good ingredient, can be found while searching
       "a merge-dragon egg": 210 # Mobile madness
     }
     @potions = {
@@ -101,6 +52,7 @@ class ShopView < MainView
     }
     @advice = {
       "Inventory": 10, # All customization is done inside of your Inventory, including your name.
+      "Inventory 2": 20, # All customization is done inside of your Inventory, including your name.
       "Easter egg": 26, # There's a hidden easter egg in one of the menus.
       "Explore": 40, # When you've found every ingredient while exploring, you'll get a free hint on how to create the final potion.
       "Billywig": 50, # The odds of Billywig are against you, but if you manage to get 21, you can a nice profit.

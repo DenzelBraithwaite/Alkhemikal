@@ -12,32 +12,11 @@ class Witch
     @ladle = 'wooden spoon'
     @cauldron = 'simple cauldron'
     @ingredients = ['water']
-    @recipes = {
-      "Witch's brew": ['cat hair', 'bat spleen'],
-      "Warlock's brew": ['frog brains', 'tongue of dog'],
-      "Time potion": ['star grass', 'toadstools'],
-      "Potion of altered perception": ['assorted eyeballs', 'cyclops sweat'],
-      "Potion of the arcane": ['a fairy wing', 'arcana rocks'],
-      "Magical medley": ['mushrooms', 'pixie wings'],
-      "Vial of corruption": ['gorgon tears', 'an ogre toenail'],
-      "Screaming dreams": ['a moonstone', 'a mandrake'],
-      "Flask of gills": ['octopus powder', 'ink'],
-      "Flask of blood": ['iguana blood', 'a crocodile heart'],
-      "Bowl of smoke and embers": ['wormwood', 'rubies'],
-      "Tonic of transcendence": ['an owl feather', 'sage'],
-      "Draught of secrets": ['ancient dust', 'gargoyle scales'],
-      "Philter of desires": ['rose petals', 'ashwinder eggs'],
-      "Hearing gel": ['a wyvern ear', 'werewolf fur'],
-      "Healing salve": ['centaur arteries', 'a chimera tail'],
-      "Appetitus increasus syrum": ['goblin gums', "a griffin's beak"],
-      "Tincture of temptation": ['mermaid scales', 'siren vocal cords'],
-      "Philter of unborn death": ['a harp egg', 'ghost essence'],
-      "Vial of the volatile": ['a dragon claw', 'aconite'],
-    }
+    @recipes = {}
     @shopkeeper_advice = ['There are a few easter eggs hidden in the game.']
     @special_recipes = {}
-    @hats = ["none"]
-    @robes = ["simple black robe"]
+    @hats = ['none']
+    @robes = ['simple black robe']
     @current_hat = @hats.first
     @current_robe = @robes.first
   end
