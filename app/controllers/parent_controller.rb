@@ -5,6 +5,95 @@ class ParentController
     @player = player
   end
 
+
+# Save files
+def save_game
+  @gold = @player.gold
+  @name = @player.name
+  @ladle = @player.ladle
+  @cauldron = @player.cauldron
+  @hat = @player.current_hat
+  @hats = @player.hats
+  @robe = @player.current_robe
+  @robes = @player.robes
+  @ingredients = @player.ingredients
+  @special_recipes = @player.special_recipes
+  @recipes = @player.recipes
+  @advice = @player.shopkeeper_advice
+  main_save = File.join(__dir__, "../../data/main_save.csv")
+  ingredients_save = File.join(__dir__, "../../data/ingredients_save.csv")
+  # recipes_save = File.join(__dir__, "../../data/recipes_save.csv")
+  # special_recipes_save = File.join(__dir__, "../../data/special_recipes_save.csv")
+  hats_save = File.join(__dir__, "../../data/hats_save.csv")
+  robes_save = File.join(__dir__, "../../data/robes_save.csv")
+  advice_save = File.join(__dir__, "../../data/advice_save.csv")
+
+  CSV.open(main_save, "wb") do |csv|
+    csv << ["  Name  ", "  Gold  ", "  Hat  ", "  Robe  ", "  Ladle  ", "  Cauldron  "]
+    csv << [@name, @gold, @hat, @robe, @ladle, @cauldron]
+  end
+
+  counter = 1
+  CSV.open(ingredients_save, "wb") do |csv|
+    csv << ["Ingredients"]
+    @ingredients.map do |ingr|
+      csv << [counter, ingr]
+      counter += 1
+    end
+  end
+
+  # CSV.open(special_recipes_save, "wb") do |csv|
+  #   csv << ["Special Recipes"]
+  #   @special_recipes.map do |ingr|
+  #     csv << [counter, ingr]
+  #     counter += 1
+  #   end
+  # end
+
+  # CSV.open(recipes_save, "wb") do |csv|
+  #   csv << ["Recipes"]
+  #   @recipes.map do |ingr|
+  #     csv << [counter, ingr]
+  #     counter += 1
+  #   end
+  # end
+
+  counter = 1
+  CSV.open(hats_save, "wb") do |csv|
+    csv << ["Hats"]
+    @hats.map do |hat|
+      csv << [counter, hat]
+      counter += 1
+    end
+  end
+
+  counter = 1
+  CSV.open(robes_save, "wb") do |csv|
+    csv << ["Robes"]
+    @robes.map do |robe|
+      csv << [counter, robe]
+      counter += 1
+    end
+  end
+
+  counter = 1
+  CSV.open(advice_save, "wb") do |csv|
+    csv << ["  Shopkeeper Advice"]
+    @advice.map do |advice|
+      csv << [counter, advice]
+      counter += 1
+    end
+  end
+end
+
+# Loads save files
+def load_save_files
+  system("touch ../test123.csv")
+  CSV.foreach("../test123.csv", headers: :first_row) do |row|
+    puts "#{row['Witch name']} #{row['Gold amount']}}"
+  end
+end
+
   # Custom method to capitalize a word
   def capitalize(word)
     length = word.length

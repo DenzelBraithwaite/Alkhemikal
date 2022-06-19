@@ -67,6 +67,7 @@ class LabyrinthController < ParentController
       check_if_room_is_special
       # Checks if room is freezing or burning, sets a timer
       normal_or_timer_room
+      save_game
     end
   end
 

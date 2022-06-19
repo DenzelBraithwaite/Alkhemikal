@@ -47,6 +47,7 @@ class ExploreController < ParentController
       print "#{@player.name}#{'> '.light_green}"
       action = gets.chomp.to_i
       searching = false if action == 9
+      save_game
     end
   end
 

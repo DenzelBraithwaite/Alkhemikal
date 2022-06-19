@@ -19,6 +19,8 @@ class InventoryController < ParentController
       @view.title_art.light_black.blink
       route_action(action)
       clear
+      save_game
+
     end
   end
 

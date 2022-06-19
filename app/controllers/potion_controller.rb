@@ -28,6 +28,7 @@ class PotionController < ParentController
       puts ''
       puts @view.title_art.light_magenta.blink
       route_action(action)
+      save_game
     end
   end
 

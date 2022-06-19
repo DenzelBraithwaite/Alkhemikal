@@ -19,6 +19,7 @@ class ShopController < ParentController
       @view.title_art.blue.blink
       route_action(action)
       clear
+      save_game
     end
     @view.visited = true
   end

@@ -86,6 +86,7 @@ class BillywigController < ParentController
         @playing_again = false
       end
       line
+      save_game
     end
   end
 

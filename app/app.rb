@@ -1,5 +1,4 @@
-# require 'csv'
-# save_file   = File.join(__dir__, 'save_file.csv')
+require 'csv'
 require 'colorize'
 require_relative 'router'
 
