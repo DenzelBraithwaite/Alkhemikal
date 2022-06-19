@@ -5,7 +5,6 @@ class ParentController
     @player = player
   end
 
-
 # Save files
 def save_game
   @gold = @player.gold
