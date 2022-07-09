@@ -1,5 +1,3 @@
-require 'colorize'
-require_relative 'models/witch'
 require_relative 'views/main_view'
 
 class Router
