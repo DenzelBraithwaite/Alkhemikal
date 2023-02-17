@@ -53,7 +53,24 @@ class LabyrinthView < MainView
           'Everything connects here, this must be the center of the labyrinth.',
           "It's quiet, the climate is balanced, it's safe here. You're at the center of the labyrinth.",
           "You're at the center of the labyrinth, stay for as long as you'd like.",
-          'No danger in site, a path in all directions, you take some time to plan your next move.'
+          'No danger in site, a path in all directions, you take some time to plan your next move.',
+          "You are standing at the center of the labyrinth, you take a moment to relax and reflect.",
+
+          # Below is a duplicate, to lower the odds of getting the easter egg description
+          'Standing in the center of the labyrinth, you feel a calming sensation envelop you.',
+          "You're at the center of the labyrinth, you look northwest and see a desert.",
+          "You're at the center of the labyrinth, you look northeast and see a mountain.",
+          "You're at the center of the labyrinth, you look southwest and see a marsh.",
+          "You're at the center of the labyrinth, you look southeast and see a jungle.",
+          "The center of the labyrinth, it's quiet, you stop to rest your weary bones for a moment.",
+          'You are at the center of the labyrinth, everything connects here.',
+          'Everything connects here, this must be the center of the labyrinth.',
+          "It's quiet, the climate is balanced, it's safe here. You're at the center of the labyrinth.",
+          "You're at the center of the labyrinth, stay for as long as you'd like.",
+          'No danger in site, a path in all directions, you take some time to plan your next move.',
+          "You are standing at the center of the labyrinth, you take a moment to relax and reflect.",
+          "For a moment, you forgot where you were. You're in the middle of the labyrinth.",
+          "Happy 27th birthday :) - This has less than a 4% chance of appearing you lucky ducky you!"
         ],
         dark_area: [
           "It's too dark to see here",
@@ -68,7 +85,15 @@ class LabyrinthView < MainView
           "It's too dark for comfort, best to not dwell in here.",
           "It's impossible to navigate in this cave, you can't see anything.",
           "You're in a cave.",
-          "The cave would be a nice resting spot if it weren't so creepy."
+          "The cave would be a nice resting spot if it weren't so creepy.",
+          "You really wish you were anywhere else but here",
+          "You've never liked the dark... That's not about to change now.",
+          "You gaze into the perpetual darkness, you can't see a thing",
+          "You see something run past you, your mind is playing tricks on you.",
+          "You talk to yourself for comfort to get through this dark cave.",
+          "This place is darker than a billywig's back!",
+          "You think about leaving this creepy cave...",
+          "This place gives you the creeps... you're not a fan of the dark."
         ],
         volcano_area: [
           "Scolding molten laval surrounds you, you're burning up",
@@ -82,7 +107,9 @@ class LabyrinthView < MainView
           'This volcano is treacherous, you watch your step as you traverse.',
           "you're at the volcano's peak, no time for dwelling in a place like this",
           "You cough as you gasp for air, you can't stay here for much longer",
-          'A desert sounds cool and refreshing faced with the heat of the volcano.'
+          'A desert sounds cool and refreshing faced with the heat of the volcano.',
+          "Why in the world am I near an active volcano? - You ask yourself",
+          "You're sweating more than a slugworm on summer's solstice!"
         ],
         swamp_area: [
           'You spot a minx, they make good pets. They also make for a tasty snack.',
@@ -95,7 +122,13 @@ class LabyrinthView < MainView
           "you're in a swamp, lurking eyes glare at you from beneath the water",
           'It smells horrible here but the weather is nice, for a swamp.',
           'You try to picture yourself on a beach, and not in a swamp.',
-          "The smell of the swamp wafts through the air, it's not a pleasant scent."
+          "The smell of the swamp wafts through the air, it's not a pleasant scent.",
+          "You recall a legend of a great ogre and his noble pet donkey, they were said to live in a swamp like this.",
+          "Swamps are great for catching specimens, if you're into that kinda thing... which you aren't.",
+          "Why do swamps exist?",
+          "You daydream about a warm, dry, cozy robe.",
+          "Ughhh, your feet squish with each soaked step.",
+          "You're not a fan of swamps"
         ],
         tundra_area: [
           "You slip, there's ice beneath your feet. It's cold, VERY cold.",
@@ -109,7 +142,11 @@ class LabyrinthView < MainView
           'You quickly discover what frostbite is in this harsh tundra.',
           "You can see your breath, you wish you couldn't.",
           'I wish there was a potion to rid the world of tundras like these.',
-          'You forget what it was like to feel your limbs as your body slowly freezes.'
+          'You forget what it was like to feel your limbs as your body slowly freezes.',
+          "You wonder how anyone can live in places this cold",
+          "You hope to avoid yetis, they're known to roam the tundras around this moon.",
+          "You think of a poem: Tundras suck, If you're in one, you're out of luck!",
+          "Tundras suck... that makes you think of a poem. How does it go again... Tundras suck- ?"
         ],
         desert_area: [
           "The sun is beating down on you, you're parched. You're in a barren desert.",
@@ -165,6 +202,7 @@ class LabyrinthView < MainView
           "#{'Easter'.light_magenta} #{'egg'.light_cyan} #{':)'.light_green}".blink,
           'You begin to talk to yourself as the heat slowly fries your brain.',
           "Faintly, you hear the melodic sound of a guitar, it reminds you of gerudo valley.",
+          "If you found an easter egg here, I'd say you're pretty lucky! You have less than a 3% chance..."
         ],
         mountain_area: [
           "The weather isn't bad but at the summit of the mountain lies an active volcano",
@@ -179,7 +217,11 @@ class LabyrinthView < MainView
           'Your legs grow weary from this trying clamber, the mountains are for the fit.',
           'The air is thin in the mountains, you try to avoid the volcano at the top.',
           "Rocks, rocks and more rocks. There's not much going on in the mountains.",
-          'Lovely day to get lost in the mountains.'
+          'Lovely day to get lost in the mountains.',
+          "Mountains get boring really really quickly, you tire of this.",
+          "Not much goes on in the mountains, a lot of random goats though.",
+          "You've never liked the mountains... or the dark... or swamp...",
+          "You sing to yourself to make the time pass"
         ],
         jungle_area: [
           'The sound of mighty roars and desperate yelps fill your ears, this jungle is huge.',
@@ -195,7 +237,14 @@ class LabyrinthView < MainView
           'Aware of your position in the food chain, you hurry to traverse the jungle in one piece.',
           "OOOOOOOOOO AaOooAaooOoooooooo! You imagine yourself swinging through the jungle",
           "A snake crosses your path, stares at you for a brief moment as you tense up, then continues on its way.",
-          "The bushes around you ruffle, you scurry along to hurry out of the jungle."
+          "The bushes around you ruffle, you scurry along to hurry out of the jungle.",
+          "You pretend to be a lioness, hunting her prey. This helps pass the time.",
+          "You're afraid you're getting lost in this deep jungle, filled with vines and danger.",
+          "Jungles are a great place, if roaming in constant danger is what you fancy.",
+          "This wouldn't be so bad if you didn't feel like you were being stalked behind bushes",
+          "Something's been following you in the jungle for a while now. It seems shy, maybe it's best to ignore it...",
+          "The whole jungle thing is getting old, you wonder if you'll ever get out.",
+          "You take a deep breath and breath in the warm, humid environment. Ahhh, yes... relaxing."
         ],
         marsh_area: [
           'Your feet are soaked. At least the water is only at your ankles.',
@@ -210,14 +259,20 @@ class LabyrinthView < MainView
           'Although the marsh water is low, anything can be lurking under the water.',
           "The fields are flooded and your feet are soaked, there's nothing worse than wet socks.",
           "You notice a bunch of leaches tethered to your calves, disgusting!",
-          "Something brushes up against your foot, nope nope nope nope nope!"
+          "Something brushes up against your foot, nope nope nope nope nope!",
+          "The only thing worse than a marsh is a swamp, but both are quite unpleasnnt.",
+          "Why oh why did you wonder into a marsh - You think to yourself.",
+          "Your toes start to itch, you do your best to scratch it with your wet feet.",
+          "Still in a marsh... Marshing along.",
+          "The ants go marshing 1 by 1 hoorah! - You sing as you venture the marsh",
+          "You find a tree stump with a strange human-like shape and appearance. You name is Marshall."
         ]
       }
       @area_transition_descriptions = {
         # Region transitions
         desert_mountain_transition: [
           'The air is hot and dry, west leads to a desert, east leads to a mountain',
-          'You find a sign that reads: ←Desert  --  Mountain→'
+          'You find a sign that reads: ←Desert  --  Mountain→',
         ],
         desert_marsh_transition: [
           'You feel warm, you scan your surroundings and find a desert north and a marsh south',
