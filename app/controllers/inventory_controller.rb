@@ -107,6 +107,8 @@ class InventoryController < ParentController
     @player.current_hat = 'Cap n bells' if @player.name == 'Lawjoker'
     @player.name = 'Just Jazz' if @player.name == 'Justin'
     @player.name = 'B A Select Start' if @player.name == 'Up Up Down Down Left Right Left Right'
+    @player.current_hat = 'Old lady church scarf' if @player.name == 'Elisa' || @player.name == 'Tinkisa'
+    @player.current_robe = 'Ghost Onesie' if @player.name == 'Elisa' || @player.name == 'Tinkisa'
     @player.current_hat = 'Poetic mind' if @player.name == 'Just Jazz'
     @player.current_hat = 'Straw hat' if @player.name == 'Gol D'
     @player.current_hat = 'Bunny ears' if @player.name == 'Easter Egg'

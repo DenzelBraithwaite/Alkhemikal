@@ -176,7 +176,9 @@ class MainView
       sleep(0.10)
       puts 'congrats, you found an easter egg :)'.light_white.blink
     end
-    sleep(2)
+    sleep(1)
+    puts "This is a message from the future, happy 27th* Bday :)".light_white.blink
+    sleep(3)
   end
 
   def get_user_name
