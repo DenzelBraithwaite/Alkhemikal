@@ -8,32 +8,32 @@ class LabyrinthRepo
     @all_hats = [
       'pointy hat',
       'magic hood',
-      'long grey wig',
-      "witch's hat",
-      'sorting hat',
-      'short purple wig',
-      'sacred crown',
-      "magician's hat",
-      'plague doctor mask',
-      'invisible coif',
-      'black bonnet',
       'seer scarf',
-      'pumpkin head'
+      'sorting hat',
+      'pumpkin head',
+      'invisible coif',
+      'plague doctor mask',
+      'sacred crown',
+      'short purple wig',
+      'long grey wig',
+      'black bonnet',
+      "magician's hat",
+      "witch's hat"
     ]
     # Robes that can be found when exploring
     @all_robes = [
-      'peasant robe', # Lose 5 gold every time you enter inventory
-      "wizard's robe", # Cave death defense once
-      'Beautifying robe', # Lower shop prices
-      'dark cloak', # Cave death immunity
-      "witch's robe", # Gain bonus gold when making potions
-      'Quidditch uniform', # Lose less money in Billywig
       'Wings of freedom cloak', # Gain bonus gold when exploring
-      'magic cape', # Don't lose gold on death
-      'blue kirtle', # Ice resist
+      "witch's robe", # Gain bonus gold when making potions
+      'Beautifying robe', # Lower shop prices
       'little red riding hood', # Gain bonus gold when in labyrinth
+      "wizard's robe", # Cave death defense once
       'ash grey capelet', # Heat resist
+      'blue kirtle', # Ice resist
+      'dark cloak', # Cave death immunity
       'salem dress', # special hint in inventory
+      'magic cape', # Don't lose gold on death
+      'Quidditch uniform', # Lose less money in Billywig
+      'peasant robe', # Lose 5 gold every time you enter inventory
       'avocado onesie' # Bonus gold when playing billywig
     ]
     # Rooms where you can fall and die (in the dark region)

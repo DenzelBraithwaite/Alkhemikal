@@ -9,8 +9,8 @@ class Witch
     @gold = 26
     @purchased_bad_ingredients = false
     @purchased_bad_potions = false
-    @ladle = 'wooden spoon'
-    @cauldron = 'simple cauldron'
+    # @ladle = 'wooden spoon'
+    # @cauldron = 'simple cauldron'
     @ingredients = ['water']
     @recipes = {}
     @shopkeeper_advice = ['There are a few easter eggs hidden in the game.']
@@ -19,6 +19,8 @@ class Witch
     @robes = ['simple black robe']
     @current_hat = @hats.first
     @current_robe = @robes.first
+    @cauldron = "Large witch's cauldron"
+    @ladle = "Witch's broom"
   end
 
   # Adds a hat to the hat inventory, unless already owned
