@@ -18,6 +18,13 @@ class LabyrinthView < MainView
       ██║░░░░░██╔══██║██╔══██╗░░╚██╔╝░░██╔══██╗██║██║╚████║░░░██║░░░██╔══██║
       ███████╗██║░░██║██████╦╝░░░██║░░░██║░░██║██║██║░╚███║░░░██║░░░██║░░██║
       ╚══════╝╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚═╝░░╚═╝"
+      @stats_art = "
+      ░██████╗████████╗░█████╗░████████╗░██████╗
+      ██╔════╝╚══██╔══╝██╔══██╗╚══██╔══╝██╔════╝
+      ╚█████╗░░░░██║░░░███████║░░░██║░░░╚█████╗░
+      ░╚═══██╗░░░██║░░░██╔══██║░░░██║░░░░╚═══██╗
+      ██████╔╝░░░██║░░░██║░░██║░░░██║░░░██████╔╝
+      ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝░░░╚═╝░░░╚═════╝░"
       @tips = [
         "Keep pressing #{"'".yellow}enter#{"'".yellow} in a menu to cycle through the tips #{'/'.yellow} hints#{'.'.yellow}",
         "There are 8 regions in the labyrinth#{','.yellow} 3 of which are dangerous#{'.'.yellow}",
@@ -249,7 +256,7 @@ class LabyrinthView < MainView
         ],
         marsh_area: [
           'Your feet are soaked. At least the water is only at your ankles.',
-          'The flooded wetlands, small patches of dry land are scace.',
+          'The flooded wetlands, small patches of dry land are scarce.',
           "With every step splashing, it's impossible for anything to sneak around here.",
           "The air is humid, the land is flooded. You're in a marsh.",
           "You're in a marsh, the land is oversaturated with water.",
@@ -319,7 +326,10 @@ class LabyrinthView < MainView
     puts " 𝟙 #{'-'.yellow} ℙ𝕝𝕒𝕪"
     puts ''
     sleep(0.05)
-    puts " 𝟚 #{'-'.yellow} 𝕋𝕦𝕥𝕠𝕣𝕚𝕒𝕝"
+    puts " 𝟚 #{'-'.yellow} 𝕊𝕥𝕒𝕥𝕤"
+    puts ''
+    sleep(0.05)
+    puts " 𝟛 #{'-'.yellow} 𝕋𝕦𝕥𝕠𝕣𝕚𝕒𝕝"
     puts ''
     sleep(0.05)
     puts " 𝟡 #{'-'.yellow} #{'𝔹𝕒𝕔𝕜'.light_red}"
@@ -350,6 +360,31 @@ class LabyrinthView < MainView
     puts "#{' - '.yellow}Right"
     puts ''
     sleep(0.02)
+  end
+
+  def list_stats
+    puts @stats_art.yellow
+    puts ''
+    puts "#{'Hats found -> '.yellow} 0"
+    puts ''
+    sleep(0.2)
+    puts "#{'Robes found -> '.yellow} 0"
+    puts ''
+    sleep(0.2)
+    puts "#{'Total gold earned -> '.yellow} 0"
+    puts ''
+    sleep(0.2)
+    puts "#{'Rooms discovered -> '.yellow} 0"
+    puts ''
+    sleep(0.2)
+    puts "#{'Total moves -> '.yellow} 0"
+    puts ''
+    sleep(0.2)
+    puts "#{'Deaths -> '.yellow} 0"
+    puts ''
+    sleep(0.2)
+    puts "#{'Time spent in maze -> '.yellow} 0"
+    puts ''
   end
 
   def room_visited?(room)

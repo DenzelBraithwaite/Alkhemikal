@@ -1,7 +1,8 @@
 require_relative '../models/labyrinth_room'
 class LabyrinthRepo
   attr_reader :rooms
-  attr_accessor :all_hats, :all_robes, :item_room_indexes, :dark_death_rooms
+  attr_accessor :all_hats, :all_robes, :item_room_indexes, :dark_death_rooms, :room_count, :move_count,
+   :gold_earned, :hats_found, :robes_found, :total_deaths, :total_time_spent, :gold_lost
 
   def initialize
     # Hats that can be found when exploring
@@ -69,6 +70,14 @@ class LabyrinthRepo
       # Between jungle and marsh
       370
     ]
+    @hats_found = 0
+    @robes_found = 0
+    @room_count = 0
+    @move_count = 0
+    @gold_earned = 0
+    @gold_lost = 0
+    @total_deaths = 0
+    @total_time_spent = 0
     @rooms = [
       @room_r1_c1 = LabyrinthRoom.new(row_id: 1, column_id: 1, role: :top_left_corner), # 0
       @room_r1_c2 = LabyrinthRoom.new(row_id: 1, column_id: 2, role: :only_horizontal),
