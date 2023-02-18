@@ -79,7 +79,8 @@ class MainView
   \\\\___//
    -----"
 
-    @demo_version = "Current: Full Game Version 1.0 - last update: #{'Added special effects to robes'.light_black.blink}\n
+    @demo_version = "Current: Full Game Version 1.1 - What's new: #{'Improved potions recipe display + added dialogue in various places'.light_magenta.blink}\n
+                    Previous: Full Game Version 1.0 - last update: #{'Added special effects to robes'.light_black}\n
                     Previous: Demo Version 4.0 - last update: #{'Added shop and gold currency to game'.blue}\n
                     Previous: Demo Version 3.2 - last update: #{'Added tips to all menus'.cyan}\n
                     Previous: Demo Version 3.1 - last update: #{'Added labyrinth navigation helpers'.yellow}\n

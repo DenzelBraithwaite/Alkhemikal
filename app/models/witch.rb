@@ -11,7 +11,7 @@ class Witch
     @purchased_bad_potions = false
     @ladle = 'wooden spoon'
     @cauldron = 'simple cauldron'
-    @ingredients = ['water', 'small bones']
+    @ingredients = ['water']
     @recipes = {}
     @shopkeeper_advice = ['There are a few easter eggs hidden in the game.']
     @special_recipes = {}
