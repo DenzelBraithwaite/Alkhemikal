@@ -77,7 +77,7 @@ class Router
 #
   def main_menu_options
     print "Tɪᴘ: ".light_cyan
-    # puts @view.tips.sample
+    puts @view.tips.sample
     puts ''
     # puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.light_cyan}"
     puts @view.title_art.light_cyan.blink
