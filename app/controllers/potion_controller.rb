@@ -207,7 +207,7 @@ class PotionController < ParentController
     puts ''
     special_index = 1
     @player.recipes.each_with_index do |potion, index|
-      puts "#{index + 1} #{'-'.light_magenta} #{potion}"
+      puts "#{index + 1} #{'-'.light_magenta} #{potion[0]} #{'->'.light_magenta} #{potion[1].join(", ".light_magenta)}"
       sleep(0.05)
       special_index += 1
     end

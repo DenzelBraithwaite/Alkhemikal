@@ -236,8 +236,8 @@ class ShopController < ParentController
           @player.shopkeeper_advice << "Explore: When you've found every ingredient while exploring, you'll get a free hint on how to create the final potion."
           slow_dialogue("Shopkeeper #{'>'.blue} When you've found every ingredient while #{'exploring'.light_green}, you'll get a free hint on how to create the #{'final potion'.red}.", 0.03, false)
         when 50
-          @player.shopkeeper_advice << 'Billywig: The odds of Billywig are against you, but if you manage to get 21, you can a nice profit.'
-          slow_dialogue("Shopkeeper #{'>'.blue} The odds of #{'Billywig'.light_blue} are against you, but if you manage to get 21, you can a nice profit.", 0.03, false)
+          @player.shopkeeper_advice << 'Billywig: The odds of Billywig are against you, but if you manage to get 26, you can make a nice profit.'
+          slow_dialogue("Shopkeeper #{'>'.blue} The odds of #{'Billywig'.light_blue} are against you, but if you manage to get 26, you can make a nice profit.", 0.03, false)
         when 100
           @player.shopkeeper_advice << "Shop: If I had to make a recommendation, hmm... I'd say buy my most expensive potion!! AHIII hi hi hii..."
           slow_dialogue("Shopkeeper #{'>'.blue} If I had to make a recommendation, hmm... I'd say buy my most expensive potion!! AHIII hi hi hii...", 0.03, false)
