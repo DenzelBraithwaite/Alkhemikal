@@ -32,7 +32,9 @@ class MainView
       "Keep pressing #{"'".cyan}enter#{"'".cyan} in a menu to cycle through the tips #{'/'.cyan} hints#{'.'.cyan}",
       "You can change your name in #{"'".cyan}Inventory#{"'".cyan} ",
       "It#{"'".cyan}s better to catch 20#{'-'.cyan}30 ingredients before making potions#{'.'.cyan}",
-      "You can die in the labyrinth, but you won#{"'".cyan}t lose any items. The next time you play you#{"'".cyan}ll start in a different room#{'.'.cyan}"]
+      "You can die in the labyrinth, but you won#{"'".cyan}t lose any items. The next time you play you#{"'".cyan}ll start in a different room#{'.'.cyan}",
+      "The game received a minor anniversary update. You might find a few new references to 27 instead of 26."
+    ]
     @title_art = "
               ░█████╗░██╗░░░░░██╗░░██╗██╗░░██╗███████╗███╗░░░███╗██╗██╗░░██╗░█████╗░██╗░░░░░
               ██╔══██╗██║░░░░░██║░██╔╝██║░░██║██╔════╝████╗░████║██║██║░██╔╝██╔══██╗██║░░░░░
@@ -79,16 +81,19 @@ class MainView
   \\\\___//
    -----"
 
-    @demo_version = "Current: Full Game Version 1.1 - What's new: #{'Improved potions recipe display + added dialogue in various places'.light_magenta.blink}\n
-                    Previous: Full Game Version 1.0 - last update: #{'Added special effects to robes'.light_black}\n
-                    Previous: Demo Version 4.0 - last update: #{'Added shop and gold currency to game'.blue}\n
-                    Previous: Demo Version 3.2 - last update: #{'Added tips to all menus'.cyan}\n
-                    Previous: Demo Version 3.1 - last update: #{'Added labyrinth navigation helpers'.yellow}\n
-                    Previous: Demo Version 3.0 - last update: #{'Revamped entire labyrinth'.yellow}\n
-                    Previous: Demo Version 2.4 - last update: #{'Potions revamped'.light_magenta}\n
-                    Previous: Demo Version 2.3 - last update: #{'Billywig re-vamped'.light_cyan}\n
-                    Previous: Demo Version 2.2 - last update: #{'menus color design'.cyan}\n
-                    Previous: Demo Version 2.1 - last update: #{'labyrinth'.yellow}"
+    @demo_version = "\n
+                    #{'Beta version 2.1:'.light_black} ---------- #{'Added labyrinth'.yellow}\n
+                    #{'Beta version 2.2:'.light_black} ---------- #{'Designed menus'.cyan}\n
+                    #{'Beta version 2.3:'.light_black} ---------- #{'Revamped Billywig'.light_cyan}\n
+                    #{'Beta version 2.4:'.light_black} ---------- #{'Revamped Potions'.light_magenta}\n
+                    #{'Beta version 3.0:'.light_black} ---------- #{'Revamped entire labyrinth'.yellow}\n
+                    #{'Beta version 3.1:'.light_black} ---------- #{'Added labyrinth navigation helpers'.yellow}\n
+                    #{'Beta version 3.2:'.light_black} ---------- #{'Added tips to all menus'.cyan}\n
+                    #{'Beta version 4.0:'.light_black} ---------- #{'Added shop and gold currency to game'.blue}\n
+                    #{'Full version 1.0:'.light_black} ---------- #{'Added special effects to robes'.light_black}\n
+                    #{'Full version 1.1:'.light_black} ---------- #{'Improved potions recipe display + added dialogue in various places'.light_magenta}\n
+                    #{'Full Version 1.2:'.light_white.on_light_cyan} ---------- What's new: #{'Added Stats menu in labyrinth mode!'.yellow.blink}
+                    "
   end
 
   def special_thanks
@@ -143,7 +148,46 @@ class MainView
     sleep(2)
   end
 
-  def easter_egg
+  def easter_egg26
+    2.times do
+      puts 'congrats, you found an easter egg :)'.black.on_white.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_black.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.red.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_red.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.green.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_green.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.yellow.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_yellow.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.blue.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_blue.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.magenta.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_magenta.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.cyan.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_cyan.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.white.blink
+      sleep(0.10)
+      puts 'congrats, you found an easter egg :)'.light_white.blink
+    end
+    sleep(1)
+    puts "This is a message from the future, happy 27th* Bday :)".light_white.blink
+    sleep(3)
+  end
+
+  def easter_egg27
     2.times do
       puts 'congrats, you found an easter egg :)'.black.on_white.blink
       sleep(0.10)

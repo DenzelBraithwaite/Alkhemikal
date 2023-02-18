@@ -3,7 +3,8 @@ require_relative '../repo/labyrinth_repo'
 
 # Add Billywig controller and hide it in a room
 class LabyrinthController < ParentController
-  attr_accessor :number_of_saves_used
+  attr_accessor :number_of_saves_used, :room_count, :move_count,
+  :gold_earned, :hats_found, :robes_found, :total_deaths, :total_time_spent, :gold_lost
 
   def initialize(repo)
     super(player)
@@ -13,6 +14,14 @@ class LabyrinthController < ParentController
     @new_robe_index = 0
     @center_ingredient_found = false
     @number_of_saves_used = 0
+    @hats_found = 0
+    @robes_found = 0
+    @room_count = 0
+    @move_count = 0
+    @gold_earned = 0
+    @gold_lost = 0
+    @total_deaths = 0
+    @total_time_spent = 0
   end
 
   # Labyrinth game main menu
@@ -51,7 +60,7 @@ class LabyrinthController < ParentController
   # View info about players time spent in maze
   def view_stats
     clear
-    @view.list_stats
+    @view.list_stats(@hats_found, @robes_found, @gold_earned, @gold_lost, @room_count, @move_count, @total_deaths)
     continue_prompt
   end
 
@@ -116,7 +125,9 @@ class LabyrinthController < ParentController
     add_move_count
     bonus_gold = rand(10..30)
     riding_hood_bonus = rand(2..4)
+    count_gold(bonus_gold) unless @current_room.visited
     @current_run_gold += bonus_gold unless @current_room.visited
+    count_gold(riding_hood_bonus) if @player.current_robe == "little red riding hood"
     @current_run_gold += riding_hood_bonus if @player.current_robe == "little red riding hood"
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id - 1, @current_room.column_id)
@@ -139,7 +150,9 @@ class LabyrinthController < ParentController
     add_move_count
     bonus_gold = rand(10..30)
     riding_hood_bonus = rand(2..4)
+    count_gold(bonus_gold) unless @current_room.visited
     @current_run_gold += bonus_gold unless @current_room.visited
+    count_gold(riding_hood_bonus) if @player.current_robe == "little red riding hood"
     @current_run_gold += riding_hood_bonus if @player.current_robe == "little red riding hood"
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id + 1, @current_room.column_id)
@@ -162,7 +175,9 @@ class LabyrinthController < ParentController
     add_move_count
     bonus_gold = rand(10..30)
     riding_hood_bonus = rand(2..4)
+    count_gold(bonus_gold) unless @current_room.visited
     @current_run_gold += bonus_gold unless @current_room.visited
+    count_gold(riding_hood_bonus) if @player.current_robe == "little red riding hood"
     @current_run_gold += riding_hood_bonus if @player.current_robe == "little red riding hood"
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id - 1)
@@ -185,7 +200,9 @@ class LabyrinthController < ParentController
     add_move_count
     bonus_gold = rand(10..30)
     riding_hood_bonus = rand(2..4)
+    count_gold(bonus_gold) unless @current_room.visited
     @current_run_gold += bonus_gold unless @current_room.visited
+    count_gold(riding_hood_bonus) if @player.current_robe == "little red riding hood"
     @current_run_gold += riding_hood_bonus if @player.current_robe == "little red riding hood"
     @current_room.visited = true
     @current_room = @repo.find_room(@current_room.row_id, @current_room.column_id + 1)
@@ -193,37 +210,37 @@ class LabyrinthController < ParentController
 
   # Counts how many hats the player has found in the labyrinth.
   def add_hat_count
-    @repo.hats_found += 1
+    @hats_found += 1
   end
 
   # Counts how many robes the player has found in the labyrinth.
   def add_robe_count
-    @repo.robes_found += 1
+    @robes_found += 1
   end
 
   # Calculates the total amount of gold earned in the labyrinth.
   def count_gold(amount)
-    @repo.gold_earned += amount
+    @gold_earned += amount
   end
 
   # Calculates the total amount of gold lost in the labyrinth.
   def count_lost_gold(amount)
-    @repo.gold_lost += amount
+    @gold_lost += amount
   end
 
   # Calculates the total amount of deaths occured in the labyrinth.
   def add_death_count
-    @repo.total_deaths += 1
+    @total_deaths += 1
   end
 
   # Counts how many rooms the player has visited.
   def add_room_count
-    @repo.room_count += 1
+    @room_count += 1
   end
 
   # Counts how many times the player has moved
   def add_move_count
-    @repo.move_count += 1
+    @move_count += 1
   end
 
   # When player enters room, this method determines the room description
@@ -283,10 +300,12 @@ class LabyrinthController < ParentController
       new_item_alert("HAT", clothing)
       @player.hats << clothing
       @new_hat_index += 1
+      add_hat_count
     else
       new_item_alert("ROBE", clothing)
       @player.robes << clothing
       @new_robe_index += 1
+      add_robe_count
     end
   end
 
@@ -358,9 +377,11 @@ class LabyrinthController < ParentController
     puts 'You wake up somewhere completely different, your gold is missing...'.light_black
     continue_prompt
     puts "You #{'lost -'.red}#{@current_run_gold.to_s.red} gold."
-    sleep(3)
+    count_lost_gold(@current_run_gold) unless @player.current_robe == 'magic cape'
     @current_run_gold = 0 unless @player.current_robe == 'magic cape'
     @current_room = @repo.rooms[rand(100..279)]
+    add_death_count
+    sleep(3)
   end
 
   # Alerts player when a new clothing is found

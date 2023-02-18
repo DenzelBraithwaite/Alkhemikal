@@ -28,9 +28,9 @@ class Router
     # Display intro message
     @parent_controller.slow_dialogue(@view.intro_message)
 
+    # @player.name = "Test mode"
     # Gets users name and stores it, used below to save the name prompt for all menus
     @player.name = @view.get_user_name.capitalize
-    # @player.name = "Test mode"
     @player.name = @parent_controller.capitalize_sentence(@player.name)
     synchronize_witch_name
     @main_controller.continue_prompt
@@ -57,7 +57,8 @@ class Router
     when 5 then @inventory_controller.run
     when 6 then @shop_controller.run
     when 7 then @main_controller.tutorial
-    when 26 then @view.easter_egg
+    when 26 then @view.easter_egg_26
+    when 27 then @view.easter_egg_27
     when 9 then stop
     else
     @view.invalid_option
@@ -66,21 +67,21 @@ class Router
   end
 
   def stop
-    # @view.special_thanks
-    # sleep(2)
+    @view.special_thanks
+    sleep(2)
     puts @view.game_over
     puts "Game over #{@player.name}..."
   # sleep(5)
     @running = false
   end
-
+#
   def main_menu_options
     print "Tɪᴘ: ".light_cyan
-    puts @view.tips.sample
+    # puts @view.tips.sample
     puts ''
+    # puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.light_cyan}"
     puts @view.title_art.light_cyan.blink
-    @main_controller.line
-    puts " Wʜᴀᴛ ᴅᴏ ʏᴏᴜ ғᴇᴇʟ ʟɪᴋᴇ ᴅᴏɪɴɢ #{'?'.light_cyan}"
+    # @main_controller.line
     @main_controller.line(0.05)
     puts " #{'𝟙'.light_green} #{'-'.light_cyan} 𝔼𝕩𝕡𝕝𝕠𝕣𝕖"
     @main_controller.line(0.05)

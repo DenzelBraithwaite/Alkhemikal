@@ -362,28 +362,32 @@ class LabyrinthView < MainView
     sleep(0.02)
   end
 
-  def list_stats
+  def list_stats(hats, robes, gold_gain, gold_loss, rooms, moves, deaths)
     puts @stats_art.yellow
     puts ''
-    puts "#{'Hats found -> '.yellow} 0"
+    puts ''
+    puts "#{'- '.yellow}Hats found#{' -> '.yellow} #{hats.to_s.light_yellow}"
     puts ''
     sleep(0.2)
-    puts "#{'Robes found -> '.yellow} 0"
+    puts "#{'- '.yellow}Robes found#{' -> '.yellow} #{robes.to_s.light_yellow}"
     puts ''
     sleep(0.2)
-    puts "#{'Total gold earned -> '.yellow} 0"
+    puts "#{'- '.yellow}Total gold earned#{' -> '.yellow} #{gold_gain.to_s.light_yellow}#{'G'.yellow}"
     puts ''
     sleep(0.2)
-    puts "#{'Rooms discovered -> '.yellow} 0"
+    puts "#{'- '.yellow}Total gold lost#{' -> '.yellow} #{gold_loss.to_s.red}#{'G'.yellow}"
     puts ''
     sleep(0.2)
-    puts "#{'Total moves -> '.yellow} 0"
+    puts "#{'- '.yellow}Rooms discovered#{' -> '.yellow} #{rooms.to_s.light_yellow}"
     puts ''
     sleep(0.2)
-    puts "#{'Deaths -> '.yellow} 0"
+    puts "#{'- '.yellow}Total moves#{' -> '.yellow} #{moves.to_s.light_yellow}"
     puts ''
     sleep(0.2)
-    puts "#{'Time spent in maze -> '.yellow} 0"
+    puts "#{'- '.yellow}Deaths#{' -> '.yellow} #{deaths.to_s.red}"
+    puts ''
+    sleep(0.2)
+    puts "#{'- '.yellow}Time spent in maze#{' -> '.yellow} #{'Future update...'.light_yellow}"
     puts ''
   end
 
