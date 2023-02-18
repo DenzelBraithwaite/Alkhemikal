@@ -23,10 +23,10 @@ class Router
     sleep(2.5)
 
     # Display opening art sequence, sleeps then prompts to continue and clears.
-    @main_controller.first_loading_screen
+    # @main_controller.first_loading_screen
 
     # Display intro message
-    @parent_controller.slow_dialogue(@view.intro_message)
+    # @parent_controller.slow_dialogue(@view.intro_message)
 
     # @player.name = "Test mode"
     # Gets users name and stores it, used below to save the name prompt for all menus
@@ -57,8 +57,8 @@ class Router
     when 5 then @inventory_controller.run
     when 6 then @shop_controller.run
     when 7 then @main_controller.tutorial
-    when 26 then @view.easter_egg_26
-    when 27 then @view.easter_egg_27
+    when 26 then @view.easter_egg26
+    when 27 then @view.easter_egg27
     when 9 then stop
     else
     @view.invalid_option
