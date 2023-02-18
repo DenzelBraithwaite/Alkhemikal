@@ -82,7 +82,9 @@ class InventoryView < MainView
       'There are certain items you can only attain by using cheat codes.',
       'Curious about cheat codes? Try changing your name.',
       'The advice menu is the only black and white menu in the whole game!',
-      'Originally, this game was only supposed to have searching and potion making!'
+      'Originally, this game was only supposed to have searching and potion making!',
+      "I never thought I'd work on this again a year later, at 27.",
+      "Enjoying the game so far? Well, thanks for playing!"
     ]
     @advice_menu_advice = [
       'This is the advice menu, why are you reading the tips?',

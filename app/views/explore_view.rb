@@ -22,22 +22,34 @@ class ExploreView
       'Almost every ingredient can be found while exploring... Almost.',
       'Unfortunately, Gruntilda always seems to join you when you search for ingredients.',
       "Not all tips are useful, most of them are, but this one isn't.",
+      "It might be tempting to repeatedly press the enter key, but you might miss something important if you do that...",
+      "Out of all of the tips in this game, one of them is a blatant lie. One of them... Not this one though, this one is for sure an honest true tip. You're welcome.",
+      "There's nothing like exploring the great out doors, but don't get carried away. It might be overwhelming if you collect too much at once.",
+      "You want to get a good amount of ingredients before you start brewing potions, roughly 26 to start I'd say.",
+      "You want to get a good amount of ingredients before you start brewing potions, about 27 should do. Or was it 26? Wait, yes 26, sorry about that."
+
     ]
     # Array of things to say when a good ingredient is found
     @good_ingredient_text = [
-      'Another stellar ingredient to add to my collection',
-      'Keep that, we might need it later',
+      'Another stellar ingredient to add to my collection.',
+      'Keep that, we might need it later.',
       "NYAAAKAKAAA that's what I'm talking about!",
-      "Wow, that's a good find! I'm sure we can use this",
-      "Oooh, not bad. We'll take this back",
-      "Hmmm, I think I know what we can use this for... Let's grab it",
-      'We definitely need this',
+      "Wow, that's a good find! I'm sure we can use this.",
+      "Oooh, not bad. We'll take this back.",
+      "Hmmm, I think I know what we can use this for... Let's grab it.",
+      'We definitely need this.',
       'Finders keepers!',
       "I can't believe you found that laying around, nyak!",
       'Quick, grab that!',
-      "That's great for making potions, grab that",
+      "That's great for making potions, grab that.",
       'You know what, I think we can use that.',
-      "Now that's what I'm talking about"
+      "Now that's what I'm talking about.",
+      "Ooohh lala, now that we can use.",
+      "I knew I should've looked there earlier...",
+      "Don't get ahead of yourself, you got lucky on that find.",
+      "Not bad... not bad at all witch.",
+      "Hmph, I could've found that if you weren't in my way.",
+      "Nyaaak! I've been looking for one of those."
     ]
     # Array of things to say when a good ingredient is found
     @bad_ingredient_text = [
@@ -56,7 +68,13 @@ class ExploreView
       "Hmm, maybe if it was in better condition, but nah let's leave that here",
       'Sometimes I wonder why I even bother with you...',
       "Wow, maybe you aren't cut out to be a witch after all?",
-      'Why would you even think we could use that?'
+      'Why would you even think we could use that?',
+      "... Hmmm? Oh you actually think we can use that?",
+      "Stupid, just stupid. Throw that away now, silly witch.",
+      "Do you really have this much time to waste?",
+      "It's witches like you that give us a bad name, try again!",
+      "Do you even have the faintest clue as to what we're looking for?",
+      "NYAAAkakaak ka ka kaaaaa.... How many times are you going to joke around?"
     ]
     @perfect_search_alert_one = "PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  "
     @perfect_search_alert_two = "PERFECT SEARCH!!                        PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                      PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  PERFECT SEARCH!!                                                  "
@@ -72,7 +90,7 @@ class ExploreView
 
   def read_damaged_recipe
     puts ''
-    puts "#{" Kᴀᴢ's Jᴏᴜʀɴᴀʟ:".green}\n #{"Year:".green} 1743\n #{"Moon:".green} Garnet\n\n#{" It reads:".green}"
+    puts "#{" Kᴀᴢ's Jᴏᴜʀɴᴀʟ:".green}\n #{"Moon cycle:".green} 1743\n #{"Moon:".green} Garnet\n\n#{" It reads:".green}"
     puts "  ℐ'𝓋ℯ 𝒶𝓁𝓂ℴ𝓈𝓉 𝒻𝒾ℊ𝓊𝓇ℯ𝒹 𝒾𝓉 ℴ𝓊𝓉... 𝓉𝒽ℯ 𝒱𝒾𝓁ℯ ℴ𝒻 𝒜𝓂ℴ𝓇𝓉ℯ𝓃𝓉𝒾𝒶.                ".black.on_light_yellow
     puts "  ℐ'𝓋ℯ 𝓉𝓇𝒾ℯ𝒹 𝒶𝓃𝒹 𝒻𝒶𝒾𝓁ℯ𝒹 𝓈ℴ 𝓂𝒶𝓃𝓎 𝓉𝒾𝓂ℯ𝓈, 𝒷𝓊𝓉 𝓉𝒽𝒾𝓈 𝓂ℴℴ𝓃 𝓌𝒾𝓁𝓁 𝒷ℯ 𝒹𝒾𝒻𝒻ℯ𝓇ℯ𝓃𝓉.".black.on_light_yellow
     puts "  ℐ'𝓋ℯ 𝒹𝒾𝓈𝒸ℴ𝓋ℯ𝓇ℯ𝒹 𝓉𝒽𝒶𝓉 𝓉𝒽ℯ 𝓀ℯ𝓎 𝒾𝓃ℊ𝓇ℯ𝒹𝒾ℯ𝓃𝓉𝓈 𝒶𝓇ℯ 𝒶𝒸𝓉𝓊𝒶𝓁𝓁𝓎 𝓅ℴ𝓉𝒾ℴ𝓃𝓈!!.     ".black.on_light_yellow

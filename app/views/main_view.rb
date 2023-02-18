@@ -184,6 +184,7 @@ class MainView
 
   def get_user_name
     puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".cyan} Before I forget#{','.cyan} what's your name my dear witch#{'?'.cyan}"
+    print "> ".magenta
     name = gets.chomp.downcase
     puts "#{"Gʀᴜɴᴛɪʟᴅᴀ>".cyan} Ahhh #{name.capitalize.cyan}, a wicked name indeed#{'!'.cyan}"
     return name

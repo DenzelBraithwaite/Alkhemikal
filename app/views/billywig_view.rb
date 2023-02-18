@@ -33,7 +33,12 @@ class BillywigView
       "Quit while you're ahead, it's very easy to go in the hole.",
       "Not all tips are useful, most of them are, but this one isn't.",
       "If you go over 26, you'll lose twice your initial bet, so you better be sure before taking another card!",
-      "If you get exactly 26 that's a BILLYWIG!!! You'll win 5 times your initial bet!"
+      "If you get exactly 26 that's a BILLYWIG!!! You'll win 5 times your initial bet!",
+      "Fun fact, Billywig is a rather new game amongst witches and warlocks. It's only been around for 1 full moon cycle!",
+      "There was talk about updating the game and making #{'27'.cyan.blink} the new goal... ugh, why must everything change.",
+      "Some wormheads think that Billywig was played by the gods, NYAAK ka ka kaaaaa... The fools don't know the true origin.",
+      "There was a magical being who passed by these woods once, he's the one who taught me BIllywig. It wasn't the gods or whomever else you might hear...",
+      "Ahh... how Billywig reminds me of a certain someone."
     ]
   end
 
