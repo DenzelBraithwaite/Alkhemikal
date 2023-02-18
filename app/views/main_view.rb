@@ -33,7 +33,8 @@ class MainView
       "You can change your name in #{"'".cyan}Inventory#{"'".cyan} ",
       "It#{"'".cyan}s better to catch 20#{'-'.cyan}30 ingredients before making potions#{'.'.cyan}",
       "You can die in the labyrinth, but you won#{"'".cyan}t lose any items. The next time you play you#{"'".cyan}ll start in a different room#{'.'.cyan}",
-      "The game received a minor anniversary update. You might find a few new references to 27 instead of 26."
+      "The game received a minor anniversary update. You might find a few new references to #{'27'.cyan} instead of #{'26'.cyan}.",
+      "Although you can't lose items in the labyrinth, you CAN lose gold, so watch out#{'!'.cyan}"
     ]
     @title_art = "
               ░█████╗░██╗░░░░░██╗░░██╗██╗░░██╗███████╗███╗░░░███╗██╗██╗░░██╗░█████╗░██╗░░░░░
@@ -92,7 +93,7 @@ class MainView
                     #{'Beta version 4.0:'.light_black} ---------- #{'Added shop and gold currency to game'.blue}\n
                     #{'Full version 1.0:'.light_black} ---------- #{'Added special effects to robes'.light_black}\n
                     #{'Full version 1.1:'.light_black} ---------- #{'Improved potions recipe display + added dialogue in various places'.light_magenta}\n
-                    #{'Full Version 1.2:'.light_white.on_light_cyan} ---------- What's new: #{'Added Stats menu in labyrinth mode!'.yellow.blink}
+                    #{'Full Version 1.2:'.light_white.on_light_cyan} ---------- What's new? #{'Added Stats menu in labyrinth mode!'.yellow.blink}
                     "
   end
 

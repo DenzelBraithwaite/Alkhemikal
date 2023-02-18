@@ -14,7 +14,7 @@ class Witch
     @ingredients = ['water']
     @recipes = {}
     @shopkeeper_advice = ['There are a few easter eggs hidden in the game.']
-    @special_recipes = {}
+    @special_recipes = {'test': ['the', 'test', 'potion']}
     @hats = ['none']
     @robes = ['simple black robe']
     @current_hat = @hats.first
